@@ -3,6 +3,7 @@ const cors = require("cors");
 
 const authRoutes = require("./routes/auth.routes");
 const appointmentRoutes = require("./routes/appointment.routes");
+const errorHandler = require("./middleware/error.middleware");
 
 const app = express();
 
@@ -25,5 +26,9 @@ app.use("/api/appointments", appointmentRoutes);
 app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
+
+// --- GLOBAL ERROR HANDLER ---
+// ÖNEMLİ: Tüm rotalardan SONRA eklenmelidir.
+app.use(errorHandler);
 
 module.exports = app;

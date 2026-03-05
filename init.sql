@@ -58,3 +58,12 @@ CREATE TABLE IF NOT EXISTS appointments (
     total_price NUMERIC(10,2),
     created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS working_hours (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    provider_id UUID REFERENCES providers(id) ON DELETE CASCADE,
+    day_of_week INT NOT NULL, -- 0: Pazar, 1: Pazartesi ... 6: Cumartesi
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    UNIQUE(provider_id, day_of_week)
+);

@@ -6,24 +6,26 @@ const ErrorResponse = require("../utils/errorResponse"); // Yeni sınıfımızı
 /**
  * Yeni kullanıcı kaydı
  */
-async function register(email, password) {
+async function register(full_name, email, password) {
+  // 1. Parametre eklendi
   // Önce bu email zaten var mı kontrol et
   const userExists = await pool.query("SELECT id FROM users WHERE email = $1", [
     email,
   ]);
+
   if (userExists.rows.length > 0) {
     // Hata fırlat (400 Bad Request)
-    throw new ErrorResponse("Email already registered", 400);
+    throw new ErrorResponse("Bu email adresi zaten kayıtlı.", 400);
   }
 
   // Şifre hashleme
   const saltRounds = 12;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-  // Veritabanına kayıt
+  // Veritabanına kayıt (full_name eklendi)
   const result = await pool.query(
-    "INSERT INTO users (email, password_hash) VALUES ($1, $2) RETURNING id, email, role",
-    [email.toLowerCase(), hashedPassword],
+    "INSERT INTO users (full_name, email, password_hash) VALUES ($1, $2, $3) RETURNING id, full_name, email, role",
+    [full_name, email.toLowerCase(), hashedPassword],
   );
 
   return result.rows[0];

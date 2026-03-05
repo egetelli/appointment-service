@@ -10,10 +10,10 @@ const ErrorResponse = require("../utils/errorResponse"); // 1. Eklendi
  * @access Public
  */
 const register = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const { full_name, email, password } = req.body;
 
   // Input validation can be added via express-validator in routes
-  const user = await authService.register(email, password);
+  const user = await authService.register(full_name, email, password);
 
   // Future: Publish event to RabbitMQ for user.created.v1
   // await eventService.publish('user.registered.v1', { userId: user.id, email: user.email });

@@ -77,6 +77,30 @@ class AppointmentRepository {
     const { rows } = await pool.query(query, [userId]);
     return rows;
   }
+
+  // 6. Çalışanın belirli bir gündeki mesai saatini getir
+  async getWorkingHours(providerId, dayOfWeek) {
+    const query = `
+    SELECT start_time, end_time 
+    FROM working_hours 
+    WHERE provider_id = $1 AND day_of_week = $2
+  `;
+    const { rows } = await pool.query(query, [providerId, dayOfWeek]);
+    return rows[0];
+  }
+
+  // 7. Belirli bir tarihteki tüm dolu randevuları getir
+  async getBookedAppointments(providerId, date) {
+    const query = `
+    SELECT slot_time, end_time 
+    FROM appointments 
+    WHERE provider_id = $1 
+      AND status != 'cancelled'
+      AND DATE(slot_time) = $2
+  `;
+    const { rows } = await pool.query(query, [providerId, date]);
+    return rows;
+  }
 }
 
 module.exports = new AppointmentRepository();

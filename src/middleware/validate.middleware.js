@@ -1,23 +1,25 @@
 const { validationResult } = require("express-validator");
 const ErrorResponse = require("../utils/errorResponse");
 
-/**
- * Gelen doğrulama hatalarını yakalayıp Global Error Handler'a fırlatır
- */
 const validate = (req, res, next) => {
-    const errors = validationResult(req);
+  const errors = validationResult(req);
 
-    //Eğer hata varsa (örneğin e-posta geçersizse veya şifre kısaysa)
-    if (!errors.isEmpty()){
-        //Hataları virgülle ayırarak tek bir mesaj haline getirir
-        const extractedErrors = errors.array().map(err => err.msg).join(', ');
+  if (!errors.isEmpty()) {
+    // 🔍 BURASI ÇOK KRİTİK: Hatanın köküne ineceğiz
+    console.log("❌ VALIDASYON DETAYLI ANALİZ:");
+    errors.array().forEach((err) => {
+      console.log(`- Alan: ${err.path}`);
+      console.log(`- Gelen Değer: "${err.value}" (Tipi: ${typeof err.value})`);
+      console.log(`- Hata Mesajı: ${err.msg}`);
+    });
 
-        //400 Bad Request koduyla sistemimizin standart hata fırlatıcısına gönderir
-        return next(new ErrorResponse(`Doğrulama Hatası: ${extractedErrors}`, 400));
-    }
-
-    //Hata yoksa constroller'a geçişe izin ver
-    next();
-}
+    const extractedErrors = errors
+      .array()
+      .map((err) => err.msg)
+      .join(", ");
+    return next(new ErrorResponse(`Doğrulama Hatası: ${extractedErrors}`, 400));
+  }
+  next();
+};
 
 module.exports = validate;

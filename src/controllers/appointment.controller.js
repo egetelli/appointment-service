@@ -17,26 +17,26 @@ exports.getServices = asyncHandler(async (req, res) => {
 });
 
 /**
- * @desc  Yeni randevu oluştur (Notlar ve Güncel Fiyat kaydı ile)
+ * @desc  Yeni randevu oluştur
  * @route POST /api/appointments
- * @access Private (Kullanıcı giriş yapmış olmalı)
+ * @access Private
  */
 exports.bookAppointment = asyncHandler(async (req, res) => {
-  // notes alanını body'den alıyoruz
-  const { serviceId, slotTime, notes } = req.body;
-  const userId = req.user.id; // authenticate middleware'inden geliyor
+  // Artık providerId de almak zorundayız
+  const { providerId, serviceId, slotTime } = req.body;
+  const userId = req.user.id; 
 
-  // notes bilgisini servise iletiyoruz
+  // İş mantığına gönderiyoruz
   const appointment = await appointmentService.createSmartAppointment(
     userId,
+    providerId,
     serviceId,
-    slotTime,
-    notes,
+    slotTime
   );
 
   res.status(201).json({
     success: true,
-    message: "Randevunuz başarıyla oluşturuldu ve onay bekliyor.",
+    message: "Randevunuz başarıyla oluşturuldu.",
     data: appointment,
   });
 });

@@ -130,6 +130,46 @@ class AppointmentRepository {
     const { rows } = await pool.query(query, [userId, date]);
     return rows;
   }
+
+  // 10. Randevuyu ID'sine göre getir (Detaylı bilgi için)
+  async getAppointmentById(id) {
+    const query = "SELECT * FROM appointments WHERE id = $1";
+    const { rows } = await pool.query(query, [id]);
+    return rows[0];
+  }
+
+  // 11. Genel İstatistikler: Hizmet popülerliği ve gelir
+async getProviderStats(providerId) {
+  const query = `
+    SELECT 
+      s.name as service_name,
+      COUNT(a.id) as total_appointments,
+      SUM(CASE WHEN a.status = 'booked' THEN a.total_price ELSE 0 END) as total_revenue,
+      COUNT(CASE WHEN a.status = 'cancelled' THEN 1 END) as cancelled_count
+    FROM services s
+    JOIN appointments a ON s.id = a.service_id
+    JOIN providers p ON a.provider_id = p.id
+    WHERE p.user_id = $1
+    GROUP BY s.name
+    ORDER BY total_appointments DESC
+  `;
+  const { rows } = await pool.query(query, [providerId]);
+  return rows;
+}
+
+// 12. Sistem Geneli Özet (Admin veya Genel Bakış için)
+async getSystemSummary() {
+  const query = `
+    SELECT 
+      status, 
+      COUNT(*) as count, 
+      SUM(total_price) as total_value
+    FROM appointments
+    GROUP BY status
+  `;
+  const { rows } = await pool.query(query);
+  return rows;
+}
 }
 
 module.exports = new AppointmentRepository();

@@ -41,4 +41,10 @@ router.get(
   appointmentController.getProviderSchedule,
 );
 
+// 6. En yakın müsait randevu slotunu bul
+router.get("/next-available", appointmentController.getNextAvailableSlot);
+
+// 7. Kullanıcının performans istatistiklerini görmesi
+router.get("/stats/my-performance", authenticate, appointmentController.getMyPerformance);
+
 module.exports = router;

@@ -141,22 +141,36 @@ exports.getAvailableSlots = async (providerId, serviceId, date) => {
  * Kullanıcının kendi randevusunu iptal eder.
  */
 exports.cancelAppointment = async (appointmentId, userId) => {
-  // Veritabanında güncelleme yapmayı dene
+  // 1. Randevuyu önce veritabanından bulalım (Saatini kontrol etmek için)
+  const appointment = await appointmentRepo.getAppointmentById(appointmentId);
+
+  if (!appointment) {
+    throw new ErrorResponse("Randevu bulunamadı.", 404);
+  }
+
+  // 2. Güvenlik Kontrolü: Bu randevu gerçekten bu kullanıcıya mı ait?
+  if (appointment.user_id !== userId) {
+    throw new ErrorResponse("Bu randevuyu iptal etme yetkiniz yok.", 403);
+  }
+
+  // 3. İptal Politikası: Son 2 saat kontrolü
+  const now = new Date();
+  const appointmentTime = new Date(appointment.slot_time);
+  const diffInMilliseconds = appointmentTime - now;
+  const diffInHours = diffInMilliseconds / (1000 * 60 * 60);
+
+  if (diffInHours < 2 && diffInHours > 0) {
+    throw new ErrorResponse(
+      "Randevuya 2 saatten az süre kaldığı için iptal edilemez. Lütfen işletme ile iletişime geçin.",
+      400,
+    );
+  }
+
+  // 4. İptal İşlemini Gerçekleştir
   const cancelledAppointment = await appointmentRepo.cancelAppointment(
     appointmentId,
     userId,
   );
-
-  // Eğer undefined döndüyse, randevu ya yoktur ya da bu kullanıcının değildir
-  if (!cancelledAppointment) {
-    throw new ErrorResponse(
-      "Randevu bulunamadı veya bu randevuyu iptal etme yetkiniz yok.",
-      404,
-    );
-  }
-
-  // TODO: İleride buraya RabbitMQ entegrasyonu gelecek (Örn: İptal E-postası gönder)
-
   return cancelledAppointment;
 };
 
@@ -165,4 +179,71 @@ exports.cancelAppointment = async (appointmentId, userId) => {
  */
 exports.getProviderSchedule = async (providerId, date) => {
   return await appointmentRepo.getProviderSchedule(providerId, date);
+};
+
+/**
+ * Bugünden itibaren en yakın müsait randevu slotunu bulur (Şu anki saati kontrol eder).
+ */
+exports.getNextAvailableSlot = async (providerId, serviceId) => {
+  const maxDaysToSearch = 30;
+  const now = new Date(); // 👈 Şu anki tam zaman (Tarih + Saat)
+
+  for (let i = 0; i < maxDaysToSearch; i++) {
+    const searchDate = new Date(now);
+    searchDate.setDate(now.getDate() + i);
+    const dateString = searchDate.toISOString().split("T")[0];
+
+    const slots = await this.getAvailableSlots(
+      providerId,
+      serviceId,
+      dateString,
+    );
+
+    // Filtreleme mantığı:
+    const foundSlot = slots.find((slot) => {
+      if (!slot.isAvailable) return false;
+
+      // 👈 Kritik Kontrol: Eğer baktığımız gün bugünse, slotun saati şu andan büyük olmalı
+      if (i === 0) {
+        const slotTime = new Date(slot.time);
+        return slotTime > now; // Sadece gelecekteki saatleri döndür
+      }
+
+      return true; // Gelecek günlerdeki tüm boş slotlar uygundur
+    });
+
+    if (foundSlot) {
+      return {
+        date: dateString,
+        slot: foundSlot,
+      };
+    }
+  }
+
+  throw new ErrorResponse(
+    "Önümüzdeki 30 gün boyunca müsait randevu bulunamadı.",
+    404,
+  );
+};
+
+/**
+ * Çalışanın (Provider) performans ve gelir istatistiklerini getirir.
+ */
+exports.getProviderAnalytics = async (userId) => {
+  const stats = await appointmentRepo.getProviderStats(userId);
+
+  // Toplam verileri hesaplayalım
+  const summary = stats.reduce(
+    (acc, curr) => {
+      acc.totalRevenue += parseFloat(curr.total_revenue);
+      acc.totalBookings += parseInt(curr.total_appointments);
+      return acc;
+    },
+    { totalRevenue: 0, totalBookings: 0 },
+  );
+
+  return {
+    summary,
+    details: stats,
+  };
 };

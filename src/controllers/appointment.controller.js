@@ -130,3 +130,40 @@ exports.getProviderSchedule = asyncHandler(async (req, res) => {
     data: schedule,
   });
 });
+
+/**
+ * @desc  En yakın müsait randevu tarihini ve saatini getir
+ * @route GET /api/appointments/next-available
+ * @access Public
+ */
+exports.getNextAvailableSlot = asyncHandler(async (req, res) => {
+  const { providerId, serviceId } = req.query;
+
+  if (!providerId || !serviceId) {
+    throw new ErrorResponse("Lütfen providerId ve serviceId belirtin.", 400);
+  }
+
+  const nextSlot = await appointmentService.getNextAvailableSlot(
+    providerId,
+    serviceId,
+  );
+
+  res.status(200).json({
+    success: true,
+    data: nextSlot,
+  });
+});
+
+/**
+ * @desc  Çalışan için hizmet ve gelir istatistiklerini getir
+ * @route GET /api/appointments/stats/my-performance
+ * @access Private (Provider)
+ */
+exports.getMyPerformance = asyncHandler(async (req, res) => {
+  const stats = await appointmentService.getProviderAnalytics(req.user.id);
+
+  res.status(200).json({
+    success: true,
+    data: stats,
+  });
+});

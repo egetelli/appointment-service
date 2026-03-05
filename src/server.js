@@ -1,14 +1,21 @@
 require("dotenv").config();
 const app = require("./app");
 const pool = require("./config/db");
+const dbInit = require("./config/dbInit");
 
 const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
   try {
+    // 1. Önce fiziksel bağlantıyı kontrol et
     await pool.query("SELECT NOW()");
     console.log("✅ Veritabanı bağlantısı başarılı.");
 
+    // 2. Tabloları kontrol et ve yoksa oluştur (Auto-Migration)
+    // Bu adım C#'taki Update-Database komutu gibi çalışır.
+    await dbInit(); 
+
+    // 3. Her şey hazır olduktan sonra sunucuyu başlat
     const server = app.listen(PORT, () => {
       console.log(`🚀 Sunucu port ${PORT} üzerinde çalışıyor...`);
       console.log(`🌍 Ortam: ${process.env.NODE_ENV || "development"}`);
@@ -16,7 +23,7 @@ const startServer = async () => {
 
     return server;
   } catch (err) {
-    console.error("❌ Veritabanı başlatılamadı:", err.message);
+    console.error("❌ Başlatma hatası:", err.message);
     process.exit(1);
   }
 };

@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # 1. Veritabanı Servisi
+  db:
+    image: postgres:17
+    container_name: my-postgres-server
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=sCd06
+      - POSTGRES_DB=appointment_db
+    ports:
+      - "5430:5432" # Dışarıdan (Host) erişim portu
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+
+  # 2. pgAdmin Servisi (Web Arayüzü)
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: my-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@local.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80" # Tarayıcıdan localhost:5050 ile girilecek
+    depends_on:
+      - db
+    restart: always
+
+  # 3. Senin Node.js API Servisin
+  api:
+    build: .
+    container_name: appointment-api-container
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db        # Konteynerler arası iletişimde servis adı kullanılır
+      DB_USER: postgres
+      DB_PASSWORD: sCd06
+      DB_NAME: appointment_db
+      DB_PORT: 5432      # Konteyner içi standart port
+      JWT_SECRET: your_very_secret_key
+    depends_on:
+      - db
+    restart: on-failure
+
+volumes:
+  postgres_data:

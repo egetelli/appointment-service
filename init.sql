@@ -1,0 +1,39 @@
+-- 1. KULLANICILAR TABLOSU
+CREATE TABLE IF NOT EXISTS users (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    role VARCHAR(50) DEFAULT 'user',
+    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2. HİZMETLER TABLOSU
+CREATE TABLE IF NOT EXISTS services (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(255) NOT NULL,
+    duration_minutes INTEGER NOT NULL,
+    max_daily_slots INTEGER DEFAULT 10,
+    description TEXT,
+    category VARCHAR(100),
+    price NUMERIC(10,2) DEFAULT 0.00,
+    currency VARCHAR(3) DEFAULT 'TRY',
+    is_active BOOLEAN DEFAULT true,
+    buffer_time INTEGER DEFAULT 0,
+    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 3. RANDEVULAR TABLOSU
+CREATE TABLE IF NOT EXISTS appointments (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    service_id UUID NOT NULL REFERENCES services(id) ON DELETE CASCADE,
+    slot_time TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    status VARCHAR(50) DEFAULT 'pending',
+    notes TEXT,
+    total_price NUMERIC(10,2),
+    canceled_at TIMESTAMP WITHOUT TIME ZONE,
+    cancellation_reason TEXT,
+    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);

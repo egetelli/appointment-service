@@ -88,3 +88,45 @@ exports.getAvailableSlots = asyncHandler(async (req, res) => {
     data: slots,
   });
 });
+
+/**
+ * @desc  Giriş yapmış kullanıcının randevusunu iptal et (status -> 'cancelled')
+ * @route PATCH /api/appointments/:id/cancel
+ * @access Private
+ */
+exports.cancelAppointment = asyncHandler(async (req, res) => {
+  const appointmentId = req.params.id;
+  const userId = req.user.id; // authenticate middleware'inden geliyor
+
+  const cancelledAppointment = await appointmentService.cancelAppointment(
+    appointmentId,
+    userId,
+  );
+
+  res.status(200).json({
+    success: true,
+    message: "Randevunuz başarıyla iptal edildi.",
+    data: cancelledAppointment,
+  });
+});
+
+/**
+ * @desc  Çalışanın belirli bir günkü ajandasını getir
+ * @route GET /api/appointments/provider/schedule
+ * @access Private (Sadece Provider/Admin)
+ */
+exports.getProviderSchedule = asyncHandler(async (req, res) => {
+  const { date } = req.query;
+  const providerId = req.user.id; // Token'dan gelen id'nin provider olduğunu varsayıyoruz
+
+  const schedule = await appointmentService.getProviderSchedule(
+    providerId,
+    date,
+  );
+
+  res.status(200).json({
+    success: true,
+    count: schedule.length,
+    data: schedule,
+  });
+});

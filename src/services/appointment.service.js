@@ -136,3 +136,33 @@ exports.getAvailableSlots = async (providerId, serviceId, date) => {
 
   return slots;
 };
+
+/**
+ * Kullanıcının kendi randevusunu iptal eder.
+ */
+exports.cancelAppointment = async (appointmentId, userId) => {
+  // Veritabanında güncelleme yapmayı dene
+  const cancelledAppointment = await appointmentRepo.cancelAppointment(
+    appointmentId,
+    userId,
+  );
+
+  // Eğer undefined döndüyse, randevu ya yoktur ya da bu kullanıcının değildir
+  if (!cancelledAppointment) {
+    throw new ErrorResponse(
+      "Randevu bulunamadı veya bu randevuyu iptal etme yetkiniz yok.",
+      404,
+    );
+  }
+
+  // TODO: İleride buraya RabbitMQ entegrasyonu gelecek (Örn: İptal E-postası gönder)
+
+  return cancelledAppointment;
+};
+
+/**
+ * Çalışanın kendi müsaitlik durumunu görmesi için randevu saatlerini ve durumlarını getirir.
+ */
+exports.getProviderSchedule = async (providerId, date) => {
+  return await appointmentRepo.getProviderSchedule(providerId, date);
+};

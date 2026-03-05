@@ -101,6 +101,35 @@ class AppointmentRepository {
     const { rows } = await pool.query(query, [providerId, date]);
     return rows;
   }
+
+  // 8. Randevuyu İptal Et (Sadece ilgili kullanıcıya ait olanı iptal etmeli)
+  async cancelAppointment(appointmentId, userId) {
+    const query = `
+      UPDATE appointments 
+      SET status = 'cancelled' 
+      WHERE id = $1 AND user_id = $2 
+      RETURNING *;
+    `;
+    const { rows } = await pool.query(query, [appointmentId, userId]);
+    return rows[0]; // Eğer kayıt bulunamazsa veya kullanıcıya ait değilse undefined döner
+  }
+  // 9. Çalışanın belirli bir gündeki tüm randevularını detaylı getir(müsaitlik kontrolü)
+  async getProviderSchedule(userId, date) {
+    const query = `
+    SELECT 
+      a.id, a.slot_time, a.end_time, a.status, a.total_price,
+      u.full_name as customer_name, u.email as customer_email,
+      s.name as service_name
+    FROM appointments a
+    JOIN users u ON a.user_id = u.id
+    JOIN services s ON a.service_id = s.id
+    JOIN providers p ON a.provider_id = p.id -- Providers tablosuna bağlandık
+    WHERE p.user_id = $1 AND DATE(a.slot_time) = $2 -- User_id üzerinden filtreledik
+    ORDER BY a.slot_time ASC
+  `;
+    const { rows } = await pool.query(query, [userId, date]);
+    return rows;
+  }
 }
 
 module.exports = new AppointmentRepository();

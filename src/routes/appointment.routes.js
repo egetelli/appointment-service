@@ -27,4 +27,18 @@ router.post(
   appointmentController.bookAppointment,
 );
 
+// 4. Korumalı: Randevu iptal et (Soft Delete mantığı)
+router.patch(
+  "/:id/cancel",
+  authenticate,
+  appointmentController.cancelAppointment,
+);
+
+// 5. Çalışanın (Provider) kendi günlük ajandasını görmesi
+router.get(
+  "/provider/schedule",
+  authenticate,
+  appointmentController.getProviderSchedule,
+);
+
 module.exports = router;

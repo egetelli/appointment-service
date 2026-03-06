@@ -48,11 +48,13 @@ services:
       JWT_SECRET: your_very_secret_key
       REDIS_HOST: redis
       REDIS_PASSWORD: ${REDIS_PASSWORD}
+      RABBITMQ_URL: ${RABBITMQ_URL}
     networks:
       - app-network # 👈 Eklendi
     depends_on:
       - db
       - redis
+      - rabbitmq
     restart: on-failure
 
   # 4. Redis Servisi
@@ -82,7 +84,40 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  # 5. rabbitmq servisi
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: production_rabbitmq
+    hostname: appointment_rabbit # 🔑 KRİTİK: Yeniden başlamalarda veriyi kaybetmemesi için sabit bir isim!
+    restart: unless-stopped # Sunucu çökerse otomatik geri kalksın
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: Egerabbit123!
+    ports:
+      - "5672:5672" # API Portu
+      - "15672:15672" # Yönetim Paneli Portu
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq # 💾 Veri kalıcılığı (Kuyruktaki mesajlar silinmesin)
+    networks:
+      - app-network
+    healthcheck: # 🏥 Sistem kontrolü: RabbitMQ tam olarak ayağa kalkmadan diğer servisler ona saldırmasın
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
+  # 6. Postacı (Worker) Servisi 👈 Burayı ekliyoruz
+  email-worker:
+    build: .
+    container_name: email-worker-container
+    command: node src/workers/email.worker.js
+    env_file:
+      - .env
+    networks:
+      - app-network # 👈 Ağa dahil ettik ki RabbitMQ ile konuşabilsin
+    depends_on:
+      rabbitmq:
+        condition: service_healthy # RabbitMQ tamamen hazır olmadan postacı uyanmasın
 # Ağ Tanımlaması (İzolasyon için)
 networks:
   app-network:
@@ -92,3 +127,4 @@ networks:
 volumes:
   postgres_data:
   redis_data:
+  rabbitmq_data:

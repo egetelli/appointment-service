@@ -5,6 +5,7 @@ class AppointmentRepository {
   async getProviderServiceDetails(providerId, serviceId) {
     const query = `
       SELECT 
+        s.name, 
         s.duration_minutes, 
         COALESCE(ps.custom_price, s.base_price) as final_price
       FROM provider_services ps
@@ -176,6 +177,26 @@ class AppointmentRepository {
     const query = "SELECT id FROM providers WHERE user_id = $1";
     const { rows } = await pool.query(query, [userId]);
     return rows[0]; // { id: 'uuid-değeri' } döner
+  }
+
+  // 14. Randevu saatinin, çalışanın mesai saatleri içinde olup olmadığını kontrol eder
+  async isWithinWorkingHours(providerId, requestedStartTime, requestedEndTime) {
+    const query = `
+      SELECT 1 
+      FROM working_hours 
+      WHERE provider_id = $1 
+        AND day_of_week = EXTRACT(ISODOW FROM $2::text::timestamptz) 
+        AND start_time <= ($2::text::timestamptz)::time 
+        AND end_time >= ($3::text::timestamptz)::time
+    `;
+
+    const { rows } = await pool.query(query, [
+      providerId,
+      requestedStartTime,
+      requestedEndTime,
+    ]);
+
+    return rows.length > 0;
   }
 }
 

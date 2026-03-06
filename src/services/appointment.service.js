@@ -1,6 +1,7 @@
 const appointmentRepo = require("../repositories/appointment.repository");
 const ErrorResponse = require("../utils/errorResponse");
 const redisClient = require("../config/redis");
+const { sendEmailToQueue } = require("./queue.service");
 
 /**
  * Müşterinin seçebileceği tüm aktif hizmetleri getirir (Redis Destekli ⚡).
@@ -44,6 +45,7 @@ exports.createSmartAppointment = async (
   serviceId,
   slotTime,
 ) => {
+  console.log("Gelen ID'ler:", { providerId, serviceId });
   const requestedStartTime = new Date(slotTime);
 
   // 1. Kural: Geçmişe randevu alınamaz
@@ -78,6 +80,20 @@ exports.createSmartAppointment = async (
   if (isOverlap) {
     throw new ErrorResponse(
       "Seçilen çalışanın bu saatler arası doludur. Lütfen başka bir saat seçin.",
+      400,
+    );
+  }
+
+  // 4.5. Kural: Randevu saati çalışanın mesai saatleri (working hours) içinde mi? 👈 YENİ EKLENEN
+  const isWithinHours = await appointmentRepo.isWithinWorkingHours(
+    providerId,
+    requestedStartTime,
+    requestedEndTime,
+  );
+
+  if (!isWithinHours) {
+    throw new ErrorResponse(
+      "Seçilen saat çalışanın mesai saatleri dışındadır veya çalışan o gün hizmet vermemektedir.",
       400,
     );
   }
@@ -118,6 +134,34 @@ exports.createSmartAppointment = async (
   } catch (error) {
     console.error("❌ Redis temizleme hatası:", error);
     // Cache silinemese bile veritabanına kaydedildiği için hata fırlatmıyoruz, müşteriye "başarılı" dönüyoruz.
+  }
+
+  // 👇 8. Adım - Postaneye Mektubu Bırak (RabbitMQ) 👇
+  try {
+    // Müşteriye gidecek mailin içeriğini hazırlıyoruz
+    const emailPayload = {
+      to: "ege.telli@europowerenerji.com.tr", // Gerçek uygulamada bu, kullanıcının e-posta adresi olurdu
+      subject: "Randevunuz Onaylandı! 🎉",
+      text: `Merhaba! Randevunuz başarıyla oluşturuldu. Detaylar:\n- Tarih: ${requestedStartTime.toLocaleString(
+        "tr-TR",
+      )}\n- Hizmet: ${serviceDetails.name}\n- Fiyat: ${serviceDetails.final_price} TL\nTeşekkürler!`,
+      userId: userId, // Eğer bu serviste kullanıcının e-posta adresi varsa direkt onu da koyabilirsin
+      type: "APPOINTMENT_CREATED",
+      appointmentDetails: {
+        date: requestedStartTime.toLocaleString("tr-TR"), // Tarihi okunabilir formata çevir
+        price: serviceDetails.final_price,
+        serviceName: serviceDetails.name, // Eğer DB'den dönüyorsa eklenebilir
+      },
+    };
+
+    // RabbitMQ'ya mesajı fırlat (Müşteri bunu beklemez, anında alt satıra geçer)
+    await sendEmailToQueue(emailPayload);
+  } catch (error) {
+    // Mail kuyruğa atılamasa bile randevu oluştuğu için sistemi çökertmiyoruz!
+    console.error(
+      "❌ [Servis] RabbitMQ'ya mesaj gönderilirken hata oluştu:",
+      error.message,
+    );
   }
 
   return appointment;

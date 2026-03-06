@@ -9,8 +9,6 @@ const userRoutes = require("./routes/user.routes");
 
 const errorHandler = require("./middleware/error.middleware");
 
-const redisClient = require('./config/redis');
-
 // 1. Orta Katmanlar (Middlewares)
 app.use(
   cors({

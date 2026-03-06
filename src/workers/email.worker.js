@@ -1,7 +1,7 @@
 const amqp = require("amqplib");
 const nodemailer = require("nodemailer");
 
-// Ufak bir bekleme fonksiyonu
+// Mailtrap ücretsiz plan sınırı için bekleme fonksiyonu
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const transporter = nodemailer.createTransport({
@@ -28,70 +28,84 @@ async function startWorker() {
 
     channel.consume(queueName, async (msg) => {
       if (msg !== null) {
-        // Kuyruktan gelen string veriyi JSON objesine çeviriyoruz
-        const emailData = JSON.parse(msg.content.toString());
-        const recipient = emailData.to || "ege.telli@europowerenerji.com.tr";
-
-        console.log(`📩 [Worker] Yeni görev işleniyor. Alıcı: ${recipient}`);
-
         try {
-          // Ücretsiz plan sınırına takılmamak için her mail arası 2 saniye bekle
-          await sleep(2000);
+          const emailData = JSON.parse(msg.content.toString());
+          const recipient = emailData.to || "ege.telli@europowerenerji.com.tr";
 
-          // Payload'dan gelen verileri HTML şablonuna yerleştiriyoruz
+          // Tip Kontrolü (Onay mı İptal mi?)
+          const isCancellation = emailData.type === "APPOINTMENT_CANCELLED";
+          const themeColor = isCancellation ? "#e11d48" : "#0f172a"; // İptal: Kırmızı, Onay: Lacivert
+          const headerTitle = isCancellation
+            ? "Randevu İptali"
+            : "Randevu Onayı";
+          const badgeText = isCancellation
+            ? "⚠️ İptal Edildi"
+            : "✅ Başarıyla Onaylandı";
+          const badgeBg = isCancellation ? "#ffe4e6" : "#dcfce7";
+          const badgeColor = isCancellation ? "#9f1239" : "#166534";
+
+          console.log(
+            `📩 [Worker] İşlem tipi: ${emailData.type} | Alıcı: ${recipient}`,
+          );
+
+          await sleep(2000); // Rate limit koruması
+
           const htmlContent = `
             <div style="background-color: #f4f5f7; padding: 40px 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6;">
               <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
 
-                <div style="background-color: #0f172a; padding: 35px 30px; text-align: center;">
-                  <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.5px;">Randevu Onayı</h1>
+                <div style="background-color: ${themeColor}; padding: 35px 30px; text-align: center;">
+                  <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 600; letter-spacing: -0.5px;">${headerTitle}</h1>
                 </div>
 
                 <div style="padding: 40px 30px;">
-                  <div style="display: inline-block; background-color: #dcfce7; color: #166534; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 25px;">
-                    ✅ Başarıyla Onaylandı
+                  <div style="display: inline-block; background-color: ${badgeBg}; color: ${badgeColor}; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 25px;">
+                    ${badgeText}
                   </div>
 
                   <h2 style="color: #111827; font-size: 20px; margin-top: 0; margin-bottom: 15px;">Merhaba,</h2>
                   <p style="color: #4b5563; font-size: 16px; margin-bottom: 35px;">
-                    Randevunuz sistemimize başarıyla kaydedildi. Sizi ağırlamak için sabırsızlanıyoruz. Lütfen aşağıdaki randevu detaylarını kontrol ediniz.
+                    ${
+                      isCancellation
+                        ? "İsteğiniz üzerine randevunuz iptal edilmiştir. Detaylar aşağıda yer almaktadır."
+                        : "Randevunuz başarıyla kaydedildi. Sizi ağırlamak için sabırsızlanıyoruz."
+                    }
                   </p>
 
                   <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 25px;">
                     <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
-                      
                       <tr>
                         <td width="35" style="padding: 12px 0; border-bottom: 1px solid #e2e8f0;"><span style="font-size: 22px;">📅</span></td>
                         <td style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #64748b; font-size: 13px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Tarih</td>
                         <td align="right" style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #0f172a; font-weight: 600; font-size: 15px;">${emailData.appointmentDetails?.date || "Belirtilmedi"}</td>
                       </tr>
-                      
                       <tr>
                         <td width="35" style="padding: 16px 0 12px; border-bottom: 1px solid #e2e8f0;"><span style="font-size: 22px;">✨</span></td>
                         <td style="padding: 16px 0 12px; border-bottom: 1px solid #e2e8f0; color: #64748b; font-size: 13px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Hizmet</td>
                         <td align="right" style="padding: 16px 0 12px; border-bottom: 1px solid #e2e8f0; color: #0f172a; font-weight: 600; font-size: 15px;">${emailData.appointmentDetails?.serviceName || "Belirtilmedi"}</td>
                       </tr>
-                      
                       <tr>
                         <td width="35" style="padding: 16px 0 0;"><span style="font-size: 22px;">💳</span></td>
                         <td style="padding: 16px 0 0; color: #64748b; font-size: 13px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Tutar</td>
-                        <td align="right" style="padding: 16px 0 0; color: #2563eb; font-weight: 700; font-size: 19px;">${emailData.appointmentDetails?.price || "0"} TL</td>
+                        <td align="right" style="padding: 16px 0 0; color: ${isCancellation ? "#4b5563" : "#2563eb"}; font-weight: 700; font-size: 19px;">${emailData.appointmentDetails?.price || "0"} TL</td>
                       </tr>
-
                     </table>
                   </div>
 
                   <p style="color: #4b5563; font-size: 15px; margin-top: 35px; line-height: 1.6;">
-                    Randevu saatinizden 10 dakika önce gelmenizi rica ederiz. Herhangi bir değişiklik veya iptal talebiniz için bizimle iletişime geçebilirsiniz.
+                    ${
+                      isCancellation
+                        ? "Farklı bir zaman dilimi için tekrar randevu oluşturabilirsiniz."
+                        : "Randevu saatinizden 10 dakika önce gelmenizi rica ederiz."
+                    }
                   </p>
                 </div>
 
                 <div style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; padding: 25px; text-align: center;">
                   <p style="margin: 0; color: #94a3b8; font-size: 13px;">
-                    Bu e-posta sistem tarafından otomatik olarak gönderilmiştir.<br> Lütfen bu mesaja yanıt vermeyiniz.
+                    Bu e-posta sistem tarafından otomatik olarak gönderilmiştir.
                   </p>
                 </div>
-
               </div>
             </div>
           `;
@@ -99,23 +113,25 @@ async function startWorker() {
           await transporter.sendMail({
             from: '"Randevu Sistemi" <no-reply@randevu.com>',
             to: recipient,
-            subject: emailData.subject || "Randevunuz Onaylandı! 🎉",
-            text: emailData.text || "Randevunuz başarıyla oluşturulmuştur.",
-            html: htmlContent, // Şık tasarım için HTML parametresini ekledik
+            subject: emailData.subject,
+            text: emailData.text,
+            html: htmlContent,
           });
 
-          console.log(`✅ [Worker] Mail başarıyla gönderildi: ${recipient}`);
-          channel.ack(msg); // Mesaj başarıyla iletildi, RabbitMQ'dan silinebilir
-        } catch (mailError) {
+          console.log(`✅ [Worker] Başarıyla gönderildi: ${recipient}`);
+          channel.ack(msg);
+        } catch (processError) {
           console.error(
-            "❌ [Worker] Mail gönderilirken hata:",
-            mailError.message,
+            "❌ [Worker] Mesaj işleme hatası:",
+            processError.message,
           );
+          // Hata durumunda mesajı reddetmiyoruz (ack yapmıyoruz),
+          // ancak dead-letter-queue yapımız olmadığı için şimdilik logluyoruz.
         }
       }
     });
   } catch (error) {
-    console.error("❌ [Worker] Başlatılamadı:", error.message);
+    console.error("❌ [Worker] Kritik hata:", error.message);
   }
 }
 

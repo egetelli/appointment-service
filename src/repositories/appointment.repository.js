@@ -106,14 +106,18 @@ class AppointmentRepository {
   // 8. Randevuyu İptal Et (Sadece ilgili kullanıcıya ait olanı iptal etmeli)
   async cancelAppointment(appointmentId, userId) {
     const query = `
-      UPDATE appointments 
-      SET status = 'cancelled' 
-      WHERE id = $1 AND user_id = $2 
-      RETURNING *;
+      UPDATE appointments a
+      SET status = 'cancelled'
+      FROM services s -- 👈 Hizmet bilgilerini almak için JOIN yapıyoruz
+      WHERE a.id = $1 
+        AND a.user_id = $2 
+        AND a.service_id = s.id -- 👈 Randevudaki service_id ile services tablosunu eşliyoruz
+      RETURNING a.*, s.name as service_name; -- 👈 Randevu bilgilerinin yanına hizmet adını ekleyip dönüyoruz
     `;
     const { rows } = await pool.query(query, [appointmentId, userId]);
-    return rows[0]; // Eğer kayıt bulunamazsa veya kullanıcıya ait değilse undefined döner
+    return rows[0];
   }
+
   // 9. Çalışanın belirli bir gündeki tüm randevularını detaylı getir(müsaitlik kontrolü)
   async getProviderSchedule(userId, date) {
     const query = `

@@ -290,7 +290,7 @@ exports.cancelAppointment = async (appointmentId, userId) => {
     userId,
   );
 
-  // 👇 YENİ EKLENEN REDIS TEMİZLİK KISMI 👇
+  // 👇 5. REDIS TEMİZLİK KISMI 👇
   if (cancelledAppointment) {
     // İptal edilen randevunun tarihini ve provider bilgisini bul
     const dateString = new Date(cancelledAppointment.slot_time)
@@ -316,6 +316,30 @@ exports.cancelAppointment = async (appointmentId, userId) => {
     } catch (error) {
       console.error("❌ Redis temizleme hatası (İptal):", error);
     }
+  }
+
+  // 👇 6. Adım: İptal Bildirimini RabbitMQ'ya Fırlat 👇
+  try {
+    const cancelEmailPayload = {
+      to: "ege.telli@europowerenerji.com.tr", // Gerçekte user.email olmalı
+      subject: "Randevunuz İptal Edildi ⚠️",
+      text: `Randevunuz başarıyla iptal edilmiştir. Detaylar:\n- Tarih: ${new Date(cancelledAppointment.slot_time).toLocaleString("tr-TR")}\nTekrar görüşmek dileğiyle.`,
+      type: "APPOINTMENT_CANCELLED",
+      appointmentDetails: {
+        date: new Date(cancelledAppointment.slot_time).toLocaleString("tr-TR"),
+        serviceName:
+          cancelledAppointment.service_name || "Hizmet Bilgisi Alınamadı",
+        price: cancelledAppointment.total_price || 0,
+        status: "CANCELLED",
+      },
+    };
+
+    await sendEmailToQueue(cancelEmailPayload);
+    console.log(
+      `📩 [Kuyruk] İptal bildirimi RabbitMQ'ya bırakıldı: ${appointmentId}`,
+    );
+  } catch (error) {
+    console.error("❌ [Servis] İptal maili kuyruğa atılamadı:", error.message);
   }
 
   return cancelledAppointment;

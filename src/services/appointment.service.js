@@ -1,11 +1,38 @@
 const appointmentRepo = require("../repositories/appointment.repository");
 const ErrorResponse = require("../utils/errorResponse");
+const redisClient = require("../config/redis");
 
 /**
- * Müşterinin seçebileceği tüm aktif hizmetleri getirir.
+ * Müşterinin seçebileceği tüm aktif hizmetleri getirir (Redis Destekli ⚡).
  */
 exports.getAvailableServices = async () => {
-  return await appointmentRepo.getAvailableServices();
+  const cacheKey = "services:all"; // 1. Bu veriye Redis'te vereceğimiz isim (Etiket)
+
+  // 2. Önce Redis'e sor (Cache Hit mi, Miss mi?)
+  const cachedData = await redisClient.get(cacheKey);
+
+  if (cachedData) {
+    // 3. CACHE HIT: Veri bulundu! Işık hızıyla dön.
+    console.log("⚡ [CACHE HIT] Hizmetler Redis'ten getirildi!");
+
+    // Redis verileri sadece "String" (Metin) olarak tutar.
+    // Javascript'in anlaması için onu tekrar JSON objesine çeviriyoruz.
+    return JSON.parse(cachedData);
+  }
+
+  // 4. CACHE MISS: Veri Redis'te yok. Mecburen PostgreSQL'e gidiyoruz.
+  console.log(
+    "🐢 [CACHE MISS] Hizmetler Veritabanından (PostgreSQL) çekiliyor...",
+  );
+  const services = await appointmentRepo.getAvailableServices();
+
+  // 5. Veriyi bulduk. Bir dahakine hızlı olsun diye Redis'e kaydediyoruz!
+  // setEx (Set with Expiration): Veriyi kaydet ama belli bir süre sonra otomatik sil.
+  // 3600 -> 1 saat (Saniye cinsinden).
+  // JSON.stringify -> Objeyi metne çevir ki Redis anlayabilsin.
+  await redisClient.setEx(cacheKey, 3600, JSON.stringify(services));
+
+  return services;
 };
 
 /**
@@ -55,7 +82,7 @@ exports.createSmartAppointment = async (
     );
   }
 
-  // 5. Kayıt İşlemi
+  // 5. Kayıt İşlemi İçin Veriyi Hazırla
   const appointmentData = {
     userId,
     providerId,
@@ -65,7 +92,35 @@ exports.createSmartAppointment = async (
     totalPrice: serviceDetails.final_price,
   };
 
-  return await appointmentRepo.createAppointment(appointmentData);
+  // 6. ÖNCE Veritabanına Kaydet (Eğer burada hata çıkarsa aşağısı çalışmaz, güvenli kalırız)
+  const appointment = await appointmentRepo.createAppointment(appointmentData);
+
+  // 7. SONRA Redis Cache Temizliği (Batch Invalidation)
+  const dateString = requestedStartTime.toISOString().split("T")[0]; // YYYY-MM-DD formatı
+
+  // Silinecek anahtarların listesi
+  const nextAvailableCacheKey = `next_available:${providerId}:${serviceId}`;
+  const slotsCacheKey = `slots:${providerId}:${serviceId}:${dateString}`;
+  const statsCacheKey = `stats:${providerId}`; // Çalışanın istatistiklerini temizle
+  const scheduleCacheKey = `schedule:${providerId}:${dateString}`; // Çalışanın o günkü ajandasını temizle
+
+  try {
+    // Promise.all ile birbirini beklemeden hepsini eşzamanlı olarak siliyoruz (Işık hızı)
+    await Promise.all([
+      redisClient.del(nextAvailableCacheKey),
+      redisClient.del(slotsCacheKey),
+      redisClient.del(statsCacheKey),
+      redisClient.del(scheduleCacheKey),
+    ]);
+    console.log(
+      `🧹 [REDIS] Temizlendi: ${slotsCacheKey}, ${nextAvailableCacheKey}, ${statsCacheKey}, ${scheduleCacheKey}`,
+    );
+  } catch (error) {
+    console.error("❌ Redis temizleme hatası:", error);
+    // Cache silinemese bile veritabanına kaydedildiği için hata fırlatmıyoruz, müşteriye "başarılı" dönüyoruz.
+  }
+
+  return appointment;
 };
 
 /**
@@ -79,6 +134,14 @@ exports.getUserAppointments = async (userId) => {
  * Belirli bir çalışan, hizmet ve tarih için müsait randevu saatlerini hesaplar.
  */
 exports.getAvailableSlots = async (providerId, serviceId, date) => {
+  const cacheKey = `slots:${providerId}:${serviceId}:${date}`;
+
+  // Önce Redis'e bak
+  const cachedSlots = await redisClient.get(cacheKey);
+  if (cachedSlots) {
+    return JSON.parse(cachedSlots);
+  }
+
   // 1. Hizmet bilgilerini al (Süre ve fiyat için)
   const service = await appointmentRepo.getProviderServiceDetails(
     providerId,
@@ -124,15 +187,26 @@ exports.getAvailableSlots = async (providerId, serviceId, date) => {
       return currentSlot < bEnd && slotEnd > bStart; // Overlap mantığı
     });
 
+    let isAvailable = !isBooked;
+
+    // Eğer tarih bugünse ve slotun zamanı şu andan küçükse müsait değildir
+    if (isAvailable && date === new Date().toISOString().split("T")[0]) {
+      if (currentSlot < new Date()) {
+        isAvailable = false;
+      }
+    }
+
     // Slotu listeye ekle
     slots.push({
       time: currentSlot.toISOString(),
-      isAvailable: !isBooked,
+      isAvailable: isAvailable,
     });
 
     // Bir sonraki slotun başlangıcını ayarla (hizmet süresi kadar ileri sar)
     currentSlot = new Date(currentSlot.getTime() + duration * 60000);
   }
+
+  await redisClient.setEx(cacheKey, 600, JSON.stringify(slots));
 
   return slots;
 };
@@ -171,6 +245,35 @@ exports.cancelAppointment = async (appointmentId, userId) => {
     appointmentId,
     userId,
   );
+
+  // 👇 YENİ EKLENEN REDIS TEMİZLİK KISMI 👇
+  if (cancelledAppointment) {
+    // İptal edilen randevunun tarihini ve provider bilgisini bul
+    const dateString = new Date(cancelledAppointment.slot_time)
+      .toISOString()
+      .split("T")[0];
+    const providerId = cancelledAppointment.provider_id;
+    const serviceId = cancelledAppointment.service_id;
+
+    // Sadece bu randevuyla ilgili cache'leri patlatıyoruz ki yeni biri burayı alabilsin
+    const nextAvailableCacheKey = `next_available:${providerId}:${serviceId}`;
+    const slotsCacheKey = `slots:${providerId}:${serviceId}:${dateString}`;
+    const statsCacheKey = `stats:${providerId}`;
+    const scheduleCacheKey = `schedule:${providerId}:${dateString}`;
+
+    try {
+      await Promise.all([
+        redisClient.del(nextAvailableCacheKey),
+        redisClient.del(slotsCacheKey),
+        redisClient.del(statsCacheKey),
+        redisClient.del(scheduleCacheKey),
+      ]);
+      console.log(`🧹 [REDIS] İptal sonrası temizlendi: ${slotsCacheKey}`);
+    } catch (error) {
+      console.error("❌ Redis temizleme hatası (İptal):", error);
+    }
+  }
+
   return cancelledAppointment;
 };
 
@@ -178,15 +281,45 @@ exports.cancelAppointment = async (appointmentId, userId) => {
  * Çalışanın kendi müsaitlik durumunu görmesi için randevu saatlerini ve durumlarını getirir.
  */
 exports.getProviderSchedule = async (providerId, date) => {
-  return await appointmentRepo.getProviderSchedule(providerId, date);
+  const cacheKey = `schedule:${providerId}:${date}`;
+
+  // Önce Redis'e sor
+  const cachedSchedule = await redisClient.get(cacheKey);
+  if (cachedSchedule) {
+    return JSON.parse(cachedSchedule);
+  }
+
+  // Veritabanından çek
+  const schedule = await appointmentRepo.getProviderSchedule(providerId, date);
+
+  // Çalışanın o günkü takvimini 5 dakikalığına kaydet
+  await redisClient.setEx(cacheKey, 300, JSON.stringify(schedule));
+
+  return schedule;
 };
 
 /**
- * Bugünden itibaren en yakın müsait randevu slotunu bulur (Şu anki saati kontrol eder).
+ * Bugünden itibaren en yakın müsait randevu slotunu bulur (Redis Destekli ⚡).
  */
 exports.getNextAvailableSlot = async (providerId, serviceId) => {
+  // 1. Bu isteğe özel benzersiz bir anahtar oluşturuyoruz
+  const cacheKey = `next_available:${providerId}:${serviceId}`;
+
+  // 2. Önce Redis'e soralım
+  const cachedData = await redisClient.get(cacheKey);
+
+  if (cachedData) {
+    console.log(
+      `⚡ [CACHE HIT] En yakın müsaitlik Redis'ten geldi: ${cacheKey}`,
+    );
+    return JSON.parse(cachedData);
+  }
+
+  console.log(`🐢 [CACHE MISS] Ağır hesaplama yapılıyor...: ${cacheKey}`);
+
+  // --- Mevcut Hesaplama Mantığı ---
   const maxDaysToSearch = 30;
-  const now = new Date(); // 👈 Şu anki tam zaman (Tarih + Saat)
+  const now = new Date();
 
   for (let i = 0; i < maxDaysToSearch; i++) {
     const searchDate = new Date(now);
@@ -199,24 +332,23 @@ exports.getNextAvailableSlot = async (providerId, serviceId) => {
       dateString,
     );
 
-    // Filtreleme mantığı:
     const foundSlot = slots.find((slot) => {
       if (!slot.isAvailable) return false;
-
-      // 👈 Kritik Kontrol: Eğer baktığımız gün bugünse, slotun saati şu andan büyük olmalı
       if (i === 0) {
         const slotTime = new Date(slot.time);
-        return slotTime > now; // Sadece gelecekteki saatleri döndür
+        return slotTime > now;
       }
-
-      return true; // Gelecek günlerdeki tüm boş slotlar uygundur
+      return true;
     });
 
     if (foundSlot) {
-      return {
-        date: dateString,
-        slot: foundSlot,
-      };
+      const result = { date: dateString, slot: foundSlot };
+
+      // 3. Bulduğumuz sonucu Redis'e 5 dakikalığına (300 sn) kaydedelim
+      // Çok uzun tutmuyoruz çünkü başka biri randevu alırsa bu bilgi eskir
+      await redisClient.setEx(cacheKey, 300, JSON.stringify(result));
+
+      return result;
     }
   }
 
@@ -227,12 +359,35 @@ exports.getNextAvailableSlot = async (providerId, serviceId) => {
 };
 
 /**
- * Çalışanın (Provider) performans ve gelir istatistiklerini getirir.
+ * Çalışanın (Provider) performans ve gelir istatistiklerini getirir (Redis Destekli ⚡).
  */
 exports.getProviderAnalytics = async (userId) => {
+  // 1. Giriş yapan çalışanın (User) aslında hangi Provider olduğunu bul!
+  const provider = await appointmentRepo.getProviderIdByUserId(userId);
+
+  if (!provider) {
+    throw new ErrorResponse("Çalışan (Provider) profili bulunamadı.", 404);
+  }
+
+  const providerId = provider.id; // İşte asıl anahtarımız!
+
+  // 2. Artık cache'i tüm sistemle uyumlu olarak providerId ile tutuyoruz
+  const cacheKey = `stats:${providerId}`;
+
+  const cachedStats = await redisClient.get(cacheKey);
+
+  if (cachedStats) {
+    console.log(
+      `⚡ [CACHE HIT] İstatistikler Redis'ten ışık hızıyla geldi: ${cacheKey}`,
+    );
+    return JSON.parse(cachedStats);
+  }
+
+  console.log(`🐢 [CACHE MISS] İstatistikler hesaplanıyor...: ${cacheKey}`);
+
+  // Mevcut veritabanı sorgumuz zaten userId ile çalışıyordu, oraya dokunmuyoruz.
   const stats = await appointmentRepo.getProviderStats(userId);
 
-  // Toplam verileri hesaplayalım
   const summary = stats.reduce(
     (acc, curr) => {
       acc.totalRevenue += parseFloat(curr.total_revenue);
@@ -242,8 +397,9 @@ exports.getProviderAnalytics = async (userId) => {
     { totalRevenue: 0, totalBookings: 0 },
   );
 
-  return {
-    summary,
-    details: stats,
-  };
+  const result = { summary, details: stats };
+
+  await redisClient.setEx(cacheKey, 1800, JSON.stringify(result));
+
+  return result;
 };

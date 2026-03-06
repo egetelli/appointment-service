@@ -139,8 +139,8 @@ class AppointmentRepository {
   }
 
   // 11. Genel İstatistikler: Hizmet popülerliği ve gelir
-async getProviderStats(providerId) {
-  const query = `
+  async getProviderStats(providerId) {
+    const query = `
     SELECT 
       s.name as service_name,
       COUNT(a.id) as total_appointments,
@@ -153,13 +153,13 @@ async getProviderStats(providerId) {
     GROUP BY s.name
     ORDER BY total_appointments DESC
   `;
-  const { rows } = await pool.query(query, [providerId]);
-  return rows;
-}
+    const { rows } = await pool.query(query, [providerId]);
+    return rows;
+  }
 
-// 12. Sistem Geneli Özet (Admin veya Genel Bakış için)
-async getSystemSummary() {
-  const query = `
+  // 12. Sistem Geneli Özet (Admin veya Genel Bakış için)
+  async getSystemSummary() {
+    const query = `
     SELECT 
       status, 
       COUNT(*) as count, 
@@ -167,9 +167,16 @@ async getSystemSummary() {
     FROM appointments
     GROUP BY status
   `;
-  const { rows } = await pool.query(query);
-  return rows;
-}
+    const { rows } = await pool.query(query);
+    return rows;
+  }
+
+  // 13. Çalışanın user_id'sini verip, provider tablosundaki id'sini buluruz
+  async getProviderIdByUserId(userId) {
+    const query = "SELECT id FROM providers WHERE user_id = $1";
+    const { rows } = await pool.query(query, [userId]);
+    return rows[0]; // { id: 'uuid-değeri' } döner
+  }
 }
 
 module.exports = new AppointmentRepository();

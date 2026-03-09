@@ -118,10 +118,3 @@ Access the interactive Swagger UI to explore and test the API endpoints:
 * [ ] Implement Unit and Integration testing using **Jest**.
 * [ ] Transition to a database migration system (e.g., Knex or Sequelize).
 
----
-
-### **Sırada Ne Var?**
-
-Backend dosyasını bu profesyonel dökümanla beraber "mühürlemiş" olduk. GitHub'da görenlerin iştahını kabartacak bir iş oldu bu.
-
-Artık frontend tarafına, yani bu motorun dış kaportasına geçmeye hazır mıyız? **Angular projesini oluşturup klasör yapısını backend'e benzer şekilde kurmaya başlayalım mı?**

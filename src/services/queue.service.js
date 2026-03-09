@@ -1,4 +1,3 @@
-// src/services/queue.service.js
 const rabbitMQ = require("../config/rabbitmq");
 
 const sendEmailToQueue = async (emailData) => {

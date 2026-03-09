@@ -34,6 +34,8 @@ const startServer = async () => {
       console.log(`🌍 [Ortam] ${process.env.NODE_ENV || "development"}`);
     });
 
+    require("./jobs/reminder.job");
+
     return server;
   } catch (err) {
     console.error("❌ Başlatma hatası:", err.message);

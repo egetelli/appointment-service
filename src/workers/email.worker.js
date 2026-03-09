@@ -8,7 +8,7 @@ const transporter = nodemailer.createTransport({
   host: process.env.MAIL_HOST || "sandbox.smtp.mailtrap.io",
   port: process.env.MAIL_PORT || 2525,
   auth: {
-    user: process.env.MAIL_USER || "54d2925d1902bb",
+    user: process.env.MAIL_USER || "54d2925d1902bb", // Kendi kimlik bilgilerin
     pass: process.env.MAIL_PASS || "71472ba9b9e148",
   },
 });
@@ -31,25 +31,57 @@ async function startWorker() {
         try {
           const emailData = JSON.parse(msg.content.toString());
           const recipient = emailData.to || "ege.telli@europowerenerji.com.tr";
+          const type = emailData.type;
 
-          // Tip Kontrolü (Onay mı İptal mi?)
-          const isCancellation = emailData.type === "APPOINTMENT_CANCELLED";
-          const themeColor = isCancellation ? "#e11d48" : "#0f172a"; // İptal: Kırmızı, Onay: Lacivert
-          const headerTitle = isCancellation
-            ? "Randevu İptali"
-            : "Randevu Onayı";
-          const badgeText = isCancellation
-            ? "⚠️ İptal Edildi"
-            : "✅ Başarıyla Onaylandı";
-          const badgeBg = isCancellation ? "#ffe4e6" : "#dcfce7";
-          const badgeColor = isCancellation ? "#9f1239" : "#166534";
+          console.log(`📩 [Worker] İşlem tipi: ${type} | Alıcı: ${recipient}`);
 
-          console.log(
-            `📩 [Worker] İşlem tipi: ${emailData.type} | Alıcı: ${recipient}`,
-          );
+          // --- 🎨 DİNAMİK TEMA (ONAY / İPTAL / HATIRLATMA) ---
+          let themeColor,
+            headerTitle,
+            badgeText,
+            badgeBg,
+            badgeColor,
+            mainMessage,
+            footerMessage;
+
+          if (type === "APPOINTMENT_CANCELLED") {
+            // İPTAL TEMASI (Kırmızı)
+            themeColor = "#e11d48";
+            headerTitle = "Randevu İptali";
+            badgeText = "⚠️ İptal Edildi";
+            badgeBg = "#ffe4e6";
+            badgeColor = "#9f1239";
+            mainMessage =
+              "İsteğiniz üzerine randevunuz iptal edilmiştir. Detaylar aşağıda yer almaktadır.";
+            footerMessage =
+              "Farklı bir zaman dilimi için tekrar randevu oluşturabilirsiniz.";
+          } else if (type === "APPOINTMENT_REMINDER") {
+            // HATIRLATMA TEMASI (Turuncu / Sarı)
+            themeColor = "#f59e0b";
+            headerTitle = "Randevu Hatırlatması";
+            badgeText = "⏰ Yaklaşıyor";
+            badgeBg = "#fef3c7";
+            badgeColor = "#b45309";
+            mainMessage =
+              "Yaklaşan randevunuzu hatırlatmak istedik. Sizi ağırlamak için sabırsızlanıyoruz!";
+            footerMessage =
+              "Eğer katılamayacaksanız, lütfen sistem üzerinden iptal işlemini gerçekleştirin.";
+          } else {
+            // ONAY TEMASI (Lacivert / Yeşil) -> Varsayılan ("APPOINTMENT_CREATED" vs.)
+            themeColor = "#0f172a";
+            headerTitle = "Randevu Onayı";
+            badgeText = "✅ Başarıyla Onaylandı";
+            badgeBg = "#dcfce7";
+            badgeColor = "#166534";
+            mainMessage =
+              "Randevunuz başarıyla kaydedildi. Detayları aşağıda bulabilirsiniz.";
+            footerMessage =
+              "Randevu saatinizden 10 dakika önce gelmenizi rica ederiz.";
+          }
 
           await sleep(2000); // Rate limit koruması
 
+          // HTML Şablonu (Renkler ve Metinler dinamikleşti)
           const htmlContent = `
             <div style="background-color: #f4f5f7; padding: 40px 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6;">
               <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
@@ -63,13 +95,9 @@ async function startWorker() {
                     ${badgeText}
                   </div>
 
-                  <h2 style="color: #111827; font-size: 20px; margin-top: 0; margin-bottom: 15px;">Merhaba,</h2>
+                  <h2 style="color: #111827; font-size: 20px; margin-top: 0; margin-bottom: 15px;">Merhaba ${emailData.appointmentDetails?.customerName || ""},</h2>
                   <p style="color: #4b5563; font-size: 16px; margin-bottom: 35px;">
-                    ${
-                      isCancellation
-                        ? "İsteğiniz üzerine randevunuz iptal edilmiştir. Detaylar aşağıda yer almaktadır."
-                        : "Randevunuz başarıyla kaydedildi. Sizi ağırlamak için sabırsızlanıyoruz."
-                    }
+                    ${mainMessage}
                   </p>
 
                   <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 25px;">
@@ -80,24 +108,26 @@ async function startWorker() {
                         <td align="right" style="padding: 12px 0; border-bottom: 1px solid #e2e8f0; color: #0f172a; font-weight: 600; font-size: 15px;">${emailData.appointmentDetails?.date || "Belirtilmedi"}</td>
                       </tr>
                       <tr>
-                        <td width="35" style="padding: 16px 0 12px; border-bottom: 1px solid #e2e8f0;"><span style="font-size: 22px;">✨</span></td>
-                        <td style="padding: 16px 0 12px; border-bottom: 1px solid #e2e8f0; color: #64748b; font-size: 13px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Hizmet</td>
-                        <td align="right" style="padding: 16px 0 12px; border-bottom: 1px solid #e2e8f0; color: #0f172a; font-weight: 600; font-size: 15px;">${emailData.appointmentDetails?.serviceName || "Belirtilmedi"}</td>
+                        <td width="35" style="padding: 16px 0 12px; border-bottom: ${emailData.appointmentDetails?.price ? "1px solid #e2e8f0" : "none"};"><span style="font-size: 22px;">✨</span></td>
+                        <td style="padding: 16px 0 12px; border-bottom: ${emailData.appointmentDetails?.price ? "1px solid #e2e8f0" : "none"}; color: #64748b; font-size: 13px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Hizmet</td>
+                        <td align="right" style="padding: 16px 0 12px; border-bottom: ${emailData.appointmentDetails?.price ? "1px solid #e2e8f0" : "none"}; color: #0f172a; font-weight: 600; font-size: 15px;">${emailData.appointmentDetails?.serviceName || "Belirtilmedi"}</td>
                       </tr>
+                      ${
+                        emailData.appointmentDetails?.price
+                          ? `
                       <tr>
                         <td width="35" style="padding: 16px 0 0;"><span style="font-size: 22px;">💳</span></td>
                         <td style="padding: 16px 0 0; color: #64748b; font-size: 13px; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px;">Tutar</td>
-                        <td align="right" style="padding: 16px 0 0; color: ${isCancellation ? "#4b5563" : "#2563eb"}; font-weight: 700; font-size: 19px;">${emailData.appointmentDetails?.price || "0"} TL</td>
+                        <td align="right" style="padding: 16px 0 0; color: ${type === "APPOINTMENT_CANCELLED" ? "#4b5563" : "#2563eb"}; font-weight: 700; font-size: 19px;">${emailData.appointmentDetails.price} TL</td>
                       </tr>
+                      `
+                          : ""
+                      }
                     </table>
                   </div>
 
                   <p style="color: #4b5563; font-size: 15px; margin-top: 35px; line-height: 1.6;">
-                    ${
-                      isCancellation
-                        ? "Farklı bir zaman dilimi için tekrar randevu oluşturabilirsiniz."
-                        : "Randevu saatinizden 10 dakika önce gelmenizi rica ederiz."
-                    }
+                    ${footerMessage}
                   </p>
                 </div>
 
@@ -113,8 +143,8 @@ async function startWorker() {
           await transporter.sendMail({
             from: '"Randevu Sistemi" <no-reply@randevu.com>',
             to: recipient,
-            subject: emailData.subject,
-            text: emailData.text,
+            subject: emailData.subject || headerTitle,
+            text: emailData.text || mainMessage,
             html: htmlContent,
           });
 
@@ -125,8 +155,6 @@ async function startWorker() {
             "❌ [Worker] Mesaj işleme hatası:",
             processError.message,
           );
-          // Hata durumunda mesajı reddetmiyoruz (ack yapmıyoruz),
-          // ancak dead-letter-queue yapımız olmadığı için şimdilik logluyoruz.
         }
       }
     });

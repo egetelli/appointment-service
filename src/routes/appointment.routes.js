@@ -9,13 +9,66 @@ const {
   createAppointmentValidation,
 } = require("../validations/appointment.validation");
 
-// 1. Herkese açık: Hizmetleri listele
+/**
+ * @swagger
+ * tags:
+ *   - name: Appointments
+ *     description: Randevu yönetimi ve listeleme
+ */
+
+/**
+ * @swagger
+ * /api/appointments/services:
+ *   get:
+ *     summary: Sunulan hizmetleri listeler
+ *     tags: [Appointments]
+ *     responses:
+ *       200:
+ *         description: Hizmet listesi başarıyla getirildi
+ */
 router.get("/services", appointmentController.getServices);
 
-// 1.5 Herkese açık: Çalışanın müsaitlik durumunu gör
+/**
+ * @swagger
+ * /api/appointments/available-slots:
+ *   get:
+ *     summary: Müsait randevu saatlerini listeler
+ *     tags: [Appointments]
+ *     parameters:
+ *       - in: query
+ *         name: providerId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: serviceId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: date
+ *         required: true
+ *         schema:
+ *           type: string
+ *           example: "2026-03-15"
+ *     responses:
+ *       200:
+ *         description: Müsait slot listesi
+ */
 router.get("/available-slots", appointmentController.getAvailableSlots);
 
-// 2. Korumalı: Kendi randevularımı gör (user yerine customer oldu)
+/**
+ * @swagger
+ * /api/appointments/my:
+ *   get:
+ *     summary: Kullanıcının kendi randevularını getirir
+ *     tags: [Appointments]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Randevu listesi başarıyla getirildi
+ */
 router.get(
   "/my",
   authenticate,
@@ -23,7 +76,32 @@ router.get(
   appointmentController.getMyAppointments,
 );
 
-// 3. Korumalı & Validasyonlu: Randevu al
+/**
+ * @swagger
+ * /api/appointments:
+ *   post:
+ *     summary: Yeni randevu oluşturur
+ *     tags: [Appointments]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               providerId:
+ *                 type: string
+ *               serviceId:
+ *                 type: string
+ *               slotTime:
+ *                 type: string
+ *                 format: date-time
+ *     responses:
+ *       201:
+ *         description: Randevu başarıyla oluşturuldu
+ */
 router.post(
   "/",
   authenticate,
@@ -33,7 +111,24 @@ router.post(
   appointmentController.bookAppointment,
 );
 
-// 4. Korumalı: Randevu iptal et (Soft Delete mantığı)
+/**
+ * @swagger
+ * /api/appointments/{id}/cancel:
+ *   patch:
+ *     summary: Randevuyu iptal eder
+ *     tags: [Appointments]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Randevu iptal edildi
+ */
 router.patch(
   "/:id/cancel",
   authenticate,
@@ -41,7 +136,23 @@ router.patch(
   appointmentController.cancelAppointment,
 );
 
-// 5. Çalışanın (Provider) kendi günlük ajandasını görmesi
+/**
+ * @swagger
+ * /api/appointments/provider/schedule:
+ *   get:
+ *     summary: Çalışanın günlük ajandasını getirir
+ *     tags: [Appointments]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: date
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Randevu listesi başarıyla getirildi
+ */
 router.get(
   "/provider/schedule",
   authenticate,
@@ -49,10 +160,41 @@ router.get(
   appointmentController.getProviderSchedule,
 );
 
-// 6. En yakın müsait randevu slotunu bul
+/**
+ * @swagger
+ * /api/appointments/next-available:
+ *   get:
+ *     summary: En yakın müsait randevu tarihini bulur
+ *     tags: [Appointments]
+ *     parameters:
+ *       - in: query
+ *         name: providerId
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - in: query
+ *         name: serviceId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: En yakın tarih verisi başarıyla getirildi
+ */
 router.get("/next-available", appointmentController.getNextAvailableSlot);
 
-// 7. Kullanıcının performans istatistiklerini görmesi
+/**
+ * @swagger
+ * /api/appointments/stats/my-performance:
+ *   get:
+ *     summary: Çalışan performans istatistiklerini getirir
+ *     tags: [Appointments]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: İstatistik verileri başarıyla getirildi
+ */
 router.get(
   "/stats/my-performance",
   authenticate,

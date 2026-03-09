@@ -1,6 +1,12 @@
 const express = require("express");
 const cors = require("cors");
-const app = express(); 
+const cookieParser = require("cookie-parser");
+const helmet = require("helmet"); 
+const app = express();
+
+// --- 0. PROXY AYARI (KRİTİK!) ---
+// Docker/Podman arkasındaki gerçek kullanıcı IP'sini görmeni sağlar.
+app.set("trust proxy", 1);
 
 // Rotaları içe aktar
 const authRoutes = require("./routes/auth.routes");
@@ -9,31 +15,55 @@ const userRoutes = require("./routes/user.routes");
 
 const errorHandler = require("./middleware/error.middleware");
 
-// 1. Orta Katmanlar (Middlewares)
+// Swagger
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpecs = require("./config/swagger");
+
+// Rate Limiting Middleware
+const { apiLimiter, authLimiter } = require("./middleware/limiter.middleware");
+
+// --- 1. Temel Güvenlik ve Parser Middlewares ---
+app.use(helmet()); // 🛡️ HTTP başlıklarını güvenli hale getirir
 app.use(
   cors({
-    origin: "http://localhost:5173", // Angular/Vite adresin
+    origin: "http://localhost:5173",
     credentials: true,
-  })
+  }),
 );
 app.use(express.json());
+app.use(cookieParser());
 
-// 2. Health Check (AWS/Kubernetes için kritik)
+// --- 2. Hız Sınırlayıcılar (Rate Limiters) ---
+// Not: Rotalardan ÖNCE tanımlanmalıdır!
+
+// Auth işlemleri için KATİ kural (15 dakikada 10 deneme)
+app.use("/api/auth/login", authLimiter);
+app.use("/api/auth/register", authLimiter);
+
+// Tüm API için genel kural (15 dakikada 100 istek)
+app.use("/api/", apiLimiter);
+
+// --- 3. Dokümantasyon ---
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+
+// --- 4. Health Check ---
 app.get("/api/health", (req, res) => {
   res.status(200).json({ status: "OK", timestamp: new Date().toISOString() });
 });
 
-// 3. API Rotaları (Gruplandırılmış ve Tutarlı)
-app.use("/api/auth", authRoutes);         // /api/auth/register, /api/auth/login
-app.use("/api/users", userRoutes);       // /api/users/me (Daha profesyonel)
-app.use("/api/appointments", appointmentRoutes); // /api/appointments
+// --- 5. API Rotaları ---
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/appointments", appointmentRoutes);
 
-// 4. Tanımsız Rotaları Yakala (404)
+// --- 6. 404 Yakalayıcı ---
 app.use((req, res) => {
-  res.status(404).json({ success: false, message: "İstediğiniz rota bulunamadı" });
+  res
+    .status(404)
+    .json({ success: false, message: "İstediğiniz rota bulunamadı" });
 });
 
-// 5. GLOBAL ERROR HANDLER (En sonda kalmalı)
+// --- 7. Global Error Handler (En sonda!) ---
 app.use(errorHandler);
 
 module.exports = app;

@@ -1,31 +1,95 @@
 const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/auth.controller");
-
-// Doğrulama araçlarımızı import ediyoruz
 const {
   registerValidation,
   loginValidation,
 } = require("../validations/auth.validation");
 const validate = require("../middleware/validate.middleware");
 
-// POST /api/auth/register
-// Akış: İstek Gelir -> Kurallar Kontrol Edilir -> Hata Varsa Yakalanır -> Sorun Yoksa Controller Çalışır
+/**
+ * @swagger
+ * tags:
+ *   - name: Auth
+ *     description: Kullanıcı kayıt ve giriş işlemleri
+ */
+
+/**
+ * @swagger
+ * /api/auth/register:
+ *   post:
+ *     summary: Yeni kullanıcı kaydı
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               full_name:
+ *                 type: string
+ *                 example: "Ahmet Yılmaz"
+ *               email:
+ *                 type: string
+ *                 example: "ahmet@test.com"
+ *               password:
+ *                 type: string
+ *                 example: "123456"
+ *     responses:
+ *       201:
+ *         description: Kullanıcı başarıyla oluşturuldu
+ */
 router.post("/register", registerValidation, validate, authController.register);
 
-// POST /api/auth/login
-// Akış: İstek Gelir -> Kurallar Kontrol Edilir -> Sorun Yoksa Controller (Access RAM'e, Refresh Cookie'ye) Çalışır
+/**
+ * @swagger
+ * /api/auth/login:
+ *   post:
+ *     summary: Kullanıcı girişi
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: "ahmet@test.com"
+ *               password:
+ *                 type: string
+ *                 example: "123456"
+ *     responses:
+ *       200:
+ *         description: Giriş başarılı
+ */
 router.post("/login", loginValidation, validate, authController.login);
 
-// 👇 YENİ EKLENEN ROTALAR 👇
-
-// POST /api/auth/refresh
-// Access token süresi bittiğinde, tarayıcının otomatik gönderdiği HttpOnly Cookie ile yeni Access Token üretir.
-// (Burada validate kullanmıyoruz çünkü body'den veri beklemiyoruz, sadece cookie okuyoruz)
+/**
+ * @swagger
+ * /api/auth/refresh:
+ *   post:
+ *     summary: Access Token yeniler
+ *     description: HttpOnly çerezindeki Refresh Token'ı kullanarak yeni Access Token üretir.
+ *     tags: [Auth]
+ *     responses:
+ *       200:
+ *         description: Yeni token başarıyla üretildi
+ */
 router.post("/refresh", authController.refreshToken);
 
-// POST /api/auth/logout
-// Çıkış yap (Hem veritabanından token'ı siler, hem de tarayıcıdaki Cookie'yi temizler)
+/**
+ * @swagger
+ * /api/auth/logout:
+ *   post:
+ *     summary: Güvenli çıkış yapar
+ *     tags: [Auth]
+ *     responses:
+ *       200:
+ *         description: Başarıyla çıkış yapıldı
+ */
 router.post("/logout", authController.logout);
 
 module.exports = router;

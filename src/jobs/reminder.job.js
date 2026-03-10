@@ -1,11 +1,12 @@
 const cron = require("node-cron");
 const pool = require("../config/db"); // DB bağlantı dosyanın yolu
 const { sendEmailToQueue } = require("../services/queue.service"); // Senin harika RabbitMQ servisin!
+const logger = require('../utils/logger');
 
 // Şu an test için HER DAKİKA çalışacak şekilde ayarlı (* * * * *).
 // Canlıya alırken bunu "0 * * * *" (her saat başı) olarak değiştirebilirsin.
 cron.schedule("* * * * *", async () => {
-  console.log("⏰ [CRON] Yaklaşan randevular kontrol ediliyor...");
+  logger.info("⏰ [CRON] Yaklaşan randevular kontrol ediliyor...");
 
   try {
     // 1. Durumu 'scheduled' olan, hatırlatıcı atılmamış ve
@@ -24,12 +25,12 @@ cron.schedule("* * * * *", async () => {
     const { rows: upcomingAppointments } = await pool.query(query);
 
     if (upcomingAppointments.length === 0) {
-      return console.log(
+      return logger.info(
         "💤 [CRON] Hatırlatma atılacak yeni randevu bulunamadı.",
       );
     }
 
-    console.log(
+    logger.info(
       `🚀 [CRON] ${upcomingAppointments.length} kişiye hatırlatma maili atılacak...`,
     );
 
@@ -58,15 +59,15 @@ cron.schedule("* * * * *", async () => {
       );
     }
 
-    console.log(
+    logger.info(
       "✅ [CRON] Tüm hatırlatma mailleri kuyruğa başarıyla iletildi!",
     );
   } catch (error) {
-    console.error(
+    logger.error(
       "❌ [CRON] Hatırlatıcı çalışırken hata oluştu:",
       error.message,
     );
   }
 });
 
-console.log("🕒 Hatırlatıcı (Cron Job) servisi başlatıldı.");
+logger.info("🕒 Hatırlatıcı (Cron Job) servisi başlatıldı.");

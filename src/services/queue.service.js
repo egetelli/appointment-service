@@ -1,4 +1,5 @@
 const rabbitMQ = require("../config/rabbitmq");
+const logger = require('../utils/logger');
 
 const sendEmailToQueue = async (emailData) => {
   try {
@@ -16,11 +17,11 @@ const sendEmailToQueue = async (emailData) => {
       persistent: true,
     });
 
-    console.log(
+    logger.info(
       `📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ${emailData.to}`,
     );
   } catch (error) {
-    console.error("❌ [Kuyruk] Mesaj gönderilemedi:", error.message);
+    logger.error("❌ [Kuyruk] Mesaj gönderilemedi:", error.message);
   }
 };
 

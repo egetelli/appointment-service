@@ -2,6 +2,7 @@ const appointmentRepo = require("../repositories/appointment.repository");
 const ErrorResponse = require("../utils/errorResponse");
 const redisClient = require("../config/redis");
 const { sendEmailToQueue } = require("./queue.service");
+const logger = require('../utils/logger');
 
 /**
  * Müşterinin seçebileceği tüm aktif hizmetleri getirir (Redis Destekli ⚡).
@@ -14,7 +15,7 @@ exports.getAvailableServices = async () => {
 
   if (cachedData) {
     // 3. CACHE HIT: Veri bulundu! Işık hızıyla dön.
-    console.log("⚡ [CACHE HIT] Hizmetler Redis'ten getirildi!");
+    logger.info("⚡ [CACHE HIT] Hizmetler Redis'ten getirildi!");
 
     // Redis verileri sadece "String" (Metin) olarak tutar.
     // Javascript'in anlaması için onu tekrar JSON objesine çeviriyoruz.
@@ -22,7 +23,7 @@ exports.getAvailableServices = async () => {
   }
 
   // 4. CACHE MISS: Veri Redis'te yok. Mecburen PostgreSQL'e gidiyoruz.
-  console.log(
+  logger.info(
     "🐢 [CACHE MISS] Hizmetler Veritabanından (PostgreSQL) çekiliyor...",
   );
   const services = await appointmentRepo.getAvailableServices();
@@ -45,7 +46,7 @@ exports.createSmartAppointment = async (
   serviceId,
   slotTime,
 ) => {
-  console.log("Gelen ID'ler:", { providerId, serviceId });
+  logger.info("Gelen ID'ler:", { providerId, serviceId });
   const requestedStartTime = new Date(slotTime);
 
   // 1. Kural: Geçmişe randevu alınamaz
@@ -128,11 +129,11 @@ exports.createSmartAppointment = async (
       redisClient.del(statsCacheKey),
       redisClient.del(scheduleCacheKey),
     ]);
-    console.log(
+    logger.info(
       `🧹 [REDIS] Temizlendi: ${slotsCacheKey}, ${nextAvailableCacheKey}, ${statsCacheKey}, ${scheduleCacheKey}`,
     );
   } catch (error) {
-    console.error("❌ Redis temizleme hatası:", error);
+    logger.error("❌ Redis temizleme hatası:", error);
     // Cache silinemese bile veritabanına kaydedildiği için hata fırlatmıyoruz, müşteriye "başarılı" dönüyoruz.
   }
 
@@ -158,7 +159,7 @@ exports.createSmartAppointment = async (
     await sendEmailToQueue(emailPayload);
   } catch (error) {
     // Mail kuyruğa atılamasa bile randevu oluştuğu için sistemi çökertmiyoruz!
-    console.error(
+    logger.error(
       "❌ [Servis] RabbitMQ'ya mesaj gönderilirken hata oluştu:",
       error.message,
     );
@@ -312,9 +313,9 @@ exports.cancelAppointment = async (appointmentId, userId) => {
         redisClient.del(statsCacheKey),
         redisClient.del(scheduleCacheKey),
       ]);
-      console.log(`🧹 [REDIS] İptal sonrası temizlendi: ${slotsCacheKey}`);
+      logger.info(`🧹 [REDIS] İptal sonrası temizlendi: ${slotsCacheKey}`);
     } catch (error) {
-      console.error("❌ Redis temizleme hatası (İptal):", error);
+      logger.error("❌ Redis temizleme hatası (İptal):", error);
     }
   }
 
@@ -335,11 +336,11 @@ exports.cancelAppointment = async (appointmentId, userId) => {
     };
 
     await sendEmailToQueue(cancelEmailPayload);
-    console.log(
+    logger.info(
       `📩 [Kuyruk] İptal bildirimi RabbitMQ'ya bırakıldı: ${appointmentId}`,
     );
   } catch (error) {
-    console.error("❌ [Servis] İptal maili kuyruğa atılamadı:", error.message);
+    logger.error("❌ [Servis] İptal maili kuyruğa atılamadı:", error.message);
   }
 
   return cancelledAppointment;
@@ -377,13 +378,13 @@ exports.getNextAvailableSlot = async (providerId, serviceId) => {
   const cachedData = await redisClient.get(cacheKey);
 
   if (cachedData) {
-    console.log(
+    logger.info(
       `⚡ [CACHE HIT] En yakın müsaitlik Redis'ten geldi: ${cacheKey}`,
     );
     return JSON.parse(cachedData);
   }
 
-  console.log(`🐢 [CACHE MISS] Ağır hesaplama yapılıyor...: ${cacheKey}`);
+  logger.info(`🐢 [CACHE MISS] Ağır hesaplama yapılıyor...: ${cacheKey}`);
 
   // --- Mevcut Hesaplama Mantığı ---
   const maxDaysToSearch = 30;
@@ -445,13 +446,13 @@ exports.getProviderAnalytics = async (userId) => {
   const cachedStats = await redisClient.get(cacheKey);
 
   if (cachedStats) {
-    console.log(
+    logger.info(
       `⚡ [CACHE HIT] İstatistikler Redis'ten ışık hızıyla geldi: ${cacheKey}`,
     );
     return JSON.parse(cachedStats);
   }
 
-  console.log(`🐢 [CACHE MISS] İstatistikler hesaplanıyor...: ${cacheKey}`);
+  logger.info(`🐢 [CACHE MISS] İstatistikler hesaplanıyor...: ${cacheKey}`);
 
   // Mevcut veritabanı sorgumuz zaten userId ile çalışıyordu, oraya dokunmuyoruz.
   const stats = await appointmentRepo.getProviderStats(userId);

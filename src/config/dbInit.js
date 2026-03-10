@@ -1,10 +1,11 @@
 const pool = require("./db");
 const fs = require("fs");
 const path = require("path");
+const logger = require('../utils/logger');
 
 const initializeDatabase = async () => {
   try {
-    console.log("🔄 Veritabanı şeması doğrulanıyor...");
+    logger.info("🔄 Veritabanı şeması doğrulanıyor...");
     
     // Projenin ana dizinindeki init.sql dosyasını bul ve oku
     const sqlPath = path.join(__dirname, "../../init.sql");
@@ -13,9 +14,9 @@ const initializeDatabase = async () => {
     // Tüm tablo oluşturma komutlarını veritabanına gönder
     await pool.query(sql);
     
-    console.log("✅ Tablolar güncel ve sistem hazır.");
+    logger.info("✅ Tablolar güncel ve sistem hazır.");
   } catch (err) {
-    console.error("❌ Veritabanı başlatma hatası:", err);
+    logger.error("❌ Veritabanı başlatma hatası:", err);
     // Veritabanı kurulamazsa uygulama çalışmasın (Kritik hata)
     process.exit(1);
   }

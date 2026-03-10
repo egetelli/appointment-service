@@ -1,5 +1,6 @@
 const amqp = require("amqplib");
 const nodemailer = require("nodemailer");
+const logger = require('../utils/logger');
 
 // Mailtrap ücretsiz plan sınırı için bekleme fonksiyonu
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -24,7 +25,7 @@ async function startWorker() {
     await channel.assertQueue(queueName, { durable: true });
     channel.prefetch(1);
 
-    console.log(`👷 [Worker] Postacı hazır! '${queueName}' dinleniyor...`);
+    logger.info(`👷 [Worker] Postacı hazır! '${queueName}' dinleniyor...`);
 
     channel.consume(queueName, async (msg) => {
       if (msg !== null) {
@@ -33,7 +34,7 @@ async function startWorker() {
           const recipient = emailData.to || "ege.telli@europowerenerji.com.tr";
           const type = emailData.type;
 
-          console.log(`📩 [Worker] İşlem tipi: ${type} | Alıcı: ${recipient}`);
+          logger.info(`📩 [Worker] İşlem tipi: ${type} | Alıcı: ${recipient}`);
 
           // --- 🎨 DİNAMİK TEMA (ONAY / İPTAL / HATIRLATMA) ---
           let themeColor,
@@ -148,10 +149,10 @@ async function startWorker() {
             html: htmlContent,
           });
 
-          console.log(`✅ [Worker] Başarıyla gönderildi: ${recipient}`);
+          logger.info(`✅ [Worker] Başarıyla gönderildi: ${recipient}`);
           channel.ack(msg);
         } catch (processError) {
-          console.error(
+          logger.error(
             "❌ [Worker] Mesaj işleme hatası:",
             processError.message,
           );
@@ -159,7 +160,7 @@ async function startWorker() {
       }
     });
   } catch (error) {
-    console.error("❌ [Worker] Kritik hata:", error.message);
+    logger.error("❌ [Worker] Kritik hata:", error.message);
   }
 }
 

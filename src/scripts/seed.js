@@ -1,7 +1,7 @@
 const { Pool } = require("pg");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
-
+const logger = require('../utils/logger');
 
 //***********************************************
 // Çalıştırmak için terminalde:
@@ -17,7 +17,7 @@ const pool = new Pool({
 async function seed() {
   const client = await pool.connect();
   try {
-    console.log("🌱 Veritabanı tüm tablolar için tohumlanıyor...");
+    logger.info("🌱 Veritabanı tüm tablolar için tohumlanıyor...");
 
     // 1. Mevcut tüm verileri temizle (Sıralama FK ilişkileri nedeniyle önemlidir)
     await client.query(`
@@ -97,14 +97,14 @@ async function seed() {
       (${customerUser.id}, ${providerId}, ${services[0].id}, (CURRENT_DATE + INTERVAL '2 days' + INTERVAL '10 hours'), 'booked', 300)
     `);
 
-    console.log("✅ Tüm tablolar başarıyla dolduruldu!");
-    console.log("----------------------------------");
-    console.log("Kurulan İlişkiler:");
-    console.log("- Provider ve User bağlandı.");
-    console.log("- Provider ve Services eşleşti.");
-    console.log("- Haftalık mesai ve örnek randevu eklendi.");
+    logger.info("✅ Tüm tablolar başarıyla dolduruldu!");
+    logger.info("----------------------------------");
+    logger.info("Kurulan İlişkiler:");
+    logger.info("- Provider ve User bağlandı.");
+    logger.info("- Provider ve Services eşleşti.");
+    logger.info("- Haftalık mesai ve örnek randevu eklendi.");
   } catch (err) {
-    console.error("❌ Seed hatası:", err);
+    logger.error("❌ Seed hatası:", err);
   } finally {
     client.release();
     process.exit();

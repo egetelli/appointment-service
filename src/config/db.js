@@ -1,5 +1,6 @@
 const { Pool } = require('pg');
 require('dotenv').config();
+const logger = require('../utils/logger');
 
 const pool = new Pool({
     host: process.env.DB_HOST,
@@ -10,7 +11,7 @@ const pool = new Pool({
 
 // Bağlantı hatası olursa konsola yazdır
 pool.on('error', (err) => {
-    console.error('❌ Beklenmedik veritabanı hatası!', err);
+    logger.error('❌ Beklenmedik veritabanı hatası!', err);
     process.exit(-1); 
 });
 

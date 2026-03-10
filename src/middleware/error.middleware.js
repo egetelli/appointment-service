@@ -1,6 +1,8 @@
+const logger = require('../utils/logger');
+
 const errorHandler = (err, req, res, next) => {
   //Geliştirme aşamasında hatanın detayını terminalde görmek için
-  console.error(`[${new Date().toISOString()}] ❌ Hata: ${err.message}`);
+  logger.error(`[${new Date().toISOString()}] ❌ Hata: ${err.message}`);
 
   //Eğer hatanın özel bir kodu yoksa varsayılan 500(server error) verilir
   const statusCode = err.statusCode || 500;

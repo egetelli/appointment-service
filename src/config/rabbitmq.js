@@ -1,4 +1,5 @@
 const amqp = require("amqplib");
+const logger = require('../utils/logger');
 
 class RabbitMQConnection {
   constructor() {
@@ -18,11 +19,11 @@ class RabbitMQConnection {
         // 2. Mesajları göndereceğimiz bir İletişim Kanalı (Channel) aç
         this.channel = await this.connection.createChannel();
 
-        console.log("🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!");
+        logger.info("🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!");
 
         // Bağlantı koparsa uygulamayı çökertmemek için hata dinleyicisi
         this.connection.on("error", (err) => {
-          console.error("❌ [RabbitMQ] Bağlantı koptu!", err);
+          logger.error("❌ [RabbitMQ] Bağlantı koptu!", err);
           this.connection = null;
           setTimeout(() => this.connect(), 5000); // 5 saniye sonra tekrar dene
         });
@@ -30,7 +31,7 @@ class RabbitMQConnection {
       return this.channel;
     } catch (error) {
       // error.message ekleyerek "Connection refused" mı yoksa "Invalid URL" mi olduğunu anlayacağız
-      console.error("❌ [RabbitMQ] Bağlantı Hatası:", error.message);
+      logger.error("❌ [RabbitMQ] Bağlantı Hatası:", error.message);
       setTimeout(() => this.connect(), 5000);
     }
   }

@@ -3,3 +3,33 @@
 {"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-10 10:30:16"}
 {"code":"ENOTFOUND","errno":-3008,"hostname":"redis","level":"error","message":"🔴 Redis Bağlantı Hatası: getaddrinfo ENOTFOUND redis","stack":"Error: getaddrinfo ENOTFOUND redis\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-03-10 10:30:18"}
 {"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-10 10:30:20"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-10 11:03:17"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-10 11:03:17"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-10 11:03:17"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"redis","level":"error","message":"🔴 Redis Bağlantı Hatası: getaddrinfo ENOTFOUND redis","stack":"Error: getaddrinfo ENOTFOUND redis\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-03-10 11:03:19"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"redis","level":"error","message":"🔴 Redis Bağlantı Hatası: getaddrinfo ENOTFOUND redis","stack":"Error: getaddrinfo ENOTFOUND redis\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-03-10 11:03:22"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"redis","level":"error","message":"🔴 Redis Bağlantı Hatası: getaddrinfo ENOTFOUND redis","stack":"Error: getaddrinfo ENOTFOUND redis\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-03-10 11:03:24"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-10 11:03:25"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-10 11:03:46"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-10 11:03:46"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-10 11:03:46"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"redis","level":"error","message":"🔴 Redis Bağlantı Hatası: getaddrinfo ENOTFOUND redis","stack":"Error: getaddrinfo ENOTFOUND redis\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-03-10 11:03:48"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-10 11:03:50"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-10 11:04:50"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-10 11:04:50"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-10 11:04:50"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"redis","level":"error","message":"🔴 Redis Bağlantı Hatası: getaddrinfo ENOTFOUND redis","stack":"Error: getaddrinfo ENOTFOUND redis\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-03-10 11:04:52"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"redis","level":"error","message":"🔴 Redis Bağlantı Hatası: getaddrinfo ENOTFOUND redis","stack":"Error: getaddrinfo ENOTFOUND redis\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-03-10 11:04:55"}
+{"code":"ENOTFOUND","errno":-3008,"hostname":"redis","level":"error","message":"🔴 Redis Bağlantı Hatası: getaddrinfo ENOTFOUND redis","stack":"Error: getaddrinfo ENOTFOUND redis\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)","syscall":"getaddrinfo","timestamp":"2026-03-10 11:04:57"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-10 11:04:57"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-10 08:14:45"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-10 08:14:46"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-10 08:14:46"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-10 08:14:46"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-10 08:14:46"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-10 08:14:46"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-10 08:14:46"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-10 08:14:46"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-10 08:14:46"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-10 08:14:46"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-10 08:14:46"}

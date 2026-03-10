@@ -39,6 +39,10 @@ services:
     container_name: appointment-api-container
     ports:
       - "3000:3000"
+    volumes:
+      - .:/app # Mevcut kodlarını bağlar
+      - /app/node_modules # Localdeki node_modules'un çakışmasını engeller
+      - ./logs:/app/logs # 👈 KRİTİK: İçerideki logları dışarıya (localine) bağlar
     environment:
       DB_HOST: db
       DB_USER: postgres
@@ -111,6 +115,10 @@ services:
     build: .
     container_name: email-worker-container
     command: node src/workers/email.worker.js
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - ./logs:/app/logs # 👈 Worker hatalarını da buradan takip edebilirsin
     env_file:
       - .env
     networks:

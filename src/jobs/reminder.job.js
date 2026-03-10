@@ -1,16 +1,10 @@
 const cron = require("node-cron");
-const pool = require("../config/db"); // DB bağlantı dosyanın yolu
-const { sendEmailToQueue } = require("../services/queue.service"); // Senin harika RabbitMQ servisin!
-const logger = require('../utils/logger');
+const pool = require("../config/db");
+const { sendEmailToQueue } = require("../services/queue.service");
+const logger = require("../utils/logger");
 
-// Şu an test için HER DAKİKA çalışacak şekilde ayarlı (* * * * *).
-// Canlıya alırken bunu "0 * * * *" (her saat başı) olarak değiştirebilirsin.
 cron.schedule("* * * * *", async () => {
-  logger.info("⏰ [CRON] Yaklaşan randevular kontrol ediliyor...");
-
   try {
-    // 1. Durumu 'scheduled' olan, hatırlatıcı atılmamış ve
-    // randevusuna 24 saatten AZ kalmış kişileri bul
     const query = `
       SELECT a.id, a.slot_time, s.name as service_name, u.email, u.full_name
       FROM appointments a
@@ -19,24 +13,20 @@ cron.schedule("* * * * *", async () => {
       WHERE a.status = 'booked' 
         AND a.reminder_sent = false
         AND a.slot_time <= NOW() + INTERVAL '24 hours'
-        AND a.slot_time > NOW() -- Geçmiş randevulara atmasın
+        AND a.slot_time > NOW()
     `;
 
     const { rows: upcomingAppointments } = await pool.query(query);
 
     if (upcomingAppointments.length === 0) {
-      return logger.info(
-        "💤 [CRON] Hatırlatma atılacak yeni randevu bulunamadı.",
-      );
+      return;
     }
 
     logger.info(
-      `🚀 [CRON] ${upcomingAppointments.length} kişiye hatırlatma maili atılacak...`,
+      `🚀 [CRON] ${upcomingAppointments.length} kişiye hatırlatma maili gönderilecek`,
     );
 
-    // 2. Bulunan herkes için senin RabbitMQ kuyruğuna (emailData formatında) mail fırlat
     for (const appt of upcomingAppointments) {
-      // Senin RabbitMQ servisine tam uyumlu "emailData" objesi
       const emailData = {
         to: appt.email,
         subject: "Randevunuz Yaklaşıyor ⏰",
@@ -49,19 +39,15 @@ cron.schedule("* * * * *", async () => {
         },
       };
 
-      // Kuyruğa gönderiyoruz!
       await sendEmailToQueue(emailData);
 
-      // 3. Spam koruması: Aynı kişiye tekrar mail gitmemesi için durumu güncelle
       await pool.query(
         "UPDATE appointments SET reminder_sent = true WHERE id = $1",
         [appt.id],
       );
     }
 
-    logger.info(
-      "✅ [CRON] Tüm hatırlatma mailleri kuyruğa başarıyla iletildi!",
-    );
+    logger.info("✅ [CRON] Hatırlatma mailleri kuyruğa gönderildi");
   } catch (error) {
     logger.error(
       "❌ [CRON] Hatırlatıcı çalışırken hata oluştu:",
@@ -70,4 +56,4 @@ cron.schedule("* * * * *", async () => {
   }
 });
 
-logger.info("🕒 Hatırlatıcı (Cron Job) servisi başlatıldı.");
+logger.info("🕒 Hatırlatıcı servisi başlatıldı.");

@@ -1,6 +1,6 @@
-# 📅 RandevuPro - Modern Appointment Management System
+# 📅 Slotra - Modern Appointment Management System
 
-**RandevuPro** is a scalable, secure, and performance-oriented appointment management system built for businesses and customers. The backend architecture follows **Clean Architecture** principles, utilizing **Controller-Service-Repository** layers to ensure a robust and maintainable codebase.
+**Slotra** is a scalable, secure, and performance-oriented appointment management system built for businesses and customers. The backend architecture follows **Clean Architecture** principles, utilizing **Controller-Service-Repository** layers to ensure a robust and maintainable codebase.
 
 ---
 

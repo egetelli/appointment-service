@@ -37,14 +37,14 @@ async function seed() {
     // 2. USERS: Admin, Provider ve Customer oluştur
     const userRes = await client.query(`
       INSERT INTO users (full_name, email, password_hash, role) VALUES
-      ('Sistem Yöneticisi', 'admin@randevupro.com', '${hashedPw}', 'admin'),
-      ('Uzman Doktor Ahmet', 'ahmet@randevupro.com', '${hashedPw}', 'provider'),
+      ('Sistem Yöneticisi', 'admin@slotra.com', '${hashedPw}', 'admin'),
+      ('Uzman Doktor Ahmet', 'ahmet@slotra.com', '${hashedPw}', 'provider'),
       ('Ege Test', 'ege.test@gmail.com', '${hashedPw}', 'customer')
       RETURNING id, role, email
     `);
 
     const providerUser = userRes.rows.find(
-      (u) => u.email === "ahmet@randevupro.com",
+      (u) => u.email === "ahmet@slotra.com",
     );
     const customerUser = userRes.rows.find(
       (u) => u.email === "ege.test@gmail.com",

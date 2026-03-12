@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const helmet = require("helmet"); 
+const helmet = require("helmet");
 const app = express();
 
 // --- 0. PROXY AYARI (KRİTİK!) ---
@@ -26,8 +26,10 @@ const { apiLimiter, authLimiter } = require("./middleware/limiter.middleware");
 app.use(helmet()); // 🛡️ HTTP başlıklarını güvenli hale getirir
 app.use(
   cors({
-    origin: "http://localhost:5173",
-    credentials: true,
+    origin: "http://localhost:4200", // Angular'ın çalıştığı tam adres (Sonda slash '/' olmamalı!)
+    credentials: true, // Frontend'deki 'withCredentials: true' ayarının backend karşılığı (ZORUNLU)
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 app.use(express.json());

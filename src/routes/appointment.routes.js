@@ -3,7 +3,7 @@ const router = express.Router();
 const appointmentController = require("../controllers/appointment.controller");
 
 const authenticate = require("../middleware/auth.middleware");
-const authorize = require("../middleware/authorize");
+const authorize = require("../middleware/authorize.middleware");
 const validate = require("../middleware/validate.middleware");
 const {
   createAppointmentValidation,

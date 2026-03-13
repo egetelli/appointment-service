@@ -12,6 +12,8 @@ app.set("trust proxy", 1);
 const authRoutes = require("./routes/auth.routes");
 const appointmentRoutes = require("./routes/appointment.routes");
 const userRoutes = require("./routes/user.routes");
+const serviceRoutes = require('./routes/service.routes'); 
+const providerRoutes = require('./routes/provider.routes');
 
 const errorHandler = require("./middleware/error.middleware");
 
@@ -57,6 +59,8 @@ app.get("/api/health", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/appointments", appointmentRoutes);
+app.use('/api/services', serviceRoutes);
+app.use('/api/providers', providerRoutes);
 
 // --- 6. 404 Yakalayıcı ---
 app.use((req, res) => {

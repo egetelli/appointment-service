@@ -52,3 +52,38 @@
 {"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-12 14:35:48"}
 {"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-12 14:35:48"}
 {"level":"info","message":"🐇 RabbitMQ bağlantısı kapatıldı.","timestamp":"2026-03-12 14:35:48"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-12 14:35:59"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-12 14:36:00"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-12 14:36:00"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-12 14:36:00"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-12 14:36:00"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-12 14:36:00"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-12 14:36:00"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-12 14:36:00"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-12 14:36:00"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-12 14:36:00"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-12 14:36:00"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-12 14:38:46"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-12 14:38:46"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-12 14:38:46"}
+{"0":"c","1":"o","10":"O","11":"N","12":"N","13":"R","14":"E","15":"F","16":"U","17":"S","18":"E","19":"D","2":"n","20":" ","21":"1","22":"0","23":".","24":"8","25":"9","26":".","27":"0","28":".","29":"2","3":"n","30":":","31":"5","32":"6","33":"7","34":"2","4":"e","5":"c","6":"t","7":" ","8":"E","9":"C","level":"error","message":"❌ [Worker] Kritik hata:","timestamp":"2026-03-13 06:34:44"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-13 06:34:46"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-13 06:34:46"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-13 06:34:46"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-13 06:34:46"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-13 06:34:46"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-13 06:34:46"}
+{"0":"c","1":"o","10":"O","11":"N","12":"N","13":"R","14":"E","15":"F","16":"U","17":"S","18":"E","19":"D","2":"n","20":" ","21":"1","22":"0","23":".","24":"8","25":"9","26":".","27":"0","28":".","29":"2","3":"n","30":":","31":"5","32":"6","33":"7","34":"2","4":"e","5":"c","6":"t","7":" ","8":"E","9":"C","level":"error","message":"❌ [RabbitMQ] Bağlantı Hatası:","timestamp":"2026-03-13 06:34:46"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-13 06:34:46"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-13 06:34:46"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-13 06:34:46"}
+{"0":"c","1":"o","10":"O","11":"N","12":"N","13":"R","14":"E","15":"F","16":"U","17":"S","18":"E","19":"D","2":"n","20":" ","21":"1","22":"0","23":".","24":"8","25":"9","26":".","27":"0","28":".","29":"2","3":"n","30":":","31":"5","32":"6","33":"7","34":"2","4":"e","5":"c","6":"t","7":" ","8":"E","9":"C","level":"error","message":"❌ [RabbitMQ] Bağlantı Hatası:","timestamp":"2026-03-13 06:34:51"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-13 06:34:56"}
+{"level":"error","message":"[2026-03-13T06:37:45.052Z] ❌ Hata: Oturumunuz sonlanmış, lütfen tekrar giriş yapın","timestamp":"2026-03-13 06:37:45"}
+{"level":"error","message":"[2026-03-13T06:41:10.830Z] ❌ Hata: Oturumunuz sonlanmış, lütfen tekrar giriş yapın","timestamp":"2026-03-13 06:41:10"}
+{"level":"error","message":"[2026-03-13T06:41:30.132Z] ❌ Hata: Oturumunuz sonlanmış, lütfen tekrar giriş yapın","timestamp":"2026-03-13 06:41:30"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"f47ac10b-58cc-4372-a567-0e02b2c3d479","serviceId":"d2a1c3b4-f5e6-47d8-9a0b-1c2d3e4f5a6b","timestamp":"2026-03-13 07:20:23"}
+{"level":"error","message":"[2026-03-13T07:20:23.479Z] ❌ Hata: Seçilen saat çalışanın mesai saatleri dışındadır veya çalışan o gün hizmet vermemektedir.","timestamp":"2026-03-13 07:20:23"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-13 07:39:56"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-13 07:39:56"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-13 07:39:56"}

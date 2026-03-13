@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const providerController = require("../controllers/provider.controller");
 const authenticate = require("../middleware/auth.middleware");
-const authorize = require("../middleware/authorize.middleware"); 
+const authorize = require("../middleware/authorize.middleware");
 
 /**
  * @swagger
@@ -57,6 +57,9 @@ const authorize = require("../middleware/authorize.middleware");
  */
 
 router.get("/", providerController.getProviders);
+
+// GET /api/providers/:id/services
+router.get("/:id/services", providerController.getProviderServices);
 
 router.post(
   "/",

@@ -4,7 +4,7 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "EuroFlow Randevu Sistemi API", // Proje adın
+      title: "Slotra Randevu Sistemi API", // Proje adın
       version: "1.0.0",
       description:
         "Angular Frontend ve C# Backend entegrasyonu için geliştirilmiş Randevu Servisi dokümantasyonu.",

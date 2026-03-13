@@ -68,10 +68,12 @@ class AppointmentRepository {
       SELECT 
         a.id, a.slot_time, a.end_time, a.status, a.total_price,
         s.name as service_name, s.duration_minutes,
-        p.name as provider_name
+        p.name as provider_name,
+        u.full_name as customer_name -- 👈 İŞTE BURAYI EKLEDİK
       FROM appointments a 
       JOIN services s ON a.service_id = s.id 
       JOIN providers p ON a.provider_id = p.id
+      JOIN users u ON a.user_id = u.id -- 👈 VE BU JOIN'İ EKLEDİK
       WHERE a.user_id = $1 
       ORDER BY a.slot_time DESC
     `;

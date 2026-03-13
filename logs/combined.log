@@ -188,3 +188,74 @@
 {"address":"10.89.0.10","code":"ECONNREFUSED","errno":-111,"level":"error","message":"🔴 Redis Bağlantı Hatası: connect ECONNREFUSED 10.89.0.10:6379","port":6379,"stack":"Error: connect ECONNREFUSED 10.89.0.10:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)","syscall":"connect","timestamp":"2026-03-13 08:32:05"}
 {"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-13 08:32:05"}
 {"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-13 08:32:05"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-13 08:37:57"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-13 08:37:57"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-13 08:37:57"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-13 08:37:57"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-13 08:37:57"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-13 08:37:57"}
+{"0":"c","1":"o","10":"O","11":"N","12":"N","13":"R","14":"E","15":"F","16":"U","17":"S","18":"E","19":"D","2":"n","20":" ","21":"1","22":"0","23":".","24":"8","25":"9","26":".","27":"0","28":".","29":"1","3":"n","30":"2","31":"9","32":":","33":"5","34":"6","35":"7","36":"2","4":"e","5":"c","6":"t","7":" ","8":"E","9":"C","level":"error","message":"❌ [RabbitMQ] Bağlantı Hatası:","timestamp":"2026-03-13 08:37:57"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-13 08:37:57"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-13 08:37:57"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-13 08:37:57"}
+{"0":"c","1":"o","10":"O","11":"N","12":"N","13":"R","14":"E","15":"F","16":"U","17":"S","18":"E","19":"D","2":"n","20":" ","21":"1","22":"0","23":".","24":"8","25":"9","26":".","27":"0","28":".","29":"1","3":"n","30":"2","31":"9","32":":","33":"5","34":"6","35":"7","36":"2","4":"e","5":"c","6":"t","7":" ","8":"E","9":"C","level":"error","message":"❌ [RabbitMQ] Bağlantı Hatası:","timestamp":"2026-03-13 08:38:02"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-13 08:38:07"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-13 08:38:28"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-13 08:45:54"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-13 08:45:54"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-13 08:45:54"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-13 08:46:05"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-13 08:46:06"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-13 08:46:06"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-13 08:46:06"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-13 08:46:06"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-13 08:46:06"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-13 08:46:06"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-13 08:46:06"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-13 08:46:06"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-13 08:46:06"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-13 08:46:06"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"f47ac10b-58cc-4372-a567-0e02b2c3d479","serviceId":"f1e2d3c4-b5a6-49f8-8e7d-6c5b4a3f2e1d","timestamp":"2026-03-13 08:46:30"}
+{"level":"info","message":"🧹 [REDIS] Temizlendi: slots:f47ac10b-58cc-4372-a567-0e02b2c3d479:f1e2d3c4-b5a6-49f8-8e7d-6c5b4a3f2e1d:2026-03-13, next_available:f47ac10b-58cc-4372-a567-0e02b2c3d479:f1e2d3c4-b5a6-49f8-8e7d-6c5b4a3f2e1d, stats:f47ac10b-58cc-4372-a567-0e02b2c3d479, schedule:f47ac10b-58cc-4372-a567-0e02b2c3d479:2026-03-13","timestamp":"2026-03-13 08:46:30"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-13 08:46:30"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-13 08:46:30"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-13 08:46:34"}
+{"level":"info","message":"🚀 [CRON] 1 kişiye hatırlatma maili gönderilecek","timestamp":"2026-03-13 08:47:00"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ahmet.musteri@test.com","timestamp":"2026-03-13 08:47:00"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_REMINDER | Alıcı: ahmet.musteri@test.com","timestamp":"2026-03-13 08:47:00"}
+{"level":"info","message":"✅ [CRON] Hatırlatma mailleri kuyruğa gönderildi","timestamp":"2026-03-13 08:47:00"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: ahmet.musteri@test.com","timestamp":"2026-03-13 08:47:04"}
+{"level":"info","message":"🐢 [CACHE MISS] Hizmetler Veritabanından (PostgreSQL) çekiliyor...","timestamp":"2026-03-13 08:47:35"}
+{"level":"error","message":"[2026-03-13T08:47:41.755Z] ❌ Hata: Oturum süreniz doldu, lütfen tekrar giriş yapın","timestamp":"2026-03-13 08:47:41"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-13 08:54:11"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-13 08:54:11"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-13 08:54:11"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-13 08:54:22"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-13 08:54:22"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-13 08:54:22"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-13 08:54:22"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-13 08:54:22"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-13 08:54:22"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-13 08:54:22"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-13 08:54:22"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-13 08:54:22"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-13 08:54:22"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-13 08:54:22"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-13 10:12:08"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-13 10:12:08"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-13 10:12:08"}
+{"level":"info","message":"🐇 RabbitMQ bağlantısı kapatıldı.","timestamp":"2026-03-13 10:12:08"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-13 10:12:19"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-13 10:12:19"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-13 10:12:19"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-13 10:12:19"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-13 10:12:19"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-13 10:12:19"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-13 10:12:19"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-13 10:12:19"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-13 10:12:19"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-13 10:12:19"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-13 10:12:19"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-13 10:48:48"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-13 10:48:48"}
+{"code":"ECONNRESET","errno":-104,"level":"error","message":"🔴 Redis Bağlantı Hatası: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read","timestamp":"2026-03-13 10:48:48"}

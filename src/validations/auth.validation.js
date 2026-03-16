@@ -9,6 +9,13 @@ const passwordRules = body("password")
 
 // Register Validation
 const registerValidation = [
+  body("full_name")
+    .trim()
+    .notEmpty()
+    .withMessage("Ad Soyad alanı boş bırakılamaz")
+    .isLength({ min: 3 })
+    .withMessage("Ad Soyad en az 3 karakter olmalıdır"),
+
   body("email")
     .trim()
     .notEmpty()
@@ -18,6 +25,13 @@ const registerValidation = [
     .normalizeEmail(),
 
   passwordRules,
+
+  body("role")
+    .optional() // Kullanıcı seçmezse backend zaten 'customer' atayacak
+    .isIn(["customer", "provider"])
+    .withMessage(
+      "Geçersiz rol seçimi! Lütfen 'customer' veya 'provider' seçin.",
+    ),
 ];
 
 // Login Validation

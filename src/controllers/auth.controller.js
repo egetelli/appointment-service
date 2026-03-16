@@ -16,9 +16,19 @@ const getCookieOptions = () => ({
  * @access Public
  */
 const register = asyncHandler(async (req, res) => {
-  const { full_name, email, password } = req.body;
+  const { full_name, email, password, role } = req.body;
 
-  const user = await authService.register(full_name, email, password);
+  let assignedRole = "customer";
+  if (role === "provider") {
+    assignedRole = "provider";
+  }
+
+  const user = await authService.register(
+    full_name,
+    email,
+    password,
+    assignedRole,
+  );
 
   res.status(201).json({
     success: true,
@@ -118,5 +128,5 @@ module.exports = {
   register,
   login,
   refreshToken,
-  logout, 
+  logout,
 };

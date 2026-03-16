@@ -7,7 +7,7 @@ const ErrorResponse = require("../utils/errorResponse");
 /**
  * Kayıt Mantığı
  */
-async function register(full_name, email, password) {
+async function register(full_name, email, password, role) {
   const userExists = await userRepository.findByEmail(email);
 
   if (userExists) {
@@ -17,7 +17,13 @@ async function register(full_name, email, password) {
   const saltRounds = 12;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-  return await userRepository.createUser(full_name, email, hashedPassword);
+  // 2. Repository'e 'role' değişkenini de gönderiyoruz 👇
+  return await userRepository.createUser(
+    full_name,
+    email,
+    hashedPassword,
+    role,
+  );
 }
 
 /**

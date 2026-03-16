@@ -36,6 +36,10 @@ const validate = require("../middleware/validate.middleware");
  *               password:
  *                 type: string
  *                 example: "123456"
+ *               role:
+ *                 type: string
+ *                 enum: [customer, provider]
+ *                 example: "provider"
  *     responses:
  *       201:
  *         description: Kullanıcı başarıyla oluşturuldu

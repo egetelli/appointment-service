@@ -167,3 +167,21 @@ exports.getMyPerformance = asyncHandler(async (req, res) => {
     data: stats,
   });
 });
+
+/**
+ * @desc  Randevuyu onaylar
+ * @route PATCH /api/appointments/:id/approve
+ * @access Private (Provider)
+ */
+exports.approveAppointment = asyncHandler(async (req, res) => {
+  const appointment = await appointmentService.approveAppointment(
+    req.params.id,
+    req.user.id,
+  );
+
+  res.status(200).json({
+    success: true,
+    message: "Randevu başarıyla onaylandı.",
+    data: appointment,
+  });
+});

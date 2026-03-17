@@ -32,7 +32,7 @@ class UserRepository {
   // Refresh Token'a göre kullanıcı bul (Refresh sırasında kullanılır)
   async findByRefreshToken(token) {
     const result = await pool.query(
-      "SELECT id, role FROM users WHERE refresh_token = $1",
+      "SELECT id, role, full_name, email FROM users WHERE refresh_token = $1",
       [token],
     );
     return result.rows[0];

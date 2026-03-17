@@ -305,3 +305,765 @@
 {"level":"error","message":"[2026-03-16T07:54:55.624Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-03-16 07:54:55"}
 {"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 08:06:16"}
 {"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 08:06:16"}
+{"0":"c","1":"o","10":"O","11":"N","12":"N","13":"R","14":"E","15":"F","16":"U","17":"S","18":"E","19":"D","2":"n","20":" ","21":"1","22":"0","23":".","24":"8","25":"9","26":".","27":"0","28":".","29":"1","3":"n","30":"0","31":":","32":"5","33":"6","34":"7","35":"2","4":"e","5":"c","6":"t","7":" ","8":"E","9":"C","level":"error","message":"❌ [Worker] Kritik hata:","timestamp":"2026-03-16 08:07:18"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 08:07:18"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 08:07:18"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 08:07:18"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 08:07:18"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 08:07:18"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 08:07:18"}
+{"0":"c","1":"o","10":"O","11":"N","12":"N","13":"R","14":"E","15":"F","16":"U","17":"S","18":"E","19":"D","2":"n","20":" ","21":"1","22":"0","23":".","24":"8","25":"9","26":".","27":"0","28":".","29":"1","3":"n","30":"0","31":":","32":"5","33":"6","34":"7","35":"2","4":"e","5":"c","6":"t","7":" ","8":"E","9":"C","level":"error","message":"❌ [RabbitMQ] Bağlantı Hatası:","timestamp":"2026-03-16 08:07:18"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 08:07:19"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 08:07:19"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 08:07:19"}
+{"0":"c","1":"o","10":"O","11":"N","12":"N","13":"R","14":"E","15":"F","16":"U","17":"S","18":"E","19":"D","2":"n","20":" ","21":"1","22":"0","23":".","24":"8","25":"9","26":".","27":"0","28":".","29":"1","3":"n","30":"0","31":":","32":"5","33":"6","34":"7","35":"2","4":"e","5":"c","6":"t","7":" ","8":"E","9":"C","level":"error","message":"❌ [RabbitMQ] Bağlantı Hatası:","timestamp":"2026-03-16 08:07:23"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 08:07:29"}
+{"level":"error","message":"[2026-03-16T08:07:47.598Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-03-16 08:07:47"}
+{"level":"error","message":"[2026-03-16T08:08:13.127Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-03-16 08:08:13"}
+{"level":"error","message":"[2026-03-16T08:15:07.169Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-03-16 08:15:07"}
+{"level":"error","message":"[2026-03-16T08:15:30.102Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-03-16 08:15:30"}
+{"level":"error","message":"[2026-03-16T08:15:30.112Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-03-16 08:15:30"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 08:22:55"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 08:22:55"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 08:22:55"}
+{"level":"info","message":"🐇 RabbitMQ bağlantısı kapatıldı.","timestamp":"2026-03-16 08:22:55"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 08:22:57"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 08:22:57"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 08:22:57"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 08:22:57"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 08:22:57"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 08:22:57"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 08:22:57"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 08:22:57"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 08:22:57"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 08:22:57"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 08:22:57"}
+{"level":"error","message":"[2026-03-16T08:23:02.336Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-03-16 08:23:02"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"e9b7c227-8fe4-4a27-b43f-357240ef211c","serviceId":"a1b2c3d4-e5f6-47a8-9b0c-1d2e3f4a5b6c","timestamp":"2026-03-16 08:24:20"}
+{"level":"error","message":"[2026-03-16T08:24:20.257Z] ❌ Hata: Seçilen saat çalışanın mesai saatleri dışındadır veya çalışan o gün hizmet vermemektedir.","timestamp":"2026-03-16 08:24:20"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"e9b7c227-8fe4-4a27-b43f-357240ef211c","serviceId":"a1b2c3d4-e5f6-47a8-9b0c-1d2e3f4a5b6c","timestamp":"2026-03-16 08:24:32"}
+{"level":"error","message":"[2026-03-16T08:24:32.274Z] ❌ Hata: Seçilen saat çalışanın mesai saatleri dışındadır veya çalışan o gün hizmet vermemektedir.","timestamp":"2026-03-16 08:24:32"}
+{"level":"info","message":"❌ VALIDASYON DETAYLI ANALİZ:","timestamp":"2026-03-16 08:25:06"}
+{"level":"info","message":"- Alan: providerId","timestamp":"2026-03-16 08:25:06"}
+{"level":"info","message":"- Gelen Değer: \"3b4c5d6e-7f8a-49b0-c1d2-e3f4a5b6c7d8\" (Tipi: string)","timestamp":"2026-03-16 08:25:06"}
+{"level":"info","message":"- Hata Mesajı: Geçerli bir çalışan (provider) seçmelisiniz.","timestamp":"2026-03-16 08:25:06"}
+{"level":"error","message":"[2026-03-16T08:25:06.190Z] ❌ Hata: Doğrulama Hatası: Geçerli bir çalışan (provider) seçmelisiniz.","timestamp":"2026-03-16 08:25:06"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"f0e1d2c3-b4a5-4697-88f9-a0b1c2d3e4f5","serviceId":"6a7b8c9d-0e1f-42a3-b4c5-d6e7f8a9b0c1","timestamp":"2026-03-16 08:25:13"}
+{"level":"error","message":"[2026-03-16T08:25:13.462Z] ❌ Hata: Seçilen saat çalışanın mesai saatleri dışındadır veya çalışan o gün hizmet vermemektedir.","timestamp":"2026-03-16 08:25:13"}
+{"level":"info","message":"❌ VALIDASYON DETAYLI ANALİZ:","timestamp":"2026-03-16 08:26:40"}
+{"level":"info","message":"- Alan: providerId","timestamp":"2026-03-16 08:26:40"}
+{"level":"info","message":"- Gelen Değer: \"3b4c5d6e-7f8a-49b0-c1d2-e3f4a5b6c7d8\" (Tipi: string)","timestamp":"2026-03-16 08:26:40"}
+{"level":"info","message":"- Hata Mesajı: Geçerli bir çalışan (provider) seçmelisiniz.","timestamp":"2026-03-16 08:26:40"}
+{"level":"error","message":"[2026-03-16T08:26:40.315Z] ❌ Hata: Doğrulama Hatası: Geçerli bir çalışan (provider) seçmelisiniz.","timestamp":"2026-03-16 08:26:40"}
+{"level":"info","message":"❌ VALIDASYON DETAYLI ANALİZ:","timestamp":"2026-03-16 08:26:53"}
+{"level":"info","message":"- Alan: providerId","timestamp":"2026-03-16 08:26:53"}
+{"level":"info","message":"- Gelen Değer: \"3b4c5d6e-7f8a-49b0-c1d2-e3f4a5b6c7d8\" (Tipi: string)","timestamp":"2026-03-16 08:26:53"}
+{"level":"info","message":"- Hata Mesajı: Geçerli bir çalışan (provider) seçmelisiniz.","timestamp":"2026-03-16 08:26:53"}
+{"level":"error","message":"[2026-03-16T08:26:53.203Z] ❌ Hata: Doğrulama Hatası: Geçerli bir çalışan (provider) seçmelisiniz.","timestamp":"2026-03-16 08:26:53"}
+{"level":"info","message":"❌ VALIDASYON DETAYLI ANALİZ:","timestamp":"2026-03-16 08:28:33"}
+{"level":"info","message":"- Alan: serviceId","timestamp":"2026-03-16 08:28:33"}
+{"level":"info","message":"- Gelen Değer: \"5e6f7a8b-9c0d-41e2-f3a4-b5c6d7e8f9a0\" (Tipi: string)","timestamp":"2026-03-16 08:28:33"}
+{"level":"info","message":"- Hata Mesajı: Geçersiz hizmet ID formatı.","timestamp":"2026-03-16 08:28:33"}
+{"level":"error","message":"[2026-03-16T08:28:33.208Z] ❌ Hata: Doğrulama Hatası: Geçersiz hizmet ID formatı.","timestamp":"2026-03-16 08:28:33"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"f0e1d2c3-b4a5-4697-88f9-a0b1c2d3e4f5","serviceId":"6a7b8c9d-0e1f-42a3-b4c5-d6e7f8a9b0c1","timestamp":"2026-03-16 08:28:39"}
+{"level":"info","message":"🧹 [REDIS] Temizlendi: slots:f0e1d2c3-b4a5-4697-88f9-a0b1c2d3e4f5:6a7b8c9d-0e1f-42a3-b4c5-d6e7f8a9b0c1:2026-03-16, next_available:f0e1d2c3-b4a5-4697-88f9-a0b1c2d3e4f5:6a7b8c9d-0e1f-42a3-b4c5-d6e7f8a9b0c1, stats:f0e1d2c3-b4a5-4697-88f9-a0b1c2d3e4f5, schedule:f0e1d2c3-b4a5-4697-88f9-a0b1c2d3e4f5:2026-03-16","timestamp":"2026-03-16 08:28:39"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 08:28:39"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 08:28:39"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 08:28:43"}
+{"level":"info","message":"🚀 [CRON] 1 kişiye hatırlatma maili gönderilecek","timestamp":"2026-03-16 08:29:00"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> egetelli@hotmail.com","timestamp":"2026-03-16 08:29:00"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_REMINDER | Alıcı: egetelli@hotmail.com","timestamp":"2026-03-16 08:29:00"}
+{"level":"info","message":"✅ [CRON] Hatırlatma mailleri kuyruğa gönderildi","timestamp":"2026-03-16 08:29:00"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: egetelli@hotmail.com","timestamp":"2026-03-16 08:29:03"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"e9b7c227-8fe4-4a27-b43f-357240ef211c","serviceId":"a1b2c3d4-e5f6-47a8-9b0c-1d2e3f4a5b6c","timestamp":"2026-03-16 08:30:47"}
+{"level":"info","message":"🧹 [REDIS] Temizlendi: slots:e9b7c227-8fe4-4a27-b43f-357240ef211c:a1b2c3d4-e5f6-47a8-9b0c-1d2e3f4a5b6c:2026-03-17, next_available:e9b7c227-8fe4-4a27-b43f-357240ef211c:a1b2c3d4-e5f6-47a8-9b0c-1d2e3f4a5b6c, stats:e9b7c227-8fe4-4a27-b43f-357240ef211c, schedule:e9b7c227-8fe4-4a27-b43f-357240ef211c:2026-03-17","timestamp":"2026-03-16 08:30:47"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 08:30:47"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 08:30:47"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 08:30:51"}
+{"level":"info","message":"❌ VALIDASYON DETAYLI ANALİZ:","timestamp":"2026-03-16 08:30:56"}
+{"level":"info","message":"- Alan: providerId","timestamp":"2026-03-16 08:30:56"}
+{"level":"info","message":"- Gelen Değer: \"3b4c5d6e-7f8a-49b0-c1d2-e3f4a5b6c7d8\" (Tipi: string)","timestamp":"2026-03-16 08:30:56"}
+{"level":"info","message":"- Hata Mesajı: Geçerli bir çalışan (provider) seçmelisiniz.","timestamp":"2026-03-16 08:30:56"}
+{"level":"error","message":"[2026-03-16T08:30:56.924Z] ❌ Hata: Doğrulama Hatası: Geçerli bir çalışan (provider) seçmelisiniz.","timestamp":"2026-03-16 08:30:56"}
+{"level":"info","message":"❌ VALIDASYON DETAYLI ANALİZ:","timestamp":"2026-03-16 08:31:32"}
+{"level":"info","message":"- Alan: providerId","timestamp":"2026-03-16 08:31:32"}
+{"level":"info","message":"- Gelen Değer: \"3b4c5d6e-7f8a-49b0-c1d2-e3f4a5b6c7d8\" (Tipi: string)","timestamp":"2026-03-16 08:31:32"}
+{"level":"info","message":"- Hata Mesajı: Geçerli bir çalışan (provider) seçmelisiniz.","timestamp":"2026-03-16 08:31:32"}
+{"level":"error","message":"[2026-03-16T08:31:32.630Z] ❌ Hata: Doğrulama Hatası: Geçerli bir çalışan (provider) seçmelisiniz.","timestamp":"2026-03-16 08:31:32"}
+{"level":"info","message":"❌ VALIDASYON DETAYLI ANALİZ:","timestamp":"2026-03-16 08:32:16"}
+{"level":"info","message":"- Alan: providerId","timestamp":"2026-03-16 08:32:16"}
+{"level":"info","message":"- Gelen Değer: \"3b4c5d6e-7f8a-49b0-c1d2-e3f4a5b6c7d8\" (Tipi: string)","timestamp":"2026-03-16 08:32:16"}
+{"level":"info","message":"- Hata Mesajı: Geçerli bir çalışan (provider) seçmelisiniz.","timestamp":"2026-03-16 08:32:16"}
+{"level":"error","message":"[2026-03-16T08:32:16.709Z] ❌ Hata: Doğrulama Hatası: Geçerli bir çalışan (provider) seçmelisiniz.","timestamp":"2026-03-16 08:32:16"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"f47ac10b-58cc-4372-a567-0e02b2c3d479","serviceId":"f1e2d3c4-b5a6-49f8-8e7d-6c5b4a3f2e1d","timestamp":"2026-03-16 08:35:29"}
+{"level":"info","message":"🧹 [REDIS] Temizlendi: slots:f47ac10b-58cc-4372-a567-0e02b2c3d479:f1e2d3c4-b5a6-49f8-8e7d-6c5b4a3f2e1d:2026-03-16, next_available:f47ac10b-58cc-4372-a567-0e02b2c3d479:f1e2d3c4-b5a6-49f8-8e7d-6c5b4a3f2e1d, stats:f47ac10b-58cc-4372-a567-0e02b2c3d479, schedule:f47ac10b-58cc-4372-a567-0e02b2c3d479:2026-03-16","timestamp":"2026-03-16 08:35:29"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 08:35:29"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 08:35:29"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 08:35:33"}
+{"level":"info","message":"🚀 [CRON] 1 kişiye hatırlatma maili gönderilecek","timestamp":"2026-03-16 08:36:00"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> egetelli@hotmail.com","timestamp":"2026-03-16 08:36:00"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_REMINDER | Alıcı: egetelli@hotmail.com","timestamp":"2026-03-16 08:36:00"}
+{"level":"info","message":"✅ [CRON] Hatırlatma mailleri kuyruğa gönderildi","timestamp":"2026-03-16 08:36:00"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: egetelli@hotmail.com","timestamp":"2026-03-16 08:36:03"}
+{"level":"info","message":"❌ VALIDASYON DETAYLI ANALİZ:","timestamp":"2026-03-16 08:44:10"}
+{"level":"info","message":"- Alan: serviceId","timestamp":"2026-03-16 08:44:10"}
+{"level":"info","message":"- Gelen Değer: \"5e6f7a8b-9c0d-41e2-f3a4-b5c6d7e8f9a0\" (Tipi: string)","timestamp":"2026-03-16 08:44:10"}
+{"level":"info","message":"- Hata Mesajı: Geçersiz hizmet ID formatı.","timestamp":"2026-03-16 08:44:10"}
+{"level":"error","message":"[2026-03-16T08:44:10.406Z] ❌ Hata: Doğrulama Hatası: Geçersiz hizmet ID formatı.","timestamp":"2026-03-16 08:44:10"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"f0e1d2c3-b4a5-4697-88f9-a0b1c2d3e4f5","serviceId":"6a7b8c9d-0e1f-42a3-b4c5-d6e7f8a9b0c1","timestamp":"2026-03-16 08:44:14"}
+{"level":"info","message":"🧹 [REDIS] Temizlendi: slots:f0e1d2c3-b4a5-4697-88f9-a0b1c2d3e4f5:6a7b8c9d-0e1f-42a3-b4c5-d6e7f8a9b0c1:2026-03-19, next_available:f0e1d2c3-b4a5-4697-88f9-a0b1c2d3e4f5:6a7b8c9d-0e1f-42a3-b4c5-d6e7f8a9b0c1, stats:f0e1d2c3-b4a5-4697-88f9-a0b1c2d3e4f5, schedule:f0e1d2c3-b4a5-4697-88f9-a0b1c2d3e4f5:2026-03-19","timestamp":"2026-03-16 08:44:14"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 08:44:14"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 08:44:14"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 08:44:18"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"f0e1d2c3-b4a5-4697-88f9-a0b1c2d3e4f5","serviceId":"6a7b8c9d-0e1f-42a3-b4c5-d6e7f8a9b0c1","timestamp":"2026-03-16 08:46:01"}
+{"level":"info","message":"🧹 [REDIS] Temizlendi: slots:f0e1d2c3-b4a5-4697-88f9-a0b1c2d3e4f5:6a7b8c9d-0e1f-42a3-b4c5-d6e7f8a9b0c1:2026-03-23, next_available:f0e1d2c3-b4a5-4697-88f9-a0b1c2d3e4f5:6a7b8c9d-0e1f-42a3-b4c5-d6e7f8a9b0c1, stats:f0e1d2c3-b4a5-4697-88f9-a0b1c2d3e4f5, schedule:f0e1d2c3-b4a5-4697-88f9-a0b1c2d3e4f5:2026-03-23","timestamp":"2026-03-16 08:46:01"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 08:46:01"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 08:46:01"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 08:46:05"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 09:55:13"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 09:55:13"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 09:55:13"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 09:55:24"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 09:55:24"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 09:55:24"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 09:55:24"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 09:55:24"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 09:55:24"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 09:55:24"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 09:55:24"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 09:55:25"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 09:55:25"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 09:55:25"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 10:08:14"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 10:08:14"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 10:08:14"}
+{"level":"info","message":"🐇 RabbitMQ bağlantısı kapatıldı.","timestamp":"2026-03-16 10:08:14"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 10:08:25"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 10:08:25"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 10:08:25"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 10:08:25"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 10:08:25"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 10:08:25"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 10:08:25"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 10:08:25"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 10:08:25"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 10:08:25"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 10:08:25"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 10:12:04"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 10:12:04"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 10:12:04"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 10:12:15"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 10:12:16"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 10:12:16"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 10:12:16"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 10:12:16"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 10:12:16"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 10:12:16"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 10:12:16"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 10:12:16"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 10:12:16"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 10:12:16"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 10:18:06"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 10:18:06"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 10:18:06"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 10:18:17"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 10:18:17"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 10:18:17"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 10:18:17"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 10:18:17"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 10:18:17"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 10:18:17"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 10:18:17"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 10:18:17"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 10:18:17"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 10:18:17"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 10:23:06"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 10:23:06"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 10:23:06"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 10:23:17"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 10:23:17"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 10:23:17"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 10:23:17"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 10:23:17"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 10:23:17"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 10:23:17"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 10:23:17"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 10:23:18"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 10:23:18"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 10:23:18"}
+{"level":"error","message":"[2026-03-16T10:23:20.581Z] ❌ Hata: Oturumunuz sonlanmış, lütfen tekrar giriş yapın","timestamp":"2026-03-16 10:23:20"}
+{"level":"error","message":"[2026-03-16T10:23:20.618Z] ❌ Hata: Oturumunuz sonlanmış, lütfen tekrar giriş yapın","timestamp":"2026-03-16 10:23:20"}
+{"level":"error","message":"[2026-03-16T10:23:24.871Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-03-16 10:23:24"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 10:51:57"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 10:51:57"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 10:51:57"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 10:52:08"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 11:00:46"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 11:01:59"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 11:01:59"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 11:01:59"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 11:01:59"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 11:01:59"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 11:01:59"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 11:01:59"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 11:01:59"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 11:01:59"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 11:01:59"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 11:02:02"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 11:02:02"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 11:02:02"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 11:02:40"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 11:02:40"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 11:02:40"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 11:02:40"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 11:02:40"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 11:02:40"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 11:02:40"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 11:02:40"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 11:02:40"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 11:02:40"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 11:02:40"}
+{"level":"error","message":"[2026-03-16T11:02:50.015Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-03-16 11:02:50"}
+{"level":"error","message":"[2026-03-16T11:06:30.323Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-03-16 11:06:30"}
+{"level":"error","message":"[2026-03-16T11:07:10.941Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-03-16 11:07:10"}
+{"level":"error","message":"[2026-03-16T11:07:28.110Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-03-16 11:07:28"}
+{"level":"error","message":"[2026-03-16T11:15:15.756Z] ❌ Hata: Oturumunuz sonlanmış, lütfen tekrar giriş yapın","timestamp":"2026-03-16 11:15:15"}
+{"level":"error","message":"[2026-03-16T11:15:15.771Z] ❌ Hata: Oturumunuz sonlanmış, lütfen tekrar giriş yapın","timestamp":"2026-03-16 11:15:15"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"ff8e05cf-74a8-43cf-a87d-7126b116a7d0","timestamp":"2026-03-16 11:23:05"}
+{"level":"info","message":"🧹 [REDIS] Temizlendi: slots:9a12719d-b7ca-4495-9456-578cf812ee19:ff8e05cf-74a8-43cf-a87d-7126b116a7d0:2026-03-17, next_available:9a12719d-b7ca-4495-9456-578cf812ee19:ff8e05cf-74a8-43cf-a87d-7126b116a7d0, stats:9a12719d-b7ca-4495-9456-578cf812ee19, schedule:9a12719d-b7ca-4495-9456-578cf812ee19:2026-03-17","timestamp":"2026-03-16 11:23:05"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 11:23:05"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 11:23:05"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 11:23:09"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 11:27:25"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 11:27:25"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 11:27:25"}
+{"level":"info","message":"🐇 RabbitMQ bağlantısı kapatıldı.","timestamp":"2026-03-16 11:27:25"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 11:27:36"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 11:27:37"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 11:27:37"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 11:27:37"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 11:27:37"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 11:27:37"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 11:27:37"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 11:27:37"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 11:27:37"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 11:27:37"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 11:27:37"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 11:32:22"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 11:32:22"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 11:32:22"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 11:32:33"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 11:32:33"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 11:32:33"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 11:32:33"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 11:32:33"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 11:32:33"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 11:32:33"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 11:32:33"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 11:32:33"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 11:32:33"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 11:32:33"}
+{"level":"error","message":"[2026-03-16T11:32:39.476Z] ❌ Hata: column \"updated_at\" of relation \"appointments\" does not exist","timestamp":"2026-03-16 11:32:39"}
+{"level":"info","message":"🧹 [REDIS] Onay sonrası cache temizlendi.","timestamp":"2026-03-16 11:33:21"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 12:15:09"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 12:15:09"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 12:15:09"}
+{"level":"info","message":"🐇 RabbitMQ bağlantısı kapatıldı.","timestamp":"2026-03-16 12:15:09"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 12:15:20"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 12:18:27"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 12:23:33"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 12:26:30"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 12:48:46"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 12:48:46"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 12:48:46"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 12:48:46"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 12:48:46"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 12:48:46"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 12:48:46"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-03-16 12:48:46"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 12:48:46"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 12:48:46"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 12:48:46"}
+{"level":"info","message":"🚀 [CRON] 2 kişiye hatırlatma maili gönderilecek","timestamp":"2026-03-16 12:49:00"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> egetelli@hotmail.com","timestamp":"2026-03-16 12:49:00"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> egetelli@hotmail.com","timestamp":"2026-03-16 12:49:00"}
+{"level":"info","message":"✅ [CRON] Hatırlatma mailleri kuyruğa gönderildi","timestamp":"2026-03-16 12:49:00"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 12:49:05"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_REMINDER | Alıcı: egetelli@hotmail.com","timestamp":"2026-03-16 12:49:05"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: egetelli@hotmail.com","timestamp":"2026-03-16 12:49:09"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_REMINDER | Alıcı: egetelli@hotmail.com","timestamp":"2026-03-16 12:49:09"}
+{"0":"D","1":"a","10":"n","100":".","101":"i","102":"o","103":"/","104":"b","105":"i","106":"l","107":"l","108":"i","109":"n","11":"d","110":"g","111":"/","112":"p","113":"l","114":"a","115":"n","116":"s","117":"/","118":"t","119":"e","12":" ","120":"s","121":"t","122":"i","123":"n","124":"g","13":"f","14":"a","15":"i","16":"l","17":"e","18":"d","19":":","2":"t","20":" ","21":"5","22":"5","23":"0","24":" ","25":"5","26":".","27":"7","28":".","29":"0","3":"a","30":" ","31":"T","32":"o","33":"o","34":" ","35":"m","36":"a","37":"n","38":"y","39":" ","4":" ","40":"e","41":"m","42":"a","43":"i","44":"l","45":"s","46":" ","47":"p","48":"e","49":"r","5":"c","50":" ","51":"s","52":"e","53":"c","54":"o","55":"n","56":"d","57":".","58":" ","59":"P","6":"o","60":"l","61":"e","62":"a","63":"s","64":"e","65":" ","66":"u","67":"p","68":"g","69":"r","7":"m","70":"a","71":"d","72":"e","73":" ","74":"y","75":"o","76":"u","77":"r","78":" ","79":"p","8":"m","80":"l","81":"a","82":"n","83":" ","84":"h","85":"t","86":"t","87":"p","88":"s","89":":","9":"a","90":"/","91":"/","92":"m","93":"a","94":"i","95":"l","96":"t","97":"r","98":"a","99":"p","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-03-16 12:49:15"}
+{"0":"P","1":"U","10":"A","11":"P","12":"n","13":"X","14":"Z","15":"M","16":"A","17":"A","18":"A","19":"B","2":"h","3":"W","4":"k","5":"Z","6":"L","7":"X","8":"i","9":"R","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 12:56:31"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 12:56:31"}
+{"0":"F","1":"k","10":"a","11":"w","12":"h","13":"_","14":"i","15":"n","16":"A","17":"A","18":"A","19":"D","2":"Z","3":"b","4":"r","5":"a","6":"d","7":"R","8":"7","9":"L","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 12:56:36"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 12:56:36"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"3fa21250-b0ee-4836-a929-64ad4691bc6a","timestamp":"2026-03-16 12:56:51"}
+{"level":"info","message":"🧹 [REDIS] Temizlendi: slots:9a12719d-b7ca-4495-9456-578cf812ee19:3fa21250-b0ee-4836-a929-64ad4691bc6a:2026-03-18, next_available:9a12719d-b7ca-4495-9456-578cf812ee19:3fa21250-b0ee-4836-a929-64ad4691bc6a, stats:9a12719d-b7ca-4495-9456-578cf812ee19, schedule:9a12719d-b7ca-4495-9456-578cf812ee19:2026-03-18","timestamp":"2026-03-16 12:56:51"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 12:56:51"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 12:56:53"}
+{"0":"i","1":"J","10":"l","11":"T","12":"o","13":"P","14":"n","15":"B","16":"A","17":"A","18":"A","19":"F","2":"M","3":"k","4":"q","5":"d","6":"G","7":"Q","8":"6","9":"P","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 12:56:54"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 12:56:54"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 12:56:55"}
+{"0":"N","1":"q","10":"M","11":"l","12":"S","13":"M","14":"t","15":"V","16":"A","17":"A","18":"A","19":"H","2":"G","3":"3","4":"M","5":"E","6":"J","7":"A","8":"D","9":"D","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 12:56:55"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 12:56:55"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 12:56:56"}
+{"0":"U","1":"J","10":"j","11":"I","12":"5","13":"i","14":"_","15":"Y","16":"A","17":"A","18":"A","19":"J","2":"Z","3":"W","4":"1","5":"e","6":"o","7":"n","8":"W","9":"y","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 12:56:56"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 12:56:56"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 12:56:57"}
+{"0":"I","1":"6","10":"X","11":"i","12":"_","13":"T","14":"8","15":"R","16":"A","17":"A","18":"A","19":"L","2":"r","3":"a","4":"W","5":"N","6":"i","7":"_","8":"d","9":"v","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 12:56:57"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 12:56:57"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 12:56:58"}
+{"0":"b","1":"b","10":"p","11":"O","12":"c","13":"k","14":"8","15":"a","16":"A","17":"A","18":"A","19":"N","2":"4","3":"J","4":"y","5":"t","6":"q","7":"j","8":"Q","9":"1","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 12:56:59"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 12:56:59"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 12:57:01"}
+{"0":"W","1":"g","10":"S","11":"6","12":"t","13":"o","14":"9","15":"v","16":"A","17":"A","18":"A","19":"P","2":"J","3":"I","4":"P","5":"q","6":"-","7":"A","8":"i","9":"5","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 12:57:01"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 12:57:01"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 12:57:12"}
+{"0":"X","1":"Y","10":"R","11":"p","12":"p","13":"n","14":"-","15":"m","16":"A","17":"A","18":"A","19":"R","2":"d","3":"G","4":"u","5":"q","6":"Y","7":"a","8":"8","9":"E","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 12:57:12"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 12:57:12"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 12:57:12"}
+{"0":"x","1":"r","10":"w","11":"g","12":"f","13":"x","14":"A","15":"V","16":"A","17":"A","18":"A","19":"T","2":"G","3":"9","4":"d","5":"G","6":"1","7":"E","8":"N","9":"m","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 12:57:13"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 12:57:13"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 12:57:13"}
+{"0":"9","1":"D","10":"B","11":"G","12":"d","13":"6","14":"8","15":"c","16":"A","17":"A","18":"A","19":"W","2":"8","3":"B","4":"V","5":"e","6":"9","7":"Q","8":"D","9":"1","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 12:57:14"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 12:57:14"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 12:57:14"}
+{"0":"2","1":"Q","10":"B","11":"c","12":"i","13":"8","14":"N","15":"L","16":"A","17":"A","18":"A","19":"Y","2":"b","3":"J","4":"H","5":"2","6":"-","7":"I","8":"L","9":"q","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 12:57:14"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 12:57:14"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 12:57:14"}
+{"0":"8","1":"q","10":"8","11":"7","12":"h","13":"p","14":"V","15":"q","16":"A","17":"A","18":"A","19":"a","2":"a","3":"I","4":"6","5":"-","6":"Z","7":"e","8":"u","9":"l","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 12:57:15"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 12:57:15"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 12:57:38"}
+{"0":"p","1":"g","10":"F","11":"q","12":"T","13":"R","14":"M","15":"l","16":"A","17":"A","18":"A","19":"c","2":"V","3":"E","4":"J","5":"A","6":"P","7":"S","8":"f","9":"k","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 12:57:38"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 12:57:38"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:02:34"}
+{"0":"S","1":"p","10":"D","11":"l","12":"Q","13":"z","14":"C","15":"I","16":"A","17":"A","18":"A","19":"e","2":"m","3":"f","4":"S","5":"R","6":"G","7":"B","8":"e","9":"-","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:02:34"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:02:34"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:02:45"}
+{"0":"K","1":"9","10":"Y","11":"n","12":"M","13":"t","14":"l","15":"W","16":"A","17":"A","18":"A","19":"g","2":"2","3":"e","4":"3","5":"C","6":"7","7":"0","8":"R","9":"A","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:02:45"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:02:45"}
+{"level":"info","message":"🧹 [REDIS] Onay sonrası cache temizlendi.","timestamp":"2026-03-16 13:02:49"}
+{"level":"info","message":"📡 [Socket] Müşteriye (871d1969-0edb-4140-ad91-48b545584016) canlı onay bildirimi gönderildi.","timestamp":"2026-03-16 13:02:49"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"9b8a7d2d-307a-4057-925d-670771862dff","timestamp":"2026-03-16 13:04:25"}
+{"level":"error","message":"[2026-03-16T13:04:25.020Z] ❌ Hata: Seçilen çalışanın bu saatler arası doludur. Lütfen başka bir saat seçin.","timestamp":"2026-03-16 13:04:25"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"9b8a7d2d-307a-4057-925d-670771862dff","timestamp":"2026-03-16 13:04:31"}
+{"level":"info","message":"🧹 [REDIS] Temizlendi: slots:9a12719d-b7ca-4495-9456-578cf812ee19:9b8a7d2d-307a-4057-925d-670771862dff:2026-03-17, next_available:9a12719d-b7ca-4495-9456-578cf812ee19:9b8a7d2d-307a-4057-925d-670771862dff, stats:9a12719d-b7ca-4495-9456-578cf812ee19, schedule:9a12719d-b7ca-4495-9456-578cf812ee19:2026-03-17","timestamp":"2026-03-16 13:04:31"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:04:31"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:04:34"}
+{"0":"T","1":"P","10":"-","11":"f","12":"D","13":"K","14":"l","15":"C","16":"A","17":"A","18":"A","19":"i","2":"K","3":"E","4":"2","5":"Y","6":"c","7":"9","8":"k","9":"e","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:04:34"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:04:34"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:04:38"}
+{"0":"0","1":"p","10":"S","11":"V","12":"c","13":"K","14":"N","15":"s","16":"A","17":"A","18":"A","19":"k","2":"P","3":"_","4":"t","5":"t","6":"3","7":"Z","8":"x","9":"F","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:04:38"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:04:38"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:04:46"}
+{"0":"b","1":"q","10":"t","11":"W","12":"R","13":"D","14":"6","15":"e","16":"A","17":"A","18":"A","19":"m","2":"j","3":"I","4":"U","5":"I","6":"6","7":"p","8":"B","9":"2","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:04:46"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:04:47"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:04:47"}
+{"0":"C","1":"A","10":"W","11":"P","12":"r","13":"n","14":"v","15":"f","16":"A","17":"A","18":"A","19":"o","2":"R","3":"P","4":"2","5":"R","6":"e","7":"7","8":"N","9":"W","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:04:48"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:04:48"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:05:04"}
+{"0":"D","1":"z","10":"X","11":"k","12":"_","13":"J","14":"P","15":"i","16":"A","17":"A","18":"A","19":"q","2":"U","3":"j","4":"B","5":"O","6":"-","7":"S","8":"W","9":"d","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:05:05"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:05:05"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:06:08"}
+{"0":"D","1":"k","10":"G","11":"3","12":"x","13":"x","14":"g","15":"L","16":"A","17":"A","18":"A","19":"s","2":"C","3":"X","4":"2","5":"0","6":"a","7":"e","8":"G","9":"L","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:06:08"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:06:09"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:07:55"}
+{"0":"A","1":"Z","10":"_","11":"G","12":"J","13":"m","14":"Z","15":"S","16":"A","17":"A","18":"A","19":"u","2":"V","3":"G","4":"I","5":"7","6":"m","7":"g","8":"P","9":"k","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:07:55"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:07:55"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:07:57"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:08:10"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 13:08:54"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-03-16 13:08:54"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 13:08:54"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 13:08:54"}
+{"level":"info","message":"🐇 RabbitMQ bağlantısı kapatıldı.","timestamp":"2026-03-16 13:08:54"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 13:09:06"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_REMINDER | Alıcı: egetelli@hotmail.com","timestamp":"2026-03-16 13:09:06"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: egetelli@hotmail.com","timestamp":"2026-03-16 13:09:11"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:09:11"}
+{"0":"D","1":"a","10":"n","100":".","101":"i","102":"o","103":"/","104":"b","105":"i","106":"l","107":"l","108":"i","109":"n","11":"d","110":"g","111":"/","112":"p","113":"l","114":"a","115":"n","116":"s","117":"/","118":"t","119":"e","12":" ","120":"s","121":"t","122":"i","123":"n","124":"g","13":"f","14":"a","15":"i","16":"l","17":"e","18":"d","19":":","2":"t","20":" ","21":"5","22":"5","23":"0","24":" ","25":"5","26":".","27":"7","28":".","29":"0","3":"a","30":" ","31":"T","32":"o","33":"o","34":" ","35":"m","36":"a","37":"n","38":"y","39":" ","4":" ","40":"e","41":"m","42":"a","43":"i","44":"l","45":"s","46":" ","47":"p","48":"e","49":"r","5":"c","50":" ","51":"s","52":"e","53":"c","54":"o","55":"n","56":"d","57":".","58":" ","59":"P","6":"o","60":"l","61":"e","62":"a","63":"s","64":"e","65":" ","66":"u","67":"p","68":"g","69":"r","7":"m","70":"a","71":"d","72":"e","73":" ","74":"y","75":"o","76":"u","77":"r","78":" ","79":"p","8":"m","80":"l","81":"a","82":"n","83":" ","84":"h","85":"t","86":"t","87":"p","88":"s","89":":","9":"a","90":"/","91":"/","92":"m","93":"a","94":"i","95":"l","96":"t","97":"r","98":"a","99":"p","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-03-16 13:09:15"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 13:09:20"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 13:09:20"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 13:09:20"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 13:09:20"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 13:09:20"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 13:09:20"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 13:09:20"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-03-16 13:09:20"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 13:09:20"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 13:09:20"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 13:09:20"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 13:10:50"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-03-16 13:10:50"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 13:10:50"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 13:10:50"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 13:11:01"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:11:01"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:11:06"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:11:06"}
+{"0":"D","1":"a","10":"n","100":".","101":"i","102":"o","103":"/","104":"b","105":"i","106":"l","107":"l","108":"i","109":"n","11":"d","110":"g","111":"/","112":"p","113":"l","114":"a","115":"n","116":"s","117":"/","118":"t","119":"e","12":" ","120":"s","121":"t","122":"i","123":"n","124":"g","13":"f","14":"a","15":"i","16":"l","17":"e","18":"d","19":":","2":"t","20":" ","21":"5","22":"5","23":"0","24":" ","25":"5","26":".","27":"7","28":".","29":"0","3":"a","30":" ","31":"T","32":"o","33":"o","34":" ","35":"m","36":"a","37":"n","38":"y","39":" ","4":" ","40":"e","41":"m","42":"a","43":"i","44":"l","45":"s","46":" ","47":"p","48":"e","49":"r","5":"c","50":" ","51":"s","52":"e","53":"c","54":"o","55":"n","56":"d","57":".","58":" ","59":"P","6":"o","60":"l","61":"e","62":"a","63":"s","64":"e","65":" ","66":"u","67":"p","68":"g","69":"r","7":"m","70":"a","71":"d","72":"e","73":" ","74":"y","75":"o","76":"u","77":"r","78":" ","79":"p","8":"m","80":"l","81":"a","82":"n","83":" ","84":"h","85":"t","86":"t","87":"p","88":"s","89":":","9":"a","90":"/","91":"/","92":"m","93":"a","94":"i","95":"l","96":"t","97":"r","98":"a","99":"p","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-03-16 13:11:10"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 13:11:13"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 13:11:13"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 13:11:13"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 13:11:13"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 13:11:13"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 13:11:13"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 13:11:13"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-03-16 13:11:13"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 13:11:13"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 13:11:13"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 13:11:13"}
+{"0":"B","1":"1","10":"6","11":"t","12":"t","13":"3","14":"3","15":"t","16":"A","17":"A","18":"A","19":"B","2":"_","3":"h","4":"L","5":"j","6":"E","7":"Q","8":"r","9":"Y","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:11:19"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:11:19"}
+{"0":"k","1":"g","10":"x","11":"N","12":"d","13":"n","14":"Y","15":"a","16":"A","17":"A","18":"A","19":"D","2":"0","3":"M","4":"z","5":"S","6":"v","7":"0","8":"V","9":"k","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:11:22"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:11:22"}
+{"level":"info","message":"🧹 [REDIS] Onay sonrası cache temizlendi.","timestamp":"2026-03-16 13:11:26"}
+{"level":"info","message":"📡 [Socket] Müşteriye (871d1969-0edb-4140-ad91-48b545584016) canlı onay bildirimi gönderildi.","timestamp":"2026-03-16 13:11:26"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:11:27"}
+{"0":"P","1":"p","10":"U","11":"7","12":"F","13":"S","14":"d","15":"e","16":"A","17":"A","18":"A","19":"F","2":"L","3":"A","4":"H","5":"4","6":"T","7":"a","8":"_","9":"A","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:11:28"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:11:28"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:12:22"}
+{"0":"r","1":"B","10":"G","11":"p","12":"_","13":"C","14":"W","15":"W","16":"A","17":"A","18":"A","19":"H","2":"e","3":"b","4":"S","5":"k","6":"h","7":"b","8":"v","9":"7","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:12:23"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:12:23"}
+{"level":"info","message":"🧹 [REDIS] İptal sonrası temizlendi: slots:9a12719d-b7ca-4495-9456-578cf812ee19:9b8a7d2d-307a-4057-925d-670771862dff:2026-03-17","timestamp":"2026-03-16 13:15:36"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:15:36"}
+{"level":"info","message":"📩 [Kuyruk] İptal bildirimi RabbitMQ'ya bırakıldı: 04adfeaa-b791-4b72-8bf3-9649e4707281","timestamp":"2026-03-16 13:15:36"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:15:39"}
+{"0":"g","1":"i","10":"i","11":"j","12":"-","13":"F","14":"c","15":"g","16":"A","17":"A","18":"A","19":"J","2":"-","3":"I","4":"5","5":"3","6":"I","7":"A","8":"y","9":"m","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:15:39"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:15:39"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:15:41"}
+{"0":"t","1":"E","10":"y","11":"w","12":"O","13":"W","14":"_","15":"z","16":"A","17":"A","18":"A","19":"L","2":"p","3":"e","4":"I","5":"5","6":"h","7":"p","8":"l","9":"D","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:15:41"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:15:41"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"ff8e05cf-74a8-43cf-a87d-7126b116a7d0","timestamp":"2026-03-16 13:16:03"}
+{"level":"error","message":"[2026-03-16T13:16:03.041Z] ❌ Hata: Seçilen saat çalışanın mesai saatleri dışındadır veya çalışan o gün hizmet vermemektedir.","timestamp":"2026-03-16 13:16:03"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"ff8e05cf-74a8-43cf-a87d-7126b116a7d0","timestamp":"2026-03-16 13:16:08"}
+{"level":"error","message":"[2026-03-16T13:16:08.600Z] ❌ Hata: Seçilen saat çalışanın mesai saatleri dışındadır veya çalışan o gün hizmet vermemektedir.","timestamp":"2026-03-16 13:16:08"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"ff8e05cf-74a8-43cf-a87d-7126b116a7d0","timestamp":"2026-03-16 13:16:13"}
+{"level":"error","message":"[2026-03-16T13:16:13.683Z] ❌ Hata: Seçilen çalışanın bu saatler arası doludur. Lütfen başka bir saat seçin.","timestamp":"2026-03-16 13:16:13"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"ff8e05cf-74a8-43cf-a87d-7126b116a7d0","timestamp":"2026-03-16 13:16:35"}
+{"level":"info","message":"🧹 [REDIS] Temizlendi: slots:9a12719d-b7ca-4495-9456-578cf812ee19:ff8e05cf-74a8-43cf-a87d-7126b116a7d0:2026-03-18, next_available:9a12719d-b7ca-4495-9456-578cf812ee19:ff8e05cf-74a8-43cf-a87d-7126b116a7d0, stats:9a12719d-b7ca-4495-9456-578cf812ee19, schedule:9a12719d-b7ca-4495-9456-578cf812ee19:2026-03-18","timestamp":"2026-03-16 13:16:35"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:16:35"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:18:47"}
+{"0":"Q","1":"6","10":"7","11":"B","12":"j","13":"C","14":"R","15":"o","16":"A","17":"A","18":"A","19":"N","2":"f","3":"Q","4":"J","5":"9","6":"q","7":"P","8":"R","9":"g","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:18:48"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:18:48"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:19:09"}
+{"0":"3","1":"7","10":"E","11":"R","12":"H","13":"t","14":"X","15":"L","16":"A","17":"A","18":"A","19":"P","2":"W","3":"t","4":"4","5":"k","6":"D","7":"0","8":"S","9":"3","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:19:10"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:19:10"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 13:24:08"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:24:08"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:24:08"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-03-16 13:24:08"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 13:24:08"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 13:24:08"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 13:24:19"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:24:19"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:24:24"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CANCELLED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:24:24"}
+{"0":"D","1":"a","10":"n","100":".","101":"i","102":"o","103":"/","104":"b","105":"i","106":"l","107":"l","108":"i","109":"n","11":"d","110":"g","111":"/","112":"p","113":"l","114":"a","115":"n","116":"s","117":"/","118":"t","119":"e","12":" ","120":"s","121":"t","122":"i","123":"n","124":"g","13":"f","14":"a","15":"i","16":"l","17":"e","18":"d","19":":","2":"t","20":" ","21":"5","22":"5","23":"0","24":" ","25":"5","26":".","27":"7","28":".","29":"0","3":"a","30":" ","31":"T","32":"o","33":"o","34":" ","35":"m","36":"a","37":"n","38":"y","39":" ","4":" ","40":"e","41":"m","42":"a","43":"i","44":"l","45":"s","46":" ","47":"p","48":"e","49":"r","5":"c","50":" ","51":"s","52":"e","53":"c","54":"o","55":"n","56":"d","57":".","58":" ","59":"P","6":"o","60":"l","61":"e","62":"a","63":"s","64":"e","65":" ","66":"u","67":"p","68":"g","69":"r","7":"m","70":"a","71":"d","72":"e","73":" ","74":"y","75":"o","76":"u","77":"r","78":" ","79":"p","8":"m","80":"l","81":"a","82":"n","83":" ","84":"h","85":"t","86":"t","87":"p","88":"s","89":":","9":"a","90":"/","91":"/","92":"m","93":"a","94":"i","95":"l","96":"t","97":"r","98":"a","99":"p","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-03-16 13:24:28"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 13:24:31"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 13:24:31"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 13:24:31"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 13:24:31"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 13:24:31"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 13:24:31"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 13:24:31"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-03-16 13:24:31"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 13:24:31"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 13:24:31"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 13:24:31"}
+{"0":"w","1":"q","10":"Z","11":"J","12":"U","13":"D","14":"s","15":"m","16":"A","17":"A","18":"A","19":"B","2":"3","3":"V","4":"g","5":"w","6":"9","7":"6","8":"F","9":"f","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:24:34"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:24:34"}
+{"0":"l","1":"T","10":"i","11":"K","12":"U","13":"p","14":"L","15":"h","16":"A","17":"A","18":"A","19":"D","2":"A","3":"k","4":"8","5":"p","6":"o","7":"D","8":"X","9":"E","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:24:42"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:24:42"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:24:46"}
+{"0":"H","1":"P","10":"e","11":"3","12":"g","13":"3","14":"l","15":"W","16":"A","17":"A","18":"A","19":"F","2":"v","3":"H","4":"N","5":"D","6":"C","7":"g","8":"5","9":"P","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:24:47"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:24:47"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:24:58"}
+{"0":"4","1":"a","10":"L","11":"Y","12":"F","13":"_","14":"c","15":"M","16":"A","17":"A","18":"A","19":"H","2":"G","3":"9","4":"o","5":"d","6":"d","7":"w","8":"e","9":"m","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:24:58"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:24:58"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"9b8a7d2d-307a-4057-925d-670771862dff","timestamp":"2026-03-16 13:25:18"}
+{"level":"error","message":"[2026-03-16T13:25:18.129Z] ❌ Hata: Seçilen saat çalışanın mesai saatleri dışındadır veya çalışan o gün hizmet vermemektedir.","timestamp":"2026-03-16 13:25:18"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"9b8a7d2d-307a-4057-925d-670771862dff","timestamp":"2026-03-16 13:25:34"}
+{"level":"info","message":"📡 [Socket] Uzmana (9a12719d-b7ca-4495-9456-578cf812ee19) yeni randevu bildirimi atıldı.","timestamp":"2026-03-16 13:25:34"}
+{"level":"info","message":"🧹 [REDIS] Yeni randevu sonrası tüm cacheler başarıyla patlatıldı.","timestamp":"2026-03-16 13:25:34"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:25:34"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:25:42"}
+{"0":"X","1":"K","10":"X","11":"k","12":"e","13":"d","14":"b","15":"D","16":"A","17":"A","18":"A","19":"J","2":"J","3":"v","4":"q","5":"U","6":"v","7":"Q","8":"j","9":"i","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:25:42"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:25:42"}
+{"level":"info","message":"🧹 [REDIS] Onay sonrası takvim cache'leri temizlendi.","timestamp":"2026-03-16 13:25:50"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:25:56"}
+{"0":"V","1":"J","10":"M","11":"6","12":"2","13":"c","14":"n","15":"I","16":"A","17":"A","18":"A","19":"L","2":"-","3":"3","4":"R","5":"T","6":"d","7":"k","8":"1","9":"p","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:25:57"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:25:57"}
+{"level":"info","message":"🧹 [REDIS] Onay sonrası takvim cache'leri temizlendi.","timestamp":"2026-03-16 13:26:03"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:26:05"}
+{"0":"1","1":"8","10":"R","11":"n","12":"s","13":"r","14":"q","15":"a","16":"A","17":"A","18":"A","19":"N","2":"w","3":"z","4":"B","5":"L","6":"3","7":"z","8":"o","9":"H","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:26:05"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:26:05"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:26:07"}
+{"0":"z","1":"G","10":"A","11":"5","12":"j","13":"0","14":"n","15":"w","16":"A","17":"A","18":"A","19":"P","2":"h","3":"_","4":"j","5":"8","6":"z","7":"z","8":"F","9":"1","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:26:07"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:26:07"}
+{"level":"error","message":"[2026-03-16T13:26:14.746Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-03-16 13:26:14"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:31:45"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:31:45"}
+{"0":"j","1":"i","10":"-","11":"a","12":"q","13":"F","14":"8","15":"_","16":"A","17":"A","18":"A","19":"R","2":"O","3":"W","4":"N","5":"y","6":"x","7":"L","8":"U","9":"L","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:31:45"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:31:45"}
+{"0":"d","1":"8","10":"A","11":"7","12":"6","13":"O","14":"Z","15":"8","16":"A","17":"A","18":"A","19":"T","2":"N","3":"1","4":"h","5":"p","6":"-","7":"d","8":"w","9":"4","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:31:45"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:31:45"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:32:00"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:32:00"}
+{"0":"P","1":"2","10":"Q","11":"b","12":"J","13":"2","14":"v","15":"H","16":"A","17":"A","18":"A","19":"V","2":"C","3":"b","4":"7","5":"h","6":"X","7":"5","8":"X","9":"K","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:32:00"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:32:00"}
+{"0":"z","1":"F","10":"I","11":"h","12":"S","13":"s","14":"3","15":"9","16":"A","17":"A","18":"A","19":"X","2":"O","3":"o","4":"C","5":"7","6":"5","7":"Z","8":"n","9":"V","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:32:00"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:32:00"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:33:41"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:33:41"}
+{"0":"x","1":"J","10":"a","11":"Y","12":"o","13":"I","14":"p","15":"m","16":"A","17":"A","18":"A","19":"a","2":"g","3":"Y","4":"-","5":"g","6":"Z","7":"d","8":"D","9":"2","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:33:41"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:33:41"}
+{"0":"R","1":"w","10":"H","11":"C","12":"p","13":"m","14":"6","15":"Y","16":"A","17":"A","18":"A","19":"b","2":"J","3":"8","4":"r","5":"P","6":"R","7":"E","8":"C","9":"v","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:33:41"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:33:41"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:34:04"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:34:04"}
+{"0":"x","1":"I","10":"a","11":"_","12":"A","13":"N","14":"t","15":"h","16":"A","17":"A","18":"A","19":"d","2":"s","3":"5","4":"J","5":"4","6":"3","7":"0","8":"a","9":"-","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:34:04"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:34:04"}
+{"0":"r","1":"4","10":"N","11":"8","12":"U","13":"x","14":"E","15":"X","16":"A","17":"A","18":"A","19":"f","2":"s","3":"t","4":"s","5":"x","6":"V","7":"7","8":"H","9":"x","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:34:04"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:34:04"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:34:12"}
+{"0":"t","1":"0","10":"9","11":"R","12":"A","13":"0","14":"S","15":"k","16":"A","17":"A","18":"A","19":"h","2":"X","3":"J","4":"X","5":"R","6":"r","7":"v","8":"T","9":"O","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:34:13"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:34:13"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:34:16"}
+{"0":"n","1":"z","10":"K","11":"O","12":"m","13":"P","14":"y","15":"t","16":"A","17":"A","18":"A","19":"j","2":"0","3":"z","4":"u","5":"5","6":"5","7":"Q","8":"R","9":"R","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:34:17"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:34:17"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:34:30"}
+{"level":"info","message":"📩 [Kuyruk] İptal bildirimi RabbitMQ'ya bırakıldı: 2e071dd6-e03d-4a0b-b091-3a18851725c2","timestamp":"2026-03-16 13:34:30"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:34:36"}
+{"0":"z","1":"5","10":"N","11":"i","12":"h","13":"3","14":"9","15":"2","16":"A","17":"A","18":"A","19":"l","2":"f","3":"Y","4":"9","5":"U","6":"y","7":"M","8":"g","9":"Q","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:34:36"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:34:36"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"9b8a7d2d-307a-4057-925d-670771862dff","timestamp":"2026-03-16 13:35:11"}
+{"level":"info","message":"📡 [Socket] Uzmana (9a12719d-b7ca-4495-9456-578cf812ee19) yeni randevu bildirimi atıldı.","timestamp":"2026-03-16 13:35:11"}
+{"level":"info","message":"🧹 [REDIS] Yeni randevu sonrası tüm cacheler başarıyla patlatıldı.","timestamp":"2026-03-16 13:35:11"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:35:11"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:35:21"}
+{"0":"c","1":"I","10":"M","11":"O","12":"K","13":"h","14":"l","15":"q","16":"A","17":"A","18":"A","19":"n","2":"u","3":"N","4":"O","5":"M","6":"j","7":"b","8":"d","9":"C","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:35:21"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:35:21"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:36:40"}
+{"0":"C","1":"e","10":"P","11":"f","12":"4","13":"v","14":"Z","15":"5","16":"A","17":"A","18":"A","19":"p","2":"H","3":"k","4":"l","5":"S","6":"Q","7":"M","8":"W","9":"S","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:36:40"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:36:40"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 13:47:37"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:47:37"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:47:37"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-03-16 13:47:37"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 13:47:37"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 13:47:37"}
+{"level":"info","message":"🐇 RabbitMQ bağlantısı kapatıldı.","timestamp":"2026-03-16 13:47:37"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 13:47:48"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CANCELLED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:47:48"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:47:54"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:47:54"}
+{"0":"D","1":"a","10":"n","100":".","101":"i","102":"o","103":"/","104":"b","105":"i","106":"l","107":"l","108":"i","109":"n","11":"d","110":"g","111":"/","112":"p","113":"l","114":"a","115":"n","116":"s","117":"/","118":"t","119":"e","12":" ","120":"s","121":"t","122":"i","123":"n","124":"g","13":"f","14":"a","15":"i","16":"l","17":"e","18":"d","19":":","2":"t","20":" ","21":"5","22":"5","23":"0","24":" ","25":"5","26":".","27":"7","28":".","29":"0","3":"a","30":" ","31":"T","32":"o","33":"o","34":" ","35":"m","36":"a","37":"n","38":"y","39":" ","4":" ","40":"e","41":"m","42":"a","43":"i","44":"l","45":"s","46":" ","47":"p","48":"e","49":"r","5":"c","50":" ","51":"s","52":"e","53":"c","54":"o","55":"n","56":"d","57":".","58":" ","59":"P","6":"o","60":"l","61":"e","62":"a","63":"s","64":"e","65":" ","66":"u","67":"p","68":"g","69":"r","7":"m","70":"a","71":"d","72":"e","73":" ","74":"y","75":"o","76":"u","77":"r","78":" ","79":"p","8":"m","80":"l","81":"a","82":"n","83":" ","84":"h","85":"t","86":"t","87":"p","88":"s","89":":","9":"a","90":"/","91":"/","92":"m","93":"a","94":"i","95":"l","96":"t","97":"r","98":"a","99":"p","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-03-16 13:47:59"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 13:48:03"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 13:48:03"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 13:48:03"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 13:48:03"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 13:48:03"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 13:48:03"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 13:48:03"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-03-16 13:48:03"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 13:48:03"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 13:48:03"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 13:48:03"}
+{"0":"F","1":"E","10":"O","11":"s","12":"u","13":"U","14":"Y","15":"C","16":"A","17":"A","18":"A","19":"B","2":"3","3":"3","4":"f","5":"Y","6":"1","7":"u","8":"I","9":"x","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:48:06"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:48:06"}
+{"0":"9","1":"U","10":"O","11":"e","12":"W","13":"Q","14":"M","15":"M","16":"A","17":"A","18":"A","19":"D","2":"z","3":"f","4":"I","5":"U","6":"E","7":"q","8":"5","9":"u","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:48:12"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:48:12"}
+{"level":"info","message":"🧹 [REDIS] Onay sonrası takvim cache'leri temizlendi.","timestamp":"2026-03-16 13:48:26"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:48:28"}
+{"0":"x","1":"L","10":"d","11":"d","12":"i","13":"q","14":"h","15":"0","16":"A","17":"A","18":"A","19":"F","2":"d","3":"u","4":"i","5":"U","6":"f","7":"B","8":"u","9":"A","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:48:28"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:48:28"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"9b8a7d2d-307a-4057-925d-670771862dff","timestamp":"2026-03-16 13:48:44"}
+{"level":"error","message":"[2026-03-16T13:48:44.991Z] ❌ Hata: rawAppointment is not defined","timestamp":"2026-03-16 13:48:44"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 13:48:59"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:48:59"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:48:59"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-03-16 13:48:59"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 13:48:59"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 13:48:59"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 13:49:11"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:49:11"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:49:17"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:49:17"}
+{"0":"D","1":"a","10":"n","100":".","101":"i","102":"o","103":"/","104":"b","105":"i","106":"l","107":"l","108":"i","109":"n","11":"d","110":"g","111":"/","112":"p","113":"l","114":"a","115":"n","116":"s","117":"/","118":"t","119":"e","12":" ","120":"s","121":"t","122":"i","123":"n","124":"g","13":"f","14":"a","15":"i","16":"l","17":"e","18":"d","19":":","2":"t","20":" ","21":"5","22":"5","23":"0","24":" ","25":"5","26":".","27":"7","28":".","29":"0","3":"a","30":" ","31":"T","32":"o","33":"o","34":" ","35":"m","36":"a","37":"n","38":"y","39":" ","4":" ","40":"e","41":"m","42":"a","43":"i","44":"l","45":"s","46":" ","47":"p","48":"e","49":"r","5":"c","50":" ","51":"s","52":"e","53":"c","54":"o","55":"n","56":"d","57":".","58":" ","59":"P","6":"o","60":"l","61":"e","62":"a","63":"s","64":"e","65":" ","66":"u","67":"p","68":"g","69":"r","7":"m","70":"a","71":"d","72":"e","73":" ","74":"y","75":"o","76":"u","77":"r","78":" ","79":"p","8":"m","80":"l","81":"a","82":"n","83":" ","84":"h","85":"t","86":"t","87":"p","88":"s","89":":","9":"a","90":"/","91":"/","92":"m","93":"a","94":"i","95":"l","96":"t","97":"r","98":"a","99":"p","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-03-16 13:49:22"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 13:49:24"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 13:49:24"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 13:49:24"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 13:49:24"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 13:49:24"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 13:49:24"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 13:49:24"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-03-16 13:49:24"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 13:49:25"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 13:49:25"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 13:49:25"}
+{"0":"m","1":"6","10":"5","11":"9","12":"3","13":"Z","14":"T","15":"Z","16":"A","17":"A","18":"A","19":"B","2":"M","3":"4","4":"f","5":"i","6":"F","7":"v","8":"7","9":"s","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:49:26"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:49:26"}
+{"0":"2","1":"w","10":"6","11":"O","12":"y","13":"h","14":"o","15":"G","16":"A","17":"A","18":"A","19":"D","2":"w","3":"h","4":"0","5":"s","6":"X","7":"P","8":"0","9":"G","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:49:29"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:49:29"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:49:30"}
+{"0":"V","1":"M","10":"J","11":"o","12":"A","13":"r","14":"m","15":"j","16":"A","17":"A","18":"A","19":"F","2":"4","3":"z","4":"r","5":"k","6":"e","7":"R","8":"W","9":"a","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:49:31"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:49:31"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"9b8a7d2d-307a-4057-925d-670771862dff","timestamp":"2026-03-16 13:49:43"}
+{"level":"error","message":"[2026-03-16T13:49:43.321Z] ❌ Hata: Seçilen çalışanın bu saatler arası doludur. Lütfen başka bir saat seçin.","timestamp":"2026-03-16 13:49:43"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"9b8a7d2d-307a-4057-925d-670771862dff","timestamp":"2026-03-16 13:50:28"}
+{"level":"error","message":"[2026-03-16T13:50:28.081Z] ❌ Hata: Seçilen saat çalışanın mesai saatleri dışındadır veya çalışan o gün hizmet vermemektedir.","timestamp":"2026-03-16 13:50:28"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"9b8a7d2d-307a-4057-925d-670771862dff","timestamp":"2026-03-16 13:50:35"}
+{"level":"error","message":"[2026-03-16T13:50:35.821Z] ❌ Hata: Seçilen saat çalışanın mesai saatleri dışındadır veya çalışan o gün hizmet vermemektedir.","timestamp":"2026-03-16 13:50:35"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"9b8a7d2d-307a-4057-925d-670771862dff","timestamp":"2026-03-16 13:50:51"}
+{"level":"info","message":"📡 [Socket] Uzmana (9a12719d-b7ca-4495-9456-578cf812ee19) yeni randevu bildirimi atıldı.","timestamp":"2026-03-16 13:50:51"}
+{"level":"info","message":"🧹 [REDIS] Yeni randevu sonrası tüm cacheler başarıyla patlatıldı.","timestamp":"2026-03-16 13:50:51"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:50:51"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 13:54:18"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:54:18"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:54:18"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-03-16 13:54:18"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 13:54:18"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 13:54:18"}
+{"level":"info","message":"🐇 RabbitMQ bağlantısı kapatıldı.","timestamp":"2026-03-16 13:54:18"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 13:54:29"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:54:29"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:54:35"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CANCELLED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 13:54:35"}
+{"0":"D","1":"a","10":"n","100":".","101":"i","102":"o","103":"/","104":"b","105":"i","106":"l","107":"l","108":"i","109":"n","11":"d","110":"g","111":"/","112":"p","113":"l","114":"a","115":"n","116":"s","117":"/","118":"t","119":"e","12":" ","120":"s","121":"t","122":"i","123":"n","124":"g","13":"f","14":"a","15":"i","16":"l","17":"e","18":"d","19":":","2":"t","20":" ","21":"5","22":"5","23":"0","24":" ","25":"5","26":".","27":"7","28":".","29":"0","3":"a","30":" ","31":"T","32":"o","33":"o","34":" ","35":"m","36":"a","37":"n","38":"y","39":" ","4":" ","40":"e","41":"m","42":"a","43":"i","44":"l","45":"s","46":" ","47":"p","48":"e","49":"r","5":"c","50":" ","51":"s","52":"e","53":"c","54":"o","55":"n","56":"d","57":".","58":" ","59":"P","6":"o","60":"l","61":"e","62":"a","63":"s","64":"e","65":" ","66":"u","67":"p","68":"g","69":"r","7":"m","70":"a","71":"d","72":"e","73":" ","74":"y","75":"o","76":"u","77":"r","78":" ","79":"p","8":"m","80":"l","81":"a","82":"n","83":" ","84":"h","85":"t","86":"t","87":"p","88":"s","89":":","9":"a","90":"/","91":"/","92":"m","93":"a","94":"i","95":"l","96":"t","97":"r","98":"a","99":"p","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-03-16 13:54:41"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 13:54:42"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 13:54:42"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 13:54:42"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 13:54:42"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 13:54:42"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 13:54:42"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 13:54:42"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-03-16 13:54:42"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 13:54:43"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 13:54:43"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 13:54:43"}
+{"0":"s","1":"p","10":"8","11":"6","12":"j","13":"I","14":"d","15":"g","16":"A","17":"A","18":"A","19":"B","2":"7","3":"X","4":"x","5":"6","6":"C","7":"t","8":"6","9":"0","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:54:43"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 13:54:43"}
+{"0":"D","1":"4","10":"w","11":"K","12":"a","13":"d","14":"M","15":"e","16":"A","17":"A","18":"A","19":"D","2":"J","3":"Y","4":"5","5":"I","6":"O","7":"b","8":"V","9":"p","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:54:47"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:54:47"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 13:54:52"}
+{"0":"7","1":"p","10":"C","11":"n","12":"7","13":"2","14":"0","15":"H","16":"A","17":"A","18":"A","19":"F","2":"L","3":"U","4":"P","5":"a","6":"N","7":"M","8":"A","9":"0","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 13:54:53"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 13:54:53"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"ff8e05cf-74a8-43cf-a87d-7126b116a7d0","timestamp":"2026-03-16 13:55:09"}
+{"level":"error","message":"[2026-03-16T13:55:09.563Z] ❌ Hata: Seçilen saat çalışanın mesai saatleri dışındadır veya çalışan o gün hizmet vermemektedir.","timestamp":"2026-03-16 13:55:09"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 14:06:46"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:06:46"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:06:46"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-03-16 14:06:46"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 14:06:46"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 14:06:46"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 14:06:57"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CANCELLED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 14:06:57"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 14:07:04"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 14:07:04"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 14:07:07"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 14:07:07"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 14:07:08"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 14:07:08"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 14:07:08"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 14:07:08"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 14:07:08"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-03-16 14:07:08"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 14:07:08"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 14:07:08"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 14:07:08"}
+{"0":"D","1":"a","10":"n","100":".","101":"i","102":"o","103":"/","104":"b","105":"i","106":"l","107":"l","108":"i","109":"n","11":"d","110":"g","111":"/","112":"p","113":"l","114":"a","115":"n","116":"s","117":"/","118":"t","119":"e","12":" ","120":"s","121":"t","122":"i","123":"n","124":"g","13":"f","14":"a","15":"i","16":"l","17":"e","18":"d","19":":","2":"t","20":" ","21":"5","22":"5","23":"0","24":" ","25":"5","26":".","27":"7","28":".","29":"0","3":"a","30":" ","31":"T","32":"o","33":"o","34":" ","35":"m","36":"a","37":"n","38":"y","39":" ","4":" ","40":"e","41":"m","42":"a","43":"i","44":"l","45":"s","46":" ","47":"p","48":"e","49":"r","5":"c","50":" ","51":"s","52":"e","53":"c","54":"o","55":"n","56":"d","57":".","58":" ","59":"P","6":"o","60":"l","61":"e","62":"a","63":"s","64":"e","65":" ","66":"u","67":"p","68":"g","69":"r","7":"m","70":"a","71":"d","72":"e","73":" ","74":"y","75":"o","76":"u","77":"r","78":" ","79":"p","8":"m","80":"l","81":"a","82":"n","83":" ","84":"h","85":"t","86":"t","87":"p","88":"s","89":":","9":"a","90":"/","91":"/","92":"m","93":"a","94":"i","95":"l","96":"t","97":"r","98":"a","99":"p","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-03-16 14:07:10"}
+{"0":"8","1":"f","10":"X","11":"z","12":"f","13":"U","14":"x","15":"Z","16":"A","17":"A","18":"A","19":"C","2":"I","3":"m","4":"S","5":"O","6":"c","7":"T","8":"G","9":"D","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 14:07:11"}
+{"0":"r","1":"e","10":"8","11":"Z","12":"u","13":"J","14":"U","15":"F","16":"A","17":"A","18":"A","19":"D","2":"w","3":"Z","4":"9","5":"-","6":"a","7":"8","8":"P","9":"J","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 14:07:11"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 14:07:11"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 14:07:11"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:07:13"}
+{"0":"x","1":"9","10":"r","11":"B","12":"v","13":"p","14":"f","15":"4","16":"A","17":"A","18":"A","19":"F","2":"L","3":"r","4":"g","5":"B","6":"Y","7":"X","8":"c","9":"O","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 14:07:13"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 14:07:13"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:07:18"}
+{"0":"u","1":"n","10":"6","11":"r","12":"o","13":"h","14":"j","15":"H","16":"A","17":"A","18":"A","19":"H","2":"b","3":"w","4":"k","5":"7","6":"A","7":"f","8":"l","9":"m","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 14:07:19"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 14:07:19"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"9b8a7d2d-307a-4057-925d-670771862dff","timestamp":"2026-03-16 14:07:41"}
+{"level":"error","message":"[2026-03-16T14:07:42.000Z] ❌ Hata: Seçilen saat çalışanın mesai saatleri dışındadır veya çalışan o gün hizmet vermemektedir.","timestamp":"2026-03-16 14:07:42"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:08:04"}
+{"0":"v","1":"D","10":"9","11":"5","12":"R","13":"9","14":"_","15":"d","16":"A","17":"A","18":"A","19":"J","2":"z","3":"3","4":"C","5":"u","6":"9","7":"l","8":"Q","9":"O","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 14:08:17"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 14:08:17"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"9b8a7d2d-307a-4057-925d-670771862dff","timestamp":"2026-03-16 14:08:59"}
+{"level":"error","message":"[2026-03-16T14:08:59.659Z] ❌ Hata: Seçilen saat çalışanın mesai saatleri dışındadır veya çalışan o gün hizmet vermemektedir.","timestamp":"2026-03-16 14:08:59"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-16 14:13:28"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:13:28"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:13:28"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-03-16 14:13:28"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-16 14:13:28"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-16 14:13:28"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-16 14:13:39"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 14:13:39"}
+{"level":"info","message":"✅ [Worker] Başarıyla gönderildi: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 14:13:45"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 14:13:45"}
+{"0":"D","1":"a","10":"n","100":".","101":"i","102":"o","103":"/","104":"b","105":"i","106":"l","107":"l","108":"i","109":"n","11":"d","110":"g","111":"/","112":"p","113":"l","114":"a","115":"n","116":"s","117":"/","118":"t","119":"e","12":" ","120":"s","121":"t","122":"i","123":"n","124":"g","13":"f","14":"a","15":"i","16":"l","17":"e","18":"d","19":":","2":"t","20":" ","21":"5","22":"5","23":"0","24":" ","25":"5","26":".","27":"7","28":".","29":"0","3":"a","30":" ","31":"T","32":"o","33":"o","34":" ","35":"m","36":"a","37":"n","38":"y","39":" ","4":" ","40":"e","41":"m","42":"a","43":"i","44":"l","45":"s","46":" ","47":"p","48":"e","49":"r","5":"c","50":" ","51":"s","52":"e","53":"c","54":"o","55":"n","56":"d","57":".","58":" ","59":"P","6":"o","60":"l","61":"e","62":"a","63":"s","64":"e","65":" ","66":"u","67":"p","68":"g","69":"r","7":"m","70":"a","71":"d","72":"e","73":" ","74":"y","75":"o","76":"u","77":"r","78":" ","79":"p","8":"m","80":"l","81":"a","82":"n","83":" ","84":"h","85":"t","86":"t","87":"p","88":"s","89":":","9":"a","90":"/","91":"/","92":"m","93":"a","94":"i","95":"l","96":"t","97":"r","98":"a","99":"p","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-03-16 14:13:51"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-16 14:13:53"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-16 14:13:53"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-16 14:13:53"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-16 14:13:53"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-16 14:13:53"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-16 14:13:53"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-16 14:13:54"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-03-16 14:13:54"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-16 14:13:54"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-16 14:13:54"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-16 14:13:54"}
+{"0":"X","1":"p","10":"U","11":"S","12":"g","13":"8","14":"M","15":"R","16":"A","17":"A","18":"A","19":"B","2":"Y","3":"P","4":"R","5":"Z","6":"3","7":"I","8":"J","9":"6","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 14:13:54"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 14:13:54"}
+{"0":"L","1":"X","10":"M","11":"Y","12":"h","13":"B","14":"q","15":"U","16":"A","17":"A","18":"A","19":"D","2":"0","3":"c","4":"k","5":"X","6":"n","7":"u","8":"F","9":"6","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 14:13:56"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 14:13:56"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"ff8e05cf-74a8-43cf-a87d-7126b116a7d0","timestamp":"2026-03-16 14:14:11"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 14:14:11"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"ff8e05cf-74a8-43cf-a87d-7126b116a7d0","timestamp":"2026-03-16 14:14:34"}
+{"level":"error","message":"[2026-03-16T14:14:34.195Z] ❌ Hata: Geçmiş bir tarihe randevu alamazsınız.","timestamp":"2026-03-16 14:14:34"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"ff8e05cf-74a8-43cf-a87d-7126b116a7d0","timestamp":"2026-03-16 14:14:40"}
+{"level":"error","message":"[2026-03-16T14:14:40.182Z] ❌ Hata: Seçilen saat çalışanın mesai saatleri (09:00 - 18:00) dışındadır.","timestamp":"2026-03-16 14:14:40"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 14:14:52"}
+{"level":"info","message":"📩 [Kuyruk] İptal bildirimi RabbitMQ'ya bırakıldı: 54e6eb12-564a-444c-afec-b5160f039897","timestamp":"2026-03-16 14:14:52"}
+{"level":"info","message":"📡 [Socket] İptal bildirimi ilgili kişilere gönderildi.","timestamp":"2026-03-16 14:14:52"}
+{"level":"info","message":"🧹 [REDIS] Onay sonrası takvim cache'leri temizlendi.","timestamp":"2026-03-16 14:15:05"}
+{"level":"info","message":"🧹 [REDIS] Onay sonrası takvim cache'leri temizlendi.","timestamp":"2026-03-16 14:15:07"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:15:11"}
+{"0":"g","1":"Q","10":"P","11":"T","12":"q","13":"8","14":"-","15":"v","16":"A","17":"A","18":"A","19":"F","2":"I","3":"h","4":"-","5":"q","6":"D","7":"o","8":"a","9":"d","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 14:15:11"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 14:15:11"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:15:13"}
+{"0":"9","1":"H","10":"U","11":"y","12":"v","13":"e","14":"6","15":"L","16":"A","17":"A","18":"A","19":"H","2":"I","3":"A","4":"u","5":"A","6":"3","7":"u","8":"f","9":"s","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 14:15:14"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 14:15:14"}
+{"level":"info","message":"Gelen ID'ler:","providerId":"9a12719d-b7ca-4495-9456-578cf812ee19","serviceId":"3fa21250-b0ee-4836-a929-64ad4691bc6a","timestamp":"2026-03-16 14:17:42"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> ege.telli@europowerenerji.com.tr","timestamp":"2026-03-16 14:17:42"}
+{"level":"info","message":"🧹 [REDIS] Onay sonrası takvim cache'leri temizlendi.","timestamp":"2026-03-16 14:17:50"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:19:50"}
+{"0":"b","1":"a","10":"o","11":"a","12":"p","13":"X","14":"2","15":"H","16":"A","17":"A","18":"A","19":"J","2":"G","3":"N","4":"f","5":"8","6":"P","7":"w","8":"q","9":"H","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 14:19:50"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 14:19:50"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:19:51"}
+{"0":"E","1":"7","10":"G","11":"M","12":"f","13":"p","14":"D","15":"2","16":"A","17":"A","18":"A","19":"L","2":"6","3":"4","4":"l","5":"K","6":"6","7":"y","8":"C","9":"2","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 14:19:52"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 14:19:52"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:19:57"}
+{"0":"g","1":"X","10":"v","11":"l","12":"x","13":"6","14":"_","15":"o","16":"A","17":"A","18":"A","19":"N","2":"Q","3":"3","4":"q","5":"N","6":"5","7":"T","8":"X","9":"m","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 14:19:58"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 14:19:58"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:19:58"}
+{"0":"Z","1":"v","10":"2","11":"A","12":"8","13":"T","14":"T","15":"N","16":"A","17":"A","18":"A","19":"P","2":"k","3":"z","4":"R","5":"o","6":"a","7":"a","8":"L","9":"z","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 14:19:59"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 14:19:59"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:19:59"}
+{"0":"f","1":"d","10":"O","11":"D","12":"y","13":"o","14":"r","15":"l","16":"A","17":"A","18":"A","19":"R","2":"A","3":"V","4":"m","5":"B","6":"3","7":"Z","8":"m","9":"U","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 14:20:00"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-16 14:20:00"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:20:00"}
+{"0":"_","1":"Y","10":"W","11":"M","12":"0","13":"3","14":"R","15":"c","16":"A","17":"A","18":"A","19":"T","2":"g","3":"f","4":"U","5":"M","6":"4","7":"8","8":"F","9":"u","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-16 14:20:01"}
+{"level":"info","message":"👤 Kullanıcı 871d1969-0edb-4140-ad91-48b545584016 kendi odasına katıldı.","timestamp":"2026-03-16 14:20:01"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:37:56"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-16 14:37:59"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-17 07:04:14"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-17 07:04:14"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-17 07:04:14"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-17 07:04:14"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-17 07:04:14"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-17 07:04:14"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-17 07:04:14"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-03-17 07:04:14"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-17 07:04:14"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-17 07:04:14"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-17 07:04:14"}

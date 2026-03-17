@@ -17,13 +17,13 @@ const apiLimiter = rateLimit({
   }),
 });
 
-// 2. Auth Limitleyici (Giriş/Kayıt denemeleri için çok daha katı: 15 dakikada 5 deneme)
+// 2. Auth Limitleyici (Giriş/Kayıt denemeleri için çok daha katı: 15 dakikada 150 deneme)
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 10, // IP başına 10 deneme
+  max: 150,
   message: {
     success: false,
-    message: "Çok fazla hatalı deneme! Güvenliğiniz için erişiminiz geçici olarak kısıtlanmıştır.",
+    message: "Çok fazla giriş denemesi yaptınız. Lütfen biraz bekleyin.",
   },
   store: new RedisStore({
     sendCommand: (...args) => redisClient.sendCommand(args),

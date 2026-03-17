@@ -84,7 +84,7 @@ const refreshToken = asyncHandler(async (req, res) => {
   }
 
   // 2. Servise gidip bu token'ı doğrula ve yepyeni jetonlar al (Token Rotation)
-  const { accessToken, newRefreshToken } =
+  const { accessToken, newRefreshToken, user } =
     await authService.refreshToken(token);
 
   // 3. Yeni Refresh Token'ı tekrar Cookie'ye yazıp, Access Token'ı dönüyoruz
@@ -95,6 +95,7 @@ const refreshToken = asyncHandler(async (req, res) => {
       success: true,
       message: "Yeni token başarıyla oluşturuldu.",
       accessToken, // Angular'ın yeni giriş anahtarı
+      data: user,
     });
 });
 

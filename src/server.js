@@ -1,36 +1,46 @@
 require("dotenv").config();
+const http = require("http"); // 👈 1. HTTP modülünü ekledik
 const app = require("./app");
 const pool = require("./config/db");
 const dbInit = require("./config/dbInit");
 
 const rabbitMQ = require("./config/rabbitmq");
 const redisClient = require("./config/redis");
+const socketLib = require("./config/socket"); // 👈 2. Socket yapılandırmasını ekledik
 const logger = require("./utils/logger");
 
 const PORT = process.env.PORT || 3000;
 
+// Express app'i bir HTTP sunucusu içine sarıyoruz
+const server = http.createServer(app); // 👈 3. Kritik Değişiklik
+
 const startServer = async () => {
   try {
-    // 1. Önce fiziksel bağlantıyı (PostgreSQL) kontrol et
+    // 1. PostgreSQL bağlantısı
     await pool.query("SELECT NOW()");
     logger.info("🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.");
 
-    // 2. Tabloları kontrol et ve yoksa oluştur (Auto-Migration)
+    // 2. Tablo kontrolleri
     await dbInit();
 
-    // 3. Redis Bağlantısını Kontrol Et (Ping atarak ayakta mı diye soruyoruz)
-    // Eğer redis.js içinde zaten connect() olduysa ping atarız, olmadıysa burada bağlarız.
+    // 3. Redis Bağlantısı
     if (!redisClient.isOpen) {
       await redisClient.connect();
     }
     await redisClient.ping();
     logger.info("⚡ [REDIS] Önbellek bağlantısı başarılı.");
 
-    // 4. RabbitMQ Bağlantısını Başlat (Kuyruk Sistemini Uyandır 🐇)
+    // 4. RabbitMQ Bağlantısı
     await rabbitMQ.connect();
 
-    // 5. Her şey (DB, Tablolar, Redis, Kuyruk) hazır olduktan sonra sunucuyu başlat
-    const server = app.listen(PORT, () => {
+    // 5. Socket.io Başlatma 👈 4. Yeni Adım
+    // Sunucu nesnesini soket kütüphanesine veriyoruz
+    socketLib.init(server);
+    logger.info("📡 [Socket.io] Gerçek zamanlı haberleşme hazır.");
+
+    // 6. Sunucuyu Başlat (Artık 'app' değil 'server' dinliyor)
+    server.listen(PORT, () => {
+      // 👈 5. Kritik Değişiklik
       logger.info(`🚀 [API] Sunucu port ${PORT} üzerinde çalışıyor...`);
       logger.info(`🌍 [Ortam] ${process.env.NODE_ENV || "development"}`);
     });
@@ -44,44 +54,41 @@ const startServer = async () => {
   }
 };
 
-let server;
+startServer();
 
-startServer().then((s) => {
-  server = s;
-});
-
-// Handle unhandled promise rejections
+// --- Hata Yönetimi ---
 process.on("unhandledRejection", (err) => {
   logger.error("❌ Unhandled Rejection:", err.message);
   if (server && server.listening) {
-    // server nesnesi var mı ve dinliyor mu kontrolü
     server.close(() => process.exit(1));
   } else {
     process.exit(1);
   }
 });
 
-// Handle uncaught exceptions
 process.on("uncaughtException", (err) => {
   logger.error("💥 Uncaught Exception:", err.message);
   process.exit(1);
 });
 
-// Graceful shutdown
+// --- Graceful Shutdown (Zarif Kapatma) ---
 const shutdown = async () => {
   logger.info("\n👋 Sunucu zarif bir şekilde kapatılıyor...");
   try {
-    // 1. Veritabanı havuzunu kapat
+    // 1. Soket bağlantılarını kapat (Yeni eklendi)
+    const io = socketLib.getIO();
+    io.close();
+    logger.info("📡 Socket.io bağlantıları durduruldu.");
+
+    // 2. DB ve diğer bağlantılar
     await pool.end();
     logger.info("🐘 PostgreSQL bağlantısı kapatıldı.");
 
-    // 2. Redis bağlantısını güvenle kapat
     if (redisClient.isOpen) {
       await redisClient.quit();
       logger.info("⚡ Redis bağlantısı kapatıldı.");
     }
 
-    // 3. RabbitMQ bağlantısını güvenle kapat
     if (rabbitMQ.connection) {
       await rabbitMQ.connection.close();
       logger.info("🐇 RabbitMQ bağlantısı kapatıldı.");

@@ -202,4 +202,33 @@ router.get(
   appointmentController.getMyPerformance,
 );
 
+/**
+ * @swagger
+ * /api/appointments/{id}/approve:
+ *   patch:
+ *     summary: Randevuyu onaylar
+ *     tags: [Appointments]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: Onaylanacak randevunun ID'si
+ *         schema:
+ *           type: string
+ *           example: "8a7d3c5e-1c4f-4b9b-a8f7-9e6d7c1f2a3b"
+ *     responses:
+ *       200:
+ *         description: Randevu başarıyla onaylandı
+ *       404:
+ *         description: Randevu bulunamadı
+ */
+router.patch(
+  "/:id/approve",
+  authenticate,
+  authorize("provider", "admin"),
+  appointmentController.approveAppointment,
+);
+
 module.exports = router;

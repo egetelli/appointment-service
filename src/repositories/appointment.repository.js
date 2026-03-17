@@ -120,21 +120,37 @@ class AppointmentRepository {
     return rows[0];
   }
 
-  // 9. Çalışanın belirli bir gündeki tüm randevularını detaylı getir(müsaitlik kontrolü)
+  // 9. Çalışanın randevularını getir (Tarih verilirse o gün, verilmezse bugünden sonraki yaklaşanlar)
   async getProviderSchedule(userId, date) {
-    const query = `
-    SELECT 
-      a.id, a.slot_time, a.end_time, a.status, a.total_price,
-      u.full_name as customer_name, u.email as customer_email,
-      s.name as service_name
-    FROM appointments a
-    JOIN users u ON a.user_id = u.id
-    JOIN services s ON a.service_id = s.id
-    JOIN providers p ON a.provider_id = p.id -- Providers tablosuna bağlandık
-    WHERE p.user_id = $1 AND DATE(a.slot_time) = $2 -- User_id üzerinden filtreledik
-    ORDER BY a.slot_time ASC
-  `;
-    const { rows } = await pool.query(query, [userId, date]);
+    let query = `
+      SELECT 
+        a.id, a.slot_time, a.end_time, a.status, a.total_price,
+        u.full_name as customer_name, u.email as customer_email,
+        s.name as service_name
+      FROM appointments a
+      JOIN users u ON a.user_id = u.id
+      JOIN services s ON a.service_id = s.id
+      JOIN providers p ON a.provider_id = p.id
+      WHERE p.user_id = $1
+    `;
+
+    const queryParams = [userId];
+
+    if (date) {
+      // 1. Senaryo: Belirli bir tarih istenmiş (Örn: Takvim sayfasından veya Bugünün Özeti için)
+      query += ` AND DATE(a.slot_time) = $2 ORDER BY a.slot_time ASC`;
+      queryParams.push(date);
+    } else {
+      // 2. Senaryo: Tarih yok! (Dashboard tablosu için)
+      // Sadece şu andan itibaren olan "Yaklaşan" randevuları getir, onay bekleyenleri (pending) en üste koy.
+      query += ` AND a.slot_time >= NOW() 
+                 ORDER BY 
+                    CASE WHEN a.status = 'pending' THEN 1 ELSE 2 END, 
+                    a.slot_time ASC 
+                 LIMIT 15`; // Sadece en yakın 15 randevuyu göster
+    }
+
+    const { rows } = await pool.query(query, queryParams);
     return rows;
   }
 
@@ -203,6 +219,45 @@ class AppointmentRepository {
     ]);
 
     return rows.length > 0;
+  }
+
+  // 15. Randevu statüsünü güncelle (Onaylama için)
+  async updateAppointmentStatus(appointmentId, status) {
+    const query = `
+    UPDATE appointments 
+    SET status = $2, updated_at = NOW() 
+    WHERE id = $1 
+    RETURNING *
+  `;
+
+    const { rows } = await pool.query(query, [appointmentId, status]);
+
+    return rows[0];
+  }
+
+  // 16. Çalışanın user_id'sini verip, provider tablosundaki id'sini buluruz
+  async getProviderUserByProviderId(providerId) {
+    const query = `SELECT user_id FROM providers WHERE id = $1`;
+    const { rows } = await pool.query(query, [providerId]);
+    return rows[0]; // Bu, uzmanın ana "user_id"sini döndürür
+  }
+
+  // 17. Randevuyu ID'sine göre detaylı bilgiyle getir (Hizmet adı, müşteri adı vs. ile)
+  async getAppointmentDetailsById(appointmentId) {
+    const query = `
+      SELECT 
+        a.*, -- Tüm randevu bilgileri
+        s.name as service_name, s.duration_minutes,
+        p.name as provider_name,
+        u.full_name as customer_name
+      FROM appointments a 
+      JOIN services s ON a.service_id = s.id 
+      JOIN providers p ON a.provider_id = p.id
+      JOIN users u ON a.user_id = u.id
+      WHERE a.id = $1
+    `;
+    const { rows } = await pool.query(query, [appointmentId]);
+    return rows[0];
   }
 }
 

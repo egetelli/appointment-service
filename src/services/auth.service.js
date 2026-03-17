@@ -82,7 +82,7 @@ async function refreshToken(oldToken) {
   // Rotation: Eski token yerine yenisini yaz
   await userRepository.updateRefreshToken(user.id, newRefreshToken);
 
-  return { accessToken, newRefreshToken };
+  return { accessToken, newRefreshToken, user };
 }
 
 /**

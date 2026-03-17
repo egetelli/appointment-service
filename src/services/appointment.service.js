@@ -2,43 +2,31 @@ const appointmentRepo = require("../repositories/appointment.repository");
 const ErrorResponse = require("../utils/errorResponse");
 const redisClient = require("../config/redis");
 const { sendEmailToQueue } = require("./queue.service");
-const logger = require('../utils/logger');
+const logger = require("../utils/logger");
 
 /**
- * Müşterinin seçebileceği tüm aktif hizmetleri getirir (Redis Destekli ⚡).
+ * Müşterinin seçebileceği tüm aktif hizmetleri getirir.
  */
 exports.getAvailableServices = async () => {
-  const cacheKey = "services:all"; // 1. Bu veriye Redis'te vereceğimiz isim (Etiket)
-
-  // 2. Önce Redis'e sor (Cache Hit mi, Miss mi?)
+  const cacheKey = "services:all";
   const cachedData = await redisClient.get(cacheKey);
 
   if (cachedData) {
-    // 3. CACHE HIT: Veri bulundu! Işık hızıyla dön.
     logger.info("⚡ [CACHE HIT] Hizmetler Redis'ten getirildi!");
-
-    // Redis verileri sadece "String" (Metin) olarak tutar.
-    // Javascript'in anlaması için onu tekrar JSON objesine çeviriyoruz.
     return JSON.parse(cachedData);
   }
 
-  // 4. CACHE MISS: Veri Redis'te yok. Mecburen PostgreSQL'e gidiyoruz.
   logger.info(
     "🐢 [CACHE MISS] Hizmetler Veritabanından (PostgreSQL) çekiliyor...",
   );
   const services = await appointmentRepo.getAvailableServices();
-
-  // 5. Veriyi bulduk. Bir dahakine hızlı olsun diye Redis'e kaydediyoruz!
-  // setEx (Set with Expiration): Veriyi kaydet ama belli bir süre sonra otomatik sil.
-  // 3600 -> 1 saat (Saniye cinsinden).
-  // JSON.stringify -> Objeyi metne çevir ki Redis anlayabilsin.
   await redisClient.setEx(cacheKey, 3600, JSON.stringify(services));
 
   return services;
 };
 
 /**
- * Yeni randevu oluşturur (Çakışma ve Fiyat/Süre kontrolleri ile)
+ * Yeni randevu oluşturur (Timezone Korumalı, Soketli ve Cache Temizlemeli 🚀)
  */
 exports.createSmartAppointment = async (
   userId,
@@ -47,19 +35,18 @@ exports.createSmartAppointment = async (
   slotTime,
 ) => {
   logger.info("Gelen ID'ler:", { providerId, serviceId });
+
+  // 1. Gelen UTC saati standart JS Date objesine çevir
   const requestedStartTime = new Date(slotTime);
 
-  // 1. Kural: Geçmişe randevu alınamaz
   if (requestedStartTime < new Date()) {
     throw new ErrorResponse("Geçmiş bir tarihe randevu alamazsınız.", 400);
   }
 
-  // 2. Kural: Bu çalışan (provider) bu hizmeti veriyor mu?
   const serviceDetails = await appointmentRepo.getProviderServiceDetails(
     providerId,
     serviceId,
   );
-
   if (!serviceDetails) {
     throw new ErrorResponse(
       "Seçilen çalışan bu hizmeti vermiyor veya hizmet bulunamadı.",
@@ -67,17 +54,15 @@ exports.createSmartAppointment = async (
     );
   }
 
-  // 3. Süre Hesaplama: Başlangıç saatine, hizmetin süresini ekleyerek bitiş saatini bul
   const durationMs = serviceDetails.duration_minutes * 60000;
   const requestedEndTime = new Date(requestedStartTime.getTime() + durationMs);
 
-  // 4. Çakışma Kontrolü: Çalışanın bu saatler arasında başka müşterisi var mı?
+  // --- 2. ÇAKIŞMA (OVERLAP) KONTROLÜ (DB'de kalabilir, çünkü iki UTC saat kıyaslanıyor) ---
   const isOverlap = await appointmentRepo.checkOverlap(
     providerId,
     requestedStartTime,
     requestedEndTime,
   );
-
   if (isOverlap) {
     throw new ErrorResponse(
       "Seçilen çalışanın bu saatler arası doludur. Lütfen başka bir saat seçin.",
@@ -85,21 +70,56 @@ exports.createSmartAppointment = async (
     );
   }
 
-  // 4.5. Kural: Randevu saati çalışanın mesai saatleri (working hours) içinde mi? 👈 YENİ EKLENEN
-  const isWithinHours = await appointmentRepo.isWithinWorkingHours(
-    providerId,
-    requestedStartTime,
-    requestedEndTime,
+  // --- 3. MESAİ SAATİ KONTROLÜ (TÜRKİYE SAATİ İLE JS'DE YAPILIYOR 🇹🇷) ---
+  // A. Tarihi Türkiye saatine ("Europe/Istanbul") çevirip o saatleri çekiyoruz
+  const tzOptions = { timeZone: "Europe/Istanbul" };
+  const trStartDate = new Date(
+    requestedStartTime.toLocaleString("en-US", tzOptions),
+  );
+  const trEndDate = new Date(
+    requestedEndTime.toLocaleString("en-US", tzOptions),
   );
 
-  if (!isWithinHours) {
+  const dayOfWeek = trStartDate.getDay(); // 0: Pazar, 1: Pazartesi...
+
+  // O günün mesai saatlerini veritabanından çek (Örn: start_time: "09:00:00")
+  const workingHours = await appointmentRepo.getWorkingHours(
+    providerId,
+    dayOfWeek,
+  );
+
+  if (!workingHours) {
     throw new ErrorResponse(
-      "Seçilen saat çalışanın mesai saatleri dışındadır veya çalışan o gün hizmet vermemektedir.",
+      "Çalışan o gün hizmet vermemektedir (İzinli).",
       400,
     );
   }
 
-  // 5. Kayıt İşlemi İçin Veriyi Hazırla
+  // B. Saatleri dakikaya çevirerek matematiksel kıyaslama yapıyoruz (En güvenli yol)
+  const reqStartTimeInMins =
+    trStartDate.getHours() * 60 + trStartDate.getMinutes(); // Örn: 09:30 -> 570
+  const reqEndTimeInMins = trEndDate.getHours() * 60 + trEndDate.getMinutes();
+
+  const [startH, startM] = workingHours.start_time.split(":").map(Number);
+  const shiftStartInMins = startH * 60 + startM; // Örn: 09:00 -> 540
+
+  const [endH, endM] = workingHours.end_time.split(":").map(Number);
+  const shiftEndInMins = endH * 60 + endM; // Örn: 18:00 -> 1080
+
+  // C. Kontrol: İstek mesai başlangıcından önce mi, bitişinden sonra mı, veya ertesi güne sarkıyor mu?
+  if (
+    trStartDate.getDate() !== trEndDate.getDate() || // Gece yarısını geçiyorsa
+    reqStartTimeInMins < shiftStartInMins ||
+    reqEndTimeInMins > shiftEndInMins
+  ) {
+    const formatTime = (timeStr) => timeStr.substring(0, 5);
+    throw new ErrorResponse(
+      `Seçilen saat çalışanın mesai saatleri (${formatTime(workingHours.start_time)} - ${formatTime(workingHours.end_time)}) dışındadır.`,
+      400,
+    );
+  }
+
+  // --- 4. KAYIT İŞLEMİ ---
   const appointmentData = {
     userId,
     providerId,
@@ -107,65 +127,77 @@ exports.createSmartAppointment = async (
     slotTime: requestedStartTime,
     endTime: requestedEndTime,
     totalPrice: serviceDetails.final_price,
+    status: "pending",
   };
 
-  // 6. ÖNCE Veritabanına Kaydet (Eğer burada hata çıkarsa aşağısı çalışmaz, güvenli kalırız)
-  const appointment = await appointmentRepo.createAppointment(appointmentData);
+  const rawAppointment =
+    await appointmentRepo.createAppointment(appointmentData);
+  const enrichedAppointment = await appointmentRepo.getAppointmentDetailsById(
+    rawAppointment.id,
+  );
 
-  // 7. SONRA Redis Cache Temizliği (Batch Invalidation)
-  const dateString = requestedStartTime.toISOString().split("T")[0]; // YYYY-MM-DD formatı
-
-  // Silinecek anahtarların listesi
-  const nextAvailableCacheKey = `next_available:${providerId}:${serviceId}`;
-  const slotsCacheKey = `slots:${providerId}:${serviceId}:${dateString}`;
-  const statsCacheKey = `stats:${providerId}`; // Çalışanın istatistiklerini temizle
-  const scheduleCacheKey = `schedule:${providerId}:${dateString}`; // Çalışanın o günkü ajandasını temizle
-
+  // --- 5. CANLI BİLDİRİM (Socket.io) ---
+  let pUserId = null;
   try {
-    // Promise.all ile birbirini beklemeden hepsini eşzamanlı olarak siliyoruz (Işık hızı)
-    await Promise.all([
-      redisClient.del(nextAvailableCacheKey),
-      redisClient.del(slotsCacheKey),
-      redisClient.del(statsCacheKey),
-      redisClient.del(scheduleCacheKey),
-    ]);
-    logger.info(
-      `🧹 [REDIS] Temizlendi: ${slotsCacheKey}, ${nextAvailableCacheKey}, ${statsCacheKey}, ${scheduleCacheKey}`,
-    );
+    const io = require("../config/socket").getIO();
+    const providerUser =
+      await appointmentRepo.getProviderUserByProviderId(providerId);
+    if (providerUser) {
+      pUserId = providerUser.user_id;
+      io.to(pUserId).emit("new_appointment", {
+        appointment: enrichedAppointment,
+        message: "Yeni bir randevu talebi düştü! 📅",
+      });
+    }
+  } catch (err) {
+    logger.error("❌ Socket Hatası:", err.message);
+  }
+
+  // --- 6. REDIS TEMİZLİĞİ ---
+  const dateString = requestedStartTime.toISOString().split("T")[0];
+  try {
+    if (!pUserId) {
+      const providerUser =
+        await appointmentRepo.getProviderUserByProviderId(providerId);
+      pUserId = providerUser ? providerUser.user_id : providerId;
+    }
+
+    const keysToDel = [
+      `next_available:${providerId}:${serviceId}`,
+      `slots:${providerId}:${serviceId}:${dateString}`,
+      `stats:${providerId}`,
+      `stats:${pUserId}`,
+      `schedule:${pUserId}:${dateString}`,
+      `schedule:${pUserId}:all`,
+    ];
+
+    await Promise.all(keysToDel.map((key) => redisClient.del(key)));
+    const patternKeys = await redisClient.keys(`schedule:${pUserId}:*`);
+    if (patternKeys.length > 0) await redisClient.del(patternKeys);
   } catch (error) {
     logger.error("❌ Redis temizleme hatası:", error);
-    // Cache silinemese bile veritabanına kaydedildiği için hata fırlatmıyoruz, müşteriye "başarılı" dönüyoruz.
   }
 
-  // 👇 8. Adım - Postaneye Mektubu Bırak (RabbitMQ) 👇
+  // --- 7. RABBITMQ EMAIL ---
   try {
-    // Müşteriye gidecek mailin içeriğini hazırlıyoruz
     const emailPayload = {
-      to: "ege.telli@europowerenerji.com.tr", // Gerçek uygulamada bu, kullanıcının e-posta adresi olurdu
-      subject: "Randevunuz Onaylandı! 🎉",
-      text: `Merhaba! Randevunuz başarıyla oluşturuldu. Detaylar:\n- Tarih: ${requestedStartTime.toLocaleString(
-        "tr-TR",
-      )}\n- Hizmet: ${serviceDetails.name}\n- Fiyat: ${serviceDetails.final_price} TL\nTeşekkürler!`,
-      userId: userId, // Eğer bu serviste kullanıcının e-posta adresi varsa direkt onu da koyabilirsin
+      to: "ege.telli@europowerenerji.com.tr",
+      subject: "Randevu Talebiniz Alındı 🕒",
+      text: `Merhaba! Randevu talebiniz uzmana iletildi. Onay bekliyor.\n- Tarih: ${trStartDate.toLocaleString("tr-TR")}\n- Hizmet: ${serviceDetails.name}\n- Fiyat: ${serviceDetails.final_price} TL\nTeşekkürler!`,
+      userId: userId,
       type: "APPOINTMENT_CREATED",
       appointmentDetails: {
-        date: requestedStartTime.toLocaleString("tr-TR"), // Tarihi okunabilir formata çevir
+        date: trStartDate.toLocaleString("tr-TR"),
         price: serviceDetails.final_price,
-        serviceName: serviceDetails.name, // Eğer DB'den dönüyorsa eklenebilir
+        serviceName: serviceDetails.name,
       },
     };
-
-    // RabbitMQ'ya mesajı fırlat (Müşteri bunu beklemez, anında alt satıra geçer)
     await sendEmailToQueue(emailPayload);
   } catch (error) {
-    // Mail kuyruğa atılamasa bile randevu oluştuğu için sistemi çökertmiyoruz!
-    logger.error(
-      "❌ [Servis] RabbitMQ'ya mesaj gönderilirken hata oluştu:",
-      error.message,
-    );
+    logger.error("❌ [Servis] RabbitMQ hata:", error.message);
   }
 
-  return appointment;
+  return enrichedAppointment;
 };
 
 /**
@@ -257,63 +289,55 @@ exports.getAvailableSlots = async (providerId, serviceId, date) => {
 };
 
 /**
- * Kullanıcının kendi randevusunu iptal eder.
+ * İptal İşlemi (Tam Redis Temizliği eklendi)
  */
 exports.cancelAppointment = async (appointmentId, userId) => {
-  // 1. Randevuyu önce veritabanından bulalım (Saatini kontrol etmek için)
   const appointment = await appointmentRepo.getAppointmentById(appointmentId);
+  if (!appointment) throw new ErrorResponse("Randevu bulunamadı.", 404);
+  if (appointment.user_id !== userId)
+    throw new ErrorResponse("Yetkiniz yok.", 403);
 
-  if (!appointment) {
-    throw new ErrorResponse("Randevu bulunamadı.", 404);
-  }
-
-  // 2. Güvenlik Kontrolü: Bu randevu gerçekten bu kullanıcıya mı ait?
-  if (appointment.user_id !== userId) {
-    throw new ErrorResponse("Bu randevuyu iptal etme yetkiniz yok.", 403);
-  }
-
-  // 3. İptal Politikası: Son 2 saat kontrolü
   const now = new Date();
-  const appointmentTime = new Date(appointment.slot_time);
-  const diffInMilliseconds = appointmentTime - now;
-  const diffInHours = diffInMilliseconds / (1000 * 60 * 60);
-
+  const diffInHours =
+    (new Date(appointment.slot_time) - now) / (1000 * 60 * 60);
   if (diffInHours < 2 && diffInHours > 0) {
     throw new ErrorResponse(
-      "Randevuya 2 saatten az süre kaldığı için iptal edilemez. Lütfen işletme ile iletişime geçin.",
+      "2 saatten az süre kaldığı için iptal edilemez.",
       400,
     );
   }
 
-  // 4. İptal İşlemini Gerçekleştir
   const cancelledAppointment = await appointmentRepo.cancelAppointment(
     appointmentId,
     userId,
   );
 
-  // 👇 5. REDIS TEMİZLİK KISMI 👇
+  // REDIS TEMİZLİK
   if (cancelledAppointment) {
-    // İptal edilen randevunun tarihini ve provider bilgisini bul
     const dateString = new Date(cancelledAppointment.slot_time)
       .toISOString()
       .split("T")[0];
     const providerId = cancelledAppointment.provider_id;
     const serviceId = cancelledAppointment.service_id;
 
-    // Sadece bu randevuyla ilgili cache'leri patlatıyoruz ki yeni biri burayı alabilsin
-    const nextAvailableCacheKey = `next_available:${providerId}:${serviceId}`;
-    const slotsCacheKey = `slots:${providerId}:${serviceId}:${dateString}`;
-    const statsCacheKey = `stats:${providerId}`;
-    const scheduleCacheKey = `schedule:${providerId}:${dateString}`;
-
     try {
-      await Promise.all([
-        redisClient.del(nextAvailableCacheKey),
-        redisClient.del(slotsCacheKey),
-        redisClient.del(statsCacheKey),
-        redisClient.del(scheduleCacheKey),
-      ]);
-      logger.info(`🧹 [REDIS] İptal sonrası temizlendi: ${slotsCacheKey}`);
+      const providerUser =
+        await appointmentRepo.getProviderUserByProviderId(providerId);
+      const pUserId = providerUser ? providerUser.user_id : providerId;
+
+      const keysToDel = [
+        `next_available:${providerId}:${serviceId}`,
+        `slots:${providerId}:${serviceId}:${dateString}`,
+        `stats:${providerId}`,
+        `stats:${pUserId}`,
+        `schedule:${pUserId}:${dateString}`,
+        `schedule:${pUserId}:all`, // Kilit nokta
+      ];
+
+      await Promise.all(keysToDel.map((key) => redisClient.del(key)));
+
+      const patternKeys = await redisClient.keys(`schedule:${pUserId}:*`);
+      if (patternKeys.length > 0) await redisClient.del(patternKeys);
     } catch (error) {
       logger.error("❌ Redis temizleme hatası (İptal):", error);
     }
@@ -343,25 +367,55 @@ exports.cancelAppointment = async (appointmentId, userId) => {
     logger.error("❌ [Servis] İptal maili kuyruğa atılamadı:", error.message);
   }
 
+  try {
+    const io = require("../config/socket").getIO();
+
+    // Uzmanın user_id'sini bul (Müşteri iptal ettiyse uzmana haber vereceğiz)
+    const providerUser = await appointmentRepo.getProviderUserByProviderId(
+      cancelledAppointment.provider_id,
+    );
+    const pUserId = providerUser ? providerUser.user_id : null;
+
+    // 1. Uzmana haber ver (Eğer iptal eden müşteri ise)
+    if (pUserId && userId !== pUserId) {
+      io.to(pUserId).emit("appointment_cancelled", {
+        appointmentId: appointmentId,
+        status: "cancelled",
+        message: "Bir müşteriniz randevusunu iptal etti.",
+      });
+    }
+
+    // 2. Müşteriye haber ver (Eğer iptal eden uzman ise)
+    if (userId !== cancelledAppointment.user_id) {
+      io.to(cancelledAppointment.user_id).emit("appointment_cancelled", {
+        appointmentId: appointmentId,
+        status: "cancelled",
+        message: "Randevunuz uzman tarafından iptal edildi.",
+      });
+    }
+
+    logger.info(`📡 [Socket] İptal bildirimi ilgili kişilere gönderildi.`);
+  } catch (error) {
+    logger.error("❌ Socket bildirim hatası (İptal):", error.message);
+  }
+
   return cancelledAppointment;
 };
 
 /**
- * Çalışanın kendi müsaitlik durumunu görmesi için randevu saatlerini ve durumlarını getirir.
+ * Çalışanın randevu saatlerini getirir (UNDEFINED KARMAŞASI ÇÖZÜLDÜ)
  */
-exports.getProviderSchedule = async (providerId, date) => {
-  const cacheKey = `schedule:${providerId}:${date}`;
+exports.getProviderSchedule = async (userId, date) => {
+  // Eğer tarih yoksa (Dashboard ise) cache ismini 'all' yapalım
+  const dateKey = date ? date : "all";
+  const cacheKey = `schedule:${userId}:${dateKey}`;
 
-  // Önce Redis'e sor
   const cachedSchedule = await redisClient.get(cacheKey);
   if (cachedSchedule) {
     return JSON.parse(cachedSchedule);
   }
 
-  // Veritabanından çek
-  const schedule = await appointmentRepo.getProviderSchedule(providerId, date);
-
-  // Çalışanın o günkü takvimini 5 dakikalığına kaydet
+  const schedule = await appointmentRepo.getProviderSchedule(userId, date);
   await redisClient.setEx(cacheKey, 300, JSON.stringify(schedule));
 
   return schedule;
@@ -471,4 +525,65 @@ exports.getProviderAnalytics = async (userId) => {
   await redisClient.setEx(cacheKey, 1800, JSON.stringify(result));
 
   return result;
+};
+
+/**
+ * Randevuyu onaylar (Statüyü 'booked' yapar, Socket fırlatır, Cache temizler)
+ */
+exports.approveAppointment = async (appointmentId, userId) => {
+  const provider = await appointmentRepo.getProviderIdByUserId(userId);
+  if (!provider) throw new ErrorResponse("Uzman profili bulunamadı.", 404);
+
+  const appointment = await appointmentRepo.getAppointmentById(appointmentId);
+  if (!appointment) throw new ErrorResponse("Randevu bulunamadı.", 404);
+  if (appointment.provider_id !== provider.id)
+    throw new ErrorResponse("Yetkiniz yok.", 403);
+
+  const updatedAppointment = await appointmentRepo.updateAppointmentStatus(
+    appointmentId,
+    "booked",
+  );
+
+  // 🧹 REDİS TEMİZLİK (Garantili Silme)
+  const dateString = new Date(updatedAppointment.slot_time)
+    .toISOString()
+    .split("T")[0];
+
+  try {
+    const keysToDel = [
+      `next_available:${provider.id}:${updatedAppointment.service_id}`,
+      `slots:${provider.id}:${updatedAppointment.service_id}:${dateString}`,
+      `stats:${provider.id}`,
+      `stats:${userId}`, // Login olan kullanıcının ID'si
+      `schedule:${userId}:${dateString}`, // O güne özel ajanda
+      `schedule:${userId}:all`, // Dashboard Yaklaşanlar listesi! (En önemli satır bu)
+    ];
+
+    await Promise.all(keysToDel.map((key) => redisClient.del(key)));
+
+    // İşimi şansa bırakmıyorum, pattern ile hepsini siliyorum.
+    const patternKeys = await redisClient.keys(`schedule:${userId}:*`);
+    if (patternKeys.length > 0) {
+      await redisClient.del(patternKeys);
+    }
+
+    logger.info(`🧹 [REDIS] Onay sonrası takvim cache'leri temizlendi.`);
+  } catch (error) {
+    logger.error("❌ Redis temizleme hatası (Onay):", error);
+  }
+
+  // 📣 CANLI BİLDİRİM (Socket.io)
+  try {
+    const io = require("../config/socket").getIO();
+    io.to(updatedAppointment.user_id).emit("appointment_updated", {
+      action: "APPROVED",
+      appointmentId: appointmentId,
+      status: "booked",
+      message: "Randevunuz uzman tarafından onaylandı! 🎉",
+    });
+  } catch (error) {
+    logger.error("❌ Socket bildirim hatası:", error.message);
+  }
+
+  return updatedAppointment;
 };

@@ -30,7 +30,7 @@ app.use(
   cors({
     origin: "http://localhost:4200", // Angular'ın çalıştığı tam adres (Sonda slash '/' olmamalı!)
     credentials: true, // Frontend'deki 'withCredentials: true' ayarının backend karşılığı (ZORUNLU)
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "PATCH" , "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );

@@ -132,7 +132,7 @@ router.post(
 router.patch(
   "/:id/cancel",
   authenticate,
-  authorize("customer", "admin"),
+  authorize("customer", "admin", "provider"),
   appointmentController.cancelAppointment,
 );
 

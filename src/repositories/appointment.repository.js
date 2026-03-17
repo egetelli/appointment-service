@@ -259,6 +259,16 @@ class AppointmentRepository {
     const { rows } = await pool.query(query, [appointmentId]);
     return rows[0];
   }
+
+  // 18. User ID üzerinden Uzman (Provider) bilgilerini getirir
+  async getProviderByUserId(userId) {
+    const query = `SELECT * FROM providers WHERE user_id = $1`;
+    const { rows } = await pool.query(query, [userId]);
+
+    // Eğer kullanıcı bir uzman değilse undefined döner,
+    // uzmansa içindeki 'id' (provider_id) değerini kullanabiliriz.
+    return rows[0];
+  }
 }
 
 module.exports = new AppointmentRepository();

@@ -96,11 +96,10 @@ exports.getAvailableSlots = asyncHandler(async (req, res) => {
  */
 exports.cancelAppointment = asyncHandler(async (req, res) => {
   const appointmentId = req.params.id;
-  const userId = req.user.id; // authenticate middleware'inden geliyor
 
   const cancelledAppointment = await appointmentService.cancelAppointment(
     appointmentId,
-    userId,
+    req.user 
   );
 
   res.status(200).json({

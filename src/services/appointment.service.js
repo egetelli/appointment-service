@@ -289,30 +289,52 @@ exports.getAvailableSlots = async (providerId, serviceId, date) => {
 };
 
 /**
- * İptal İşlemi (Tam Redis Temizliği eklendi)
+ * İptal İşlemi (Tam Redis Temizliği ve Kapsamlı Rol Yönetimi eklendi)
  */
-exports.cancelAppointment = async (appointmentId, userId) => {
+exports.cancelAppointment = async (appointmentId, user) => {
   const appointment = await appointmentRepo.getAppointmentById(appointmentId);
   if (!appointment) throw new ErrorResponse("Randevu bulunamadı.", 404);
-  if (appointment.user_id !== userId)
-    throw new ErrorResponse("Yetkiniz yok.", 403);
 
-  const now = new Date();
-  const diffInHours =
-    (new Date(appointment.slot_time) - now) / (1000 * 60 * 60);
-  if (diffInHours < 2 && diffInHours > 0) {
-    throw new ErrorResponse(
-      "2 saatten az süre kaldığı için iptal edilemez.",
-      400,
-    );
+  let currentProviderId = null;
+  if (user.role === "provider") {
+    const providerProfile = await appointmentRepo.getProviderByUserId(user.id);
+    if (providerProfile) currentProviderId = providerProfile.id;
   }
 
+  // 2. Kontrol Paneli
+  const isOwner = appointment.user_id === user.id; // Müşteri sahibi mi?
+  const isAssigned =
+    currentProviderId && appointment.provider_id === currentProviderId; // Atanan uzman mı?
+  const isAdmin = user.role === "admin";
+
+  // 3. Vize Kontrolü
+  if (!isOwner && !isAssigned && !isAdmin) {
+    throw new ErrorResponse("Bu randevuyu iptal etme yetkiniz yok.", 403);
+  }
+
+  // 🌟 3. DÜZELTME: 2 Saat Kuralını sadece Müşteriye Özel Yaptık!
+  // (Uzman ve Admin son dakika acil durum iptali yapabilmeli)
+  if (isOwner && !isAssigned && !isAdmin) {
+    const now = new Date();
+    const diffInHours =
+      (new Date(appointment.slot_time) - now) / (1000 * 60 * 60);
+    if (diffInHours < 2 && diffInHours > 0) {
+      throw new ErrorResponse(
+        "Randevuya 2 saatten az süre kaldığı için iptal edilemez.",
+        400,
+      );
+    }
+  }
+
+  // İşlemi Veritabanında Güncelle
   const cancelledAppointment = await appointmentRepo.cancelAppointment(
     appointmentId,
-    userId,
+    user.id, // 🌟 4. DÜZELTME: userId yerine user.id gönderiyoruz
   );
 
-  // REDIS TEMİZLİK
+  // ==========================================
+  // REDIS TEMİZLİK KISMI
+  // ==========================================
   if (cancelledAppointment) {
     const dateString = new Date(cancelledAppointment.slot_time)
       .toISOString()
@@ -331,7 +353,7 @@ exports.cancelAppointment = async (appointmentId, userId) => {
         `stats:${providerId}`,
         `stats:${pUserId}`,
         `schedule:${pUserId}:${dateString}`,
-        `schedule:${pUserId}:all`, // Kilit nokta
+        `schedule:${pUserId}:all`,
       ];
 
       await Promise.all(keysToDel.map((key) => redisClient.del(key)));
@@ -343,10 +365,13 @@ exports.cancelAppointment = async (appointmentId, userId) => {
     }
   }
 
-  // 👇 6. Adım: İptal Bildirimini RabbitMQ'ya Fırlat 👇
+  // ==========================================
+  // RABBITMQ EMAIL BİLDİRİMİ KISMI
+  // ==========================================
   try {
     const cancelEmailPayload = {
-      to: "ege.telli@europowerenerji.com.tr", // Gerçekte user.email olmalı
+      // TODO: Gerçekte bu mail adresi dinamik olmalı (iptal edilen müşterinin maili)
+      to: "ege.telli@europowerenerji.com.tr",
       subject: "Randevunuz İptal Edildi ⚠️",
       text: `Randevunuz başarıyla iptal edilmiştir. Detaylar:\n- Tarih: ${new Date(cancelledAppointment.slot_time).toLocaleString("tr-TR")}\nTekrar görüşmek dileğiyle.`,
       type: "APPOINTMENT_CANCELLED",
@@ -367,17 +392,21 @@ exports.cancelAppointment = async (appointmentId, userId) => {
     logger.error("❌ [Servis] İptal maili kuyruğa atılamadı:", error.message);
   }
 
+  // ==========================================
+  // SOCKET.IO ANLIK BİLDİRİM KISMI
+  // ==========================================
   try {
     const io = require("../config/socket").getIO();
 
-    // Uzmanın user_id'sini bul (Müşteri iptal ettiyse uzmana haber vereceğiz)
+    // Uzmanın user_id'sini bul
     const providerUser = await appointmentRepo.getProviderUserByProviderId(
       cancelledAppointment.provider_id,
     );
     const pUserId = providerUser ? providerUser.user_id : null;
 
-    // 1. Uzmana haber ver (Eğer iptal eden müşteri ise)
-    if (pUserId && userId !== pUserId) {
+    // 🌟 5. DÜZELTME: Soket gönderiminde de user.id kullanıyoruz
+    // 1. İptal eden Müşteri ise Uzmana haber ver
+    if (pUserId && user.id !== pUserId) {
       io.to(pUserId).emit("appointment_cancelled", {
         appointmentId: appointmentId,
         status: "cancelled",
@@ -385,8 +414,8 @@ exports.cancelAppointment = async (appointmentId, userId) => {
       });
     }
 
-    // 2. Müşteriye haber ver (Eğer iptal eden uzman ise)
-    if (userId !== cancelledAppointment.user_id) {
+    // 2. İptal eden Uzman ise Müşteriye haber ver
+    if (user.id !== cancelledAppointment.user_id) {
       io.to(cancelledAppointment.user_id).emit("appointment_cancelled", {
         appointmentId: appointmentId,
         status: "cancelled",

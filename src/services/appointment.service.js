@@ -312,12 +312,18 @@ exports.cancelAppointment = async (appointmentId, user) => {
     throw new ErrorResponse("Bu randevuyu iptal etme yetkiniz yok.", 403);
   }
 
-  // 🌟 3. DÜZELTME: 2 Saat Kuralını sadece Müşteriye Özel Yaptık!
-  // (Uzman ve Admin son dakika acil durum iptali yapabilmeli)
+  // 🌟 3. DÜZELTME: Geçmiş Randevu ve 2 Saat Kuralı
+  const now = new Date();
+  const appointmentTime = new Date(appointment.slot_time);
+  const diffInHours = (appointmentTime - now) / (1000 * 60 * 60);
+
+  // A) GEÇMİŞ RANDEVU KONTROLÜ (Admin hariç kimse geçmişi iptal edemez)
+  if (appointmentTime < now && !isAdmin) {
+    throw new ErrorResponse("Geçmiş tarihli randevular iptal edilemez.", 400);
+  }
+
+  // B) 2 SAAT KURALI (Sadece Müşteriye Özel)
   if (isOwner && !isAssigned && !isAdmin) {
-    const now = new Date();
-    const diffInHours =
-      (new Date(appointment.slot_time) - now) / (1000 * 60 * 60);
     if (diffInHours < 2 && diffInHours > 0) {
       throw new ErrorResponse(
         "Randevuya 2 saatten az süre kaldığı için iptal edilemez.",

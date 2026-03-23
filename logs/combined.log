@@ -2117,3 +2117,146 @@
 {"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-23 11:28:27"}
 {"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-23 11:28:27"}
 {"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-23 11:28:27"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-23 11:28:35"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_REMINDER | Alıcı: ayse.musteri@test.com","timestamp":"2026-03-23 11:28:35"}
+{"0":"I","1":"n","10":"g","100":"l","101":"l","102":"i","103":"n","104":"g","105":"/","106":"p","107":"l","108":"a","109":"n","11":"i","110":"s","111":"/","112":"t","113":"e","114":"s","115":"t","116":"i","117":"n","118":"g","12":"n","13":":","14":" ","15":"5","16":"3","17":"5","18":" ","19":"5","2":"v","20":".","21":"7","22":".","23":"0","24":" ","25":"T","26":"h","27":"e","28":" ","29":"e","3":"a","30":"m","31":"a","32":"i","33":"l","34":" ","35":"l","36":"i","37":"m","38":"i","39":"t","4":"l","40":" ","41":"i","42":"s","43":" ","44":"r","45":"e","46":"a","47":"c","48":"h","49":"e","5":"i","50":"d","51":".","52":" ","53":"P","54":"l","55":"e","56":"a","57":"s","58":"e","59":" ","6":"d","60":"u","61":"p","62":"g","63":"r","64":"a","65":"d","66":"e","67":" ","68":"y","69":"o","7":" ","70":"u","71":"r","72":" ","73":"p","74":"l","75":"a","76":"n","77":" ","78":"h","79":"t","8":"l","80":"t","81":"p","82":"s","83":":","84":"/","85":"/","86":"m","87":"a","88":"i","89":"l","9":"o","90":"t","91":"r","92":"a","93":"p","94":".","95":"i","96":"o","97":"/","98":"b","99":"i","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-03-23 11:29:09"}
+{"0":"c","1":"M","10":"T","11":"H","12":"t","13":"S","14":"5","15":"F","16":"A","17":"A","18":"A","19":"B","2":"s","3":"E","4":"a","5":"S","6":"H","7":"4","8":"r","9":"t","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-23 11:51:07"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-23 11:51:07"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-23 13:09:45"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-23 13:09:45"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-03-23 13:09:45"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-23 13:09:45"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-23 13:09:45"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-23 13:09:46"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_REMINDER | Alıcı: ayse.musteri@test.com","timestamp":"2026-03-23 13:09:46"}
+{"0":"I","1":"n","10":"g","100":"l","101":"l","102":"i","103":"n","104":"g","105":"/","106":"p","107":"l","108":"a","109":"n","11":"i","110":"s","111":"/","112":"t","113":"e","114":"s","115":"t","116":"i","117":"n","118":"g","12":"n","13":":","14":" ","15":"5","16":"3","17":"5","18":" ","19":"5","2":"v","20":".","21":"7","22":".","23":"0","24":" ","25":"T","26":"h","27":"e","28":" ","29":"e","3":"a","30":"m","31":"a","32":"i","33":"l","34":" ","35":"l","36":"i","37":"m","38":"i","39":"t","4":"l","40":" ","41":"i","42":"s","43":" ","44":"r","45":"e","46":"a","47":"c","48":"h","49":"e","5":"i","50":"d","51":".","52":" ","53":"P","54":"l","55":"e","56":"a","57":"s","58":"e","59":" ","6":"d","60":"u","61":"p","62":"g","63":"r","64":"a","65":"d","66":"e","67":" ","68":"y","69":"o","7":" ","70":"u","71":"r","72":" ","73":"p","74":"l","75":"a","76":"n","77":" ","78":"h","79":"t","8":"l","80":"t","81":"p","82":"s","83":":","84":"/","85":"/","86":"m","87":"a","88":"i","89":"l","9":"o","90":"t","91":"r","92":"a","93":"p","94":".","95":"i","96":"o","97":"/","98":"b","99":"i","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-03-23 13:09:50"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-23 13:09:58"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-23 13:09:58"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-23 13:09:58"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-23 13:09:58"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-23 13:09:58"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-23 13:09:58"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-23 13:09:58"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-03-23 13:09:58"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-23 13:09:58"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-23 13:09:58"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-23 13:09:58"}
+{"0":"a","1":"v","10":"Q","11":"Q","12":"l","13":"y","14":"7","15":"G","16":"A","17":"A","18":"A","19":"B","2":"v","3":"T","4":"R","5":"O","6":"w","7":"_","8":"6","9":"R","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-23 13:10:01"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-23 13:10:01"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-23 13:13:39"}
+{"0":"R","1":"T","10":"m","11":"d","12":"i","13":"w","14":"A","15":"o","16":"A","17":"A","18":"A","19":"D","2":"3","3":"o","4":"l","5":"Z","6":"n","7":"8","8":"H","9":"e","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-23 13:39:42"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-23 13:39:42"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-23 13:48:09"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-23 13:48:09"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-03-23 13:48:09"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-23 13:48:09"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-23 13:48:09"}
+{"level":"info","message":"🐇 RabbitMQ bağlantısı kapatıldı.","timestamp":"2026-03-23 13:48:09"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-23 13:48:11"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_REMINDER | Alıcı: ayse.musteri@test.com","timestamp":"2026-03-23 13:48:11"}
+{"0":"I","1":"n","10":"g","100":"l","101":"l","102":"i","103":"n","104":"g","105":"/","106":"p","107":"l","108":"a","109":"n","11":"i","110":"s","111":"/","112":"t","113":"e","114":"s","115":"t","116":"i","117":"n","118":"g","12":"n","13":":","14":" ","15":"5","16":"3","17":"5","18":" ","19":"5","2":"v","20":".","21":"7","22":".","23":"0","24":" ","25":"T","26":"h","27":"e","28":" ","29":"e","3":"a","30":"m","31":"a","32":"i","33":"l","34":" ","35":"l","36":"i","37":"m","38":"i","39":"t","4":"l","40":" ","41":"i","42":"s","43":" ","44":"r","45":"e","46":"a","47":"c","48":"h","49":"e","5":"i","50":"d","51":".","52":" ","53":"P","54":"l","55":"e","56":"a","57":"s","58":"e","59":" ","6":"d","60":"u","61":"p","62":"g","63":"r","64":"a","65":"d","66":"e","67":" ","68":"y","69":"o","7":" ","70":"u","71":"r","72":" ","73":"p","74":"l","75":"a","76":"n","77":" ","78":"h","79":"t","8":"l","80":"t","81":"p","82":"s","83":":","84":"/","85":"/","86":"m","87":"a","88":"i","89":"l","9":"o","90":"t","91":"r","92":"a","93":"p","94":".","95":"i","96":"o","97":"/","98":"b","99":"i","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-03-23 13:48:14"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-23 13:48:24"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-23 13:48:24"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-23 13:48:25"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-23 13:48:25"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-23 13:48:25"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-23 13:48:25"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-23 13:48:25"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-03-23 13:48:25"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-23 13:48:25"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-23 13:48:25"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-23 13:48:25"}
+{"0":"Z","1":"i","10":"h","11":"g","12":"T","13":"g","14":"A","15":"n","16":"A","17":"A","18":"A","19":"B","2":"f","3":"D","4":"-","5":"2","6":"f","7":"m","8":"B","9":"S","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-23 13:48:27"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-23 13:48:27"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-23 13:50:18"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-23 13:50:18"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-03-23 13:50:18"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-23 13:50:18"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-23 13:50:18"}
+{"level":"info","message":"🐇 RabbitMQ bağlantısı kapatıldı.","timestamp":"2026-03-23 13:50:18"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-23 13:50:29"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_REMINDER | Alıcı: ayse.musteri@test.com","timestamp":"2026-03-23 13:50:29"}
+{"0":"I","1":"n","10":"g","100":"l","101":"l","102":"i","103":"n","104":"g","105":"/","106":"p","107":"l","108":"a","109":"n","11":"i","110":"s","111":"/","112":"t","113":"e","114":"s","115":"t","116":"i","117":"n","118":"g","12":"n","13":":","14":" ","15":"5","16":"3","17":"5","18":" ","19":"5","2":"v","20":".","21":"7","22":".","23":"0","24":" ","25":"T","26":"h","27":"e","28":" ","29":"e","3":"a","30":"m","31":"a","32":"i","33":"l","34":" ","35":"l","36":"i","37":"m","38":"i","39":"t","4":"l","40":" ","41":"i","42":"s","43":" ","44":"r","45":"e","46":"a","47":"c","48":"h","49":"e","5":"i","50":"d","51":".","52":" ","53":"P","54":"l","55":"e","56":"a","57":"s","58":"e","59":" ","6":"d","60":"u","61":"p","62":"g","63":"r","64":"a","65":"d","66":"e","67":" ","68":"y","69":"o","7":" ","70":"u","71":"r","72":" ","73":"p","74":"l","75":"a","76":"n","77":" ","78":"h","79":"t","8":"l","80":"t","81":"p","82":"s","83":":","84":"/","85":"/","86":"m","87":"a","88":"i","89":"l","9":"o","90":"t","91":"r","92":"a","93":"p","94":".","95":"i","96":"o","97":"/","98":"b","99":"i","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-03-23 13:50:32"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-23 13:50:42"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-23 13:50:42"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-23 13:50:42"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-23 13:50:42"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-23 13:50:42"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-23 13:50:42"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-23 13:50:42"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-03-23 13:50:42"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-23 13:50:43"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-23 13:50:43"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-23 13:50:43"}
+{"0":"s","1":"T","10":"N","11":"B","12":"N","13":"G","14":"H","15":"0","16":"A","17":"A","18":"A","19":"B","2":"R","3":"Z","4":"R","5":"8","6":"a","7":"X","8":"F","9":"j","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-23 13:50:46"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-23 13:50:46"}
+{"level":"error","message":"[2026-03-23T13:50:46.687Z] ❌ Hata: column \"is_active\" of relation \"working_hours\" does not exist","timestamp":"2026-03-23 13:50:46"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-23 13:52:25"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-23 13:56:19"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-03-23 13:56:19"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-23 13:56:19"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-23 13:56:19"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-23 13:56:30"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_REMINDER | Alıcı: ayse.musteri@test.com","timestamp":"2026-03-23 13:56:30"}
+{"0":"I","1":"n","10":"g","100":"l","101":"l","102":"i","103":"n","104":"g","105":"/","106":"p","107":"l","108":"a","109":"n","11":"i","110":"s","111":"/","112":"t","113":"e","114":"s","115":"t","116":"i","117":"n","118":"g","12":"n","13":":","14":" ","15":"5","16":"3","17":"5","18":" ","19":"5","2":"v","20":".","21":"7","22":".","23":"0","24":" ","25":"T","26":"h","27":"e","28":" ","29":"e","3":"a","30":"m","31":"a","32":"i","33":"l","34":" ","35":"l","36":"i","37":"m","38":"i","39":"t","4":"l","40":" ","41":"i","42":"s","43":" ","44":"r","45":"e","46":"a","47":"c","48":"h","49":"e","5":"i","50":"d","51":".","52":" ","53":"P","54":"l","55":"e","56":"a","57":"s","58":"e","59":" ","6":"d","60":"u","61":"p","62":"g","63":"r","64":"a","65":"d","66":"e","67":" ","68":"y","69":"o","7":" ","70":"u","71":"r","72":" ","73":"p","74":"l","75":"a","76":"n","77":" ","78":"h","79":"t","8":"l","80":"t","81":"p","82":"s","83":":","84":"/","85":"/","86":"m","87":"a","88":"i","89":"l","9":"o","90":"t","91":"r","92":"a","93":"p","94":".","95":"i","96":"o","97":"/","98":"b","99":"i","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-03-23 13:56:34"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-23 13:56:44"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-23 13:56:44"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-23 13:56:44"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-23 13:56:44"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-23 13:56:44"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-23 13:56:44"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-23 13:56:44"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-03-23 13:56:44"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-23 13:56:44"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-23 13:56:44"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-23 13:56:44"}
+{"0":"Y","1":"4","10":"i","11":"S","12":"b","13":"Z","14":"c","15":"b","16":"A","17":"A","18":"A","19":"B","2":"a","3":"W","4":"A","5":"y","6":"r","7":"3","8":"p","9":"a","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-23 13:56:45"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-23 13:56:45"}
+{"level":"error","message":"[2026-03-23T13:56:49.904Z] ❌ Hata: column \"bio\" does not exist","timestamp":"2026-03-23 13:56:49"}
+{"level":"error","message":"[2026-03-23T13:57:02.542Z] ❌ Hata: Bu sayfaya erişmek için yetkiniz yok (Token eksik)","timestamp":"2026-03-23 13:57:02"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-23 14:01:08"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-23 14:01:08"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-03-23 14:01:08"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-23 14:01:08"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-23 14:01:08"}
+{"level":"info","message":"🐇 RabbitMQ bağlantısı kapatıldı.","timestamp":"2026-03-23 14:01:08"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-23 14:01:19"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_REMINDER | Alıcı: ayse.musteri@test.com","timestamp":"2026-03-23 14:01:19"}
+{"0":"I","1":"n","10":"g","100":"l","101":"l","102":"i","103":"n","104":"g","105":"/","106":"p","107":"l","108":"a","109":"n","11":"i","110":"s","111":"/","112":"t","113":"e","114":"s","115":"t","116":"i","117":"n","118":"g","12":"n","13":":","14":" ","15":"5","16":"3","17":"5","18":" ","19":"5","2":"v","20":".","21":"7","22":".","23":"0","24":" ","25":"T","26":"h","27":"e","28":" ","29":"e","3":"a","30":"m","31":"a","32":"i","33":"l","34":" ","35":"l","36":"i","37":"m","38":"i","39":"t","4":"l","40":" ","41":"i","42":"s","43":" ","44":"r","45":"e","46":"a","47":"c","48":"h","49":"e","5":"i","50":"d","51":".","52":" ","53":"P","54":"l","55":"e","56":"a","57":"s","58":"e","59":" ","6":"d","60":"u","61":"p","62":"g","63":"r","64":"a","65":"d","66":"e","67":" ","68":"y","69":"o","7":" ","70":"u","71":"r","72":" ","73":"p","74":"l","75":"a","76":"n","77":" ","78":"h","79":"t","8":"l","80":"t","81":"p","82":"s","83":":","84":"/","85":"/","86":"m","87":"a","88":"i","89":"l","9":"o","90":"t","91":"r","92":"a","93":"p","94":".","95":"i","96":"o","97":"/","98":"b","99":"i","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-03-23 14:01:23"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-23 14:01:33"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-23 14:01:33"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-23 14:01:33"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-23 14:01:33"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-23 14:01:33"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-23 14:01:33"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-23 14:01:33"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-03-23 14:01:33"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-23 14:01:34"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-23 14:01:34"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-23 14:01:34"}
+{"0":"d","1":"o","10":"J","11":"j","12":"l","13":"m","14":"1","15":"M","16":"A","17":"A","18":"A","19":"B","2":"D","3":"P","4":"S","5":"R","6":"x","7":"P","8":"F","9":"0","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-23 14:01:34"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-23 14:01:34"}
+{"level":"error","message":"[2026-03-23T14:02:35.056Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-03-23 14:02:35"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-03-23 14:06:10"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-23 14:06:10"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-03-23 14:06:10"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-03-23 14:06:10"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-03-23 14:06:10"}
+{"level":"info","message":"🐇 RabbitMQ bağlantısı kapatıldı.","timestamp":"2026-03-23 14:06:10"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-03-23 14:06:21"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_REMINDER | Alıcı: ayse.musteri@test.com","timestamp":"2026-03-23 14:06:21"}
+{"0":"I","1":"n","10":"g","100":"l","101":"l","102":"i","103":"n","104":"g","105":"/","106":"p","107":"l","108":"a","109":"n","11":"i","110":"s","111":"/","112":"t","113":"e","114":"s","115":"t","116":"i","117":"n","118":"g","12":"n","13":":","14":" ","15":"5","16":"3","17":"5","18":" ","19":"5","2":"v","20":".","21":"7","22":".","23":"0","24":" ","25":"T","26":"h","27":"e","28":" ","29":"e","3":"a","30":"m","31":"a","32":"i","33":"l","34":" ","35":"l","36":"i","37":"m","38":"i","39":"t","4":"l","40":" ","41":"i","42":"s","43":" ","44":"r","45":"e","46":"a","47":"c","48":"h","49":"e","5":"i","50":"d","51":".","52":" ","53":"P","54":"l","55":"e","56":"a","57":"s","58":"e","59":" ","6":"d","60":"u","61":"p","62":"g","63":"r","64":"a","65":"d","66":"e","67":" ","68":"y","69":"o","7":" ","70":"u","71":"r","72":" ","73":"p","74":"l","75":"a","76":"n","77":" ","78":"h","79":"t","8":"l","80":"t","81":"p","82":"s","83":":","84":"/","85":"/","86":"m","87":"a","88":"i","89":"l","9":"o","90":"t","91":"r","92":"a","93":"p","94":".","95":"i","96":"o","97":"/","98":"b","99":"i","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-03-23 14:06:26"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-03-23 14:06:35"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-03-23 14:06:35"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-03-23 14:06:35"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-03-23 14:06:35"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-03-23 14:06:35"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-03-23 14:06:35"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-03-23 14:06:35"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-03-23 14:06:35"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-03-23 14:06:36"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-03-23 14:06:36"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-03-23 14:06:36"}
+{"0":"5","1":"c","10":"S","11":"_","12":"W","13":"V","14":"r","15":"H","16":"A","17":"A","18":"A","19":"B","2":"f","3":"-","4":"-","5":"w","6":"6","7":"0","8":"q","9":"R","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-03-23 14:06:36"}
+{"level":"info","message":"👤 Kullanıcı 9a12719d-b7ca-4495-9456-578cf812ee19 kendi odasına katıldı.","timestamp":"2026-03-23 14:06:36"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-03-23 14:06:58"}

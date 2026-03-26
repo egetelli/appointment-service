@@ -16,11 +16,11 @@ exports.updateSchedule = async (userId, schedule) => {
 exports.syncServices = async (userId, services) => {
   const provider = await settingsRepo.getProviderByUserId(userId);
 
-  // Not: Silinen hizmetleri tespit etmek için gelen listede olmayanları silebilirsin.
-  // Şimdilik basitçe upsert yapıyoruz:
+  // Gelen listedeki her hizmeti (yeni veya eski) işle
   for (const service of services) {
-    await settingsRepo.upsertService(provider.id, service);
+    await settingsRepo.saveService(provider.id, service);
   }
+
   return { success: true };
 };
 

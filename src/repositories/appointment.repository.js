@@ -121,7 +121,7 @@ class AppointmentRepository {
   }
 
   // 9. Çalışanın randevularını getir (Tarih verilirse o gün, verilmezse bugünden sonraki yaklaşanlar)
-  async getProviderSchedule(userId, date) {
+  async getProviderSchedule(userId, date, startDate, endDate) {
     let query = `
       SELECT 
         a.id, a.slot_time, a.end_time, a.status, a.total_price,
@@ -136,18 +136,18 @@ class AppointmentRepository {
 
     const queryParams = [userId];
 
-    if (date) {
-      // 1. Senaryo: Belirli bir tarih istenmiş (Örn: Takvim sayfasından veya Bugünün Özeti için)
+    if (startDate && endDate) {
+      // 📅 Takvim için ARALIK sorgusu (En doğrusu budur)
+      query += ` AND a.slot_time BETWEEN $2 AND $3 ORDER BY a.slot_time ASC`;
+      queryParams.push(startDate, endDate);
+    } else if (date) {
+      // Tek bir gün sorgusu (Mevcut yapın)
       query += ` AND DATE(a.slot_time) = $2 ORDER BY a.slot_time ASC`;
       queryParams.push(date);
     } else {
-      // 2. Senaryo: Tarih yok! (Dashboard tablosu için)
-      // Sadece şu andan itibaren olan "Yaklaşan" randevuları getir, onay bekleyenleri (pending) en üste koy.
-      query += ` AND a.slot_time >= NOW() 
-                 ORDER BY 
-                    CASE WHEN a.status = 'pending' THEN 1 ELSE 2 END, 
-                    a.slot_time ASC 
-                 LIMIT 15`; // Sadece en yakın 15 randevuyu göster
+      // 🚀 Dashboard için: "Geçmiş" randevuları da görmek istiyorsan NOW() filtresini KALDIR!
+      // Sadece status'e göre sırala veya son 30 günü getir gibi bir limit koy.
+      query += ` ORDER BY a.slot_time DESC LIMIT 50`;
     }
 
     const { rows } = await pool.query(query, queryParams);

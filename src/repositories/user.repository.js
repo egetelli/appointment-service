@@ -12,13 +12,37 @@ class UserRepository {
 
   // Yeni kullanıcı oluştur
   async createUser(full_name, email, password_hash, role) {
-    const result = await pool.query(
-      // 2. SQL sorgusuna 'role' kolonu ve $4 parametresi eklendi 👇
-      "INSERT INTO users (full_name, email, password_hash, role) VALUES ($1, $2, $3, $4) RETURNING id, full_name, email, role",
-      // 3. Değerler dizisine 'role' eklendi 👇
-      [full_name, email.toLowerCase(), password_hash, role],
-    );
-    return result.rows[0];
+    // Transaction başlatmak için pool'dan özel bir istemci (client) alıyoruz
+    const client = await pool.connect();
+
+    try {
+      await client.query("BEGIN"); // Transaction Başlat
+
+      // 1. Kullanıcıyı ana 'users' tablosuna ekle
+      const userResult = await client.query(
+        "INSERT INTO users (full_name, email, password_hash, role) VALUES ($1, $2, $3, $4) RETURNING id, full_name, email, role",
+        [full_name, email.toLowerCase(), password_hash, role],
+      );
+
+      const newUser = userResult.rows[0];
+
+      // 2. Eğer kayıt olan kişi 'provider' ise, uzman profilini şemana uygun oluştur
+      if (role === "provider") {
+        await client.query(
+          // 'bio' kaldırıldı. 'name' eklendi ve full_name ile dolduruldu.
+          "INSERT INTO providers (user_id, name, title) VALUES ($1, $2, $3)",
+          [newUser.id, full_name, "Uzman"],
+        );
+      }
+
+      await client.query("COMMIT"); // Her şey yolundaysa kalıcı olarak kaydet
+      return newUser;
+    } catch (error) {
+      await client.query("ROLLBACK"); // Hata çıkarsa işlemi iptal et (Geri al)
+      throw error;
+    } finally {
+      client.release(); // Bağlantıyı havuza geri bırak
+    }
   }
 
   // Refresh Token'ı güncelle (Login ve Refresh sırasında kullanılır)

@@ -47,6 +47,51 @@ exports.upsertService = async (providerId, service) => {
   ]);
 };
 
+// settings.repository.js
+
+exports.saveService = async (providerId, service) => {
+  if (service.id) {
+    // 1. DURUM: ID varsa GÜNCELLE (Update)
+    const updateQuery = `
+      UPDATE services 
+      SET name = $1, duration_minutes = $2, base_price = $3 
+      WHERE id = $4
+    `;
+    await db.query(updateQuery, [
+      service.name,
+      service.duration,
+      service.base_price,
+      service.id,
+    ]);
+
+    // Eğer provider_services'daki fiyatı da güncelliyorsan:
+    await db.query(
+      `UPDATE provider_services SET custom_price = $1 WHERE provider_id = $2 AND service_id = $3`,
+      [service.base_price, providerId, service.id],
+    );
+  } else {
+    // 2. DURUM: ID yoksa YENİ OLUŞTUR (Insert)
+    // Önce ana tabloya ekle (id'yi veritabanı yaratsın)
+    const insertServiceQuery = `
+      INSERT INTO services (name, duration_minutes, base_price) 
+      VALUES ($1, $2, $3) RETURNING id
+    `;
+    const res = await db.query(insertServiceQuery, [
+      service.name,
+      service.duration,
+      service.base_price,
+    ]);
+    const newServiceId = res.rows[0].id;
+
+    // Sonra ara tabloya (provider_services) bağla
+    await db.query(
+      `INSERT INTO provider_services (provider_id, service_id, custom_price) 
+       VALUES ($1, $2, $3)`,
+      [providerId, newServiceId, service.base_price],
+    );
+  }
+};
+
 exports.deleteService = async (serviceId, providerId) => {
   await db.query("DELETE FROM services WHERE id = $1 AND provider_id = $2", [
     serviceId,

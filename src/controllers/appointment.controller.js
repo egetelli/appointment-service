@@ -17,26 +17,44 @@ exports.getServices = asyncHandler(async (req, res) => {
 });
 
 /**
- * @desc  Yeni randevu oluştur
+ * @desc  Yeni randevu oluştur (Müşteri veya Uzman tarafından)
  * @route POST /api/appointments
  * @access Private
  */
 exports.bookAppointment = asyncHandler(async (req, res) => {
-  // Artık providerId de almak zorundayız
-  const { providerId, serviceId, slotTime } = req.body;
-  const userId = req.user.id;
+  // Uzmansa customerId body'den gelecek, Müşteriyse kendi ID'si olacak
+  const { providerId, serviceId, slotTime, customerId } = req.body;
+
+  let finalUserId = req.user.id; // Varsayılan: İsteği atan kişi
+  let initialStatus = "pending"; // Müşteri alıyorsa onay bekler
+
+  // Eğer isteği atan bir uzmansa:
+  if (req.user.role === "provider" || req.user.role === "admin") {
+    if (!customerId) {
+      throw new ErrorResponse(
+        "Lütfen randevu oluşturulacak müşteriyi seçin.",
+        400,
+      );
+    }
+    finalUserId = customerId; // Müşteri ID'sini body'den al
+    initialStatus = "confirmed"; // Uzman kendi ekliyorsa direkt onaylıdır
+  }
 
   // İş mantığına gönderiyoruz
   const appointment = await appointmentService.createSmartAppointment(
-    userId,
+    finalUserId,
     providerId,
     serviceId,
     slotTime,
+    initialStatus, // Yeni ekledik
   );
 
   res.status(201).json({
     success: true,
-    message: "Randevunuz başarıyla oluşturuldu.",
+    message:
+      initialStatus === "confirmed"
+        ? "Manuel randevu başarıyla eklendi ve onaylandı."
+        : "Randevunuz başarıyla oluşturuldu.",
     data: appointment,
   });
 });
@@ -99,7 +117,7 @@ exports.cancelAppointment = asyncHandler(async (req, res) => {
 
   const cancelledAppointment = await appointmentService.cancelAppointment(
     appointmentId,
-    req.user 
+    req.user,
   );
 
   res.status(200).json({
@@ -182,5 +200,20 @@ exports.approveAppointment = asyncHandler(async (req, res) => {
     success: true,
     message: "Randevu başarıyla onaylandı.",
     data: appointment,
+  });
+});
+
+/**
+ * @desc  Uzmanın müşteri listesini (CRM) getirir
+ * @route GET /api/appointments/clients
+ * @access Private (Sadece Provider)
+ */
+exports.getProviderClients = asyncHandler(async (req, res) => {
+  // Bütün iş yükünü ve mantığı Service katmanına devrettik
+  const clients = await appointmentService.getProviderClients(req.user.id);
+
+  res.status(200).json({
+    success: true,
+    data: clients,
   });
 });

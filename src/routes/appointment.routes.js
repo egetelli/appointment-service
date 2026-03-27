@@ -105,7 +105,7 @@ router.get(
 router.post(
   "/",
   authenticate,
-  authorize("customer", "admin"),
+  authorize("customer", "admin", "provider"),
   createAppointmentValidation,
   validate,
   appointmentController.bookAppointment,
@@ -229,6 +229,56 @@ router.patch(
   authenticate,
   authorize("provider", "admin"),
   appointmentController.approveAppointment,
+);
+
+/**
+ * @swagger
+ * /api/appointments/clients:
+ *   get:
+ *     summary: Uzmanın danışanlarını getirir
+ *     tags:
+ *       - Appointments
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Danışan listesi başarıyla getirildi
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ *                     properties:
+ *                       id:
+ *                         type: string
+ *                       name:
+ *                         type: string
+ *                       email:
+ *                         type: string
+ *                         format: email
+ *                       phone:
+ *                         type: string
+ *       401:
+ *         description: Yetkisiz erişim (token yok veya geçersiz)
+ *       403:
+ *         description: Yetki yok (sadece provider veya admin)
+ *       404:
+ *         description: Uzman profili bulunamadı
+ *       500:
+ *         description: Sunucu hatası
+ */
+router.get(
+  "/clients",
+  authenticate,
+  authorize("provider", "admin"),
+  appointmentController.getProviderClients,
 );
 
 module.exports = router;

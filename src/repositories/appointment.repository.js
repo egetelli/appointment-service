@@ -269,6 +269,37 @@ class AppointmentRepository {
     // uzmansa içindeki 'id' (provider_id) değerini kullanabiliriz.
     return rows[0];
   }
+
+  // 19. Uzmana ait benzersiz müşterileri ve CRM istatistiklerini getir
+  async getProviderClients(providerId) {
+    const query = `
+      SELECT 
+        u.id as customer_id,
+        u.full_name as customer_name,
+        u.email as customer_email,
+        
+        -- Toplam Ziyaret: Sadece geçmişte kalan ve onaylanmış randevular
+        COUNT(CASE WHEN a.status = 'booked' AND a.slot_time < NOW() THEN 1 END) as completed_visits,
+        
+        -- Gelecekteki Randevular (Sadece bilgi amaçlı)
+        COUNT(CASE WHEN a.status = 'booked' AND a.slot_time >= NOW() THEN 1 END) as upcoming_visits,
+        
+        -- GERÇEKLEŞEN CİRO: Sadece geçmişte kalan onaylı randevuların toplamı
+        SUM(CASE WHEN a.status = 'booked' AND a.slot_time < NOW() THEN a.total_price ELSE 0 END) as realized_revenue,
+        
+        -- BEKLENEN CİRO: Gelecekteki onaylı randevuların toplamı
+        SUM(CASE WHEN a.status = 'booked' AND a.slot_time >= NOW() THEN a.total_price ELSE 0 END) as expected_revenue,
+        
+        MAX(a.slot_time) as last_visit_date
+      FROM appointments a
+      JOIN users u ON a.user_id = u.id
+      WHERE a.provider_id = $1 AND a.status != 'cancelled'
+      GROUP BY u.id, u.full_name, u.email
+      ORDER BY last_visit_date DESC
+    `;
+    const { rows } = await pool.query(query, [providerId]);
+    return rows;
+  }
 }
 
 module.exports = new AppointmentRepository();

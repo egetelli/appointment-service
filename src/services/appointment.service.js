@@ -622,3 +622,21 @@ exports.approveAppointment = async (appointmentId, userId) => {
 
   return updatedAppointment;
 };
+
+/**
+ * Uzmanın (Provider) benzersiz müşterilerini ve CRM istatistiklerini getirir
+ */
+exports.getProviderClients = async (userId) => {
+  // 1. Önce login olan user_id'den, bu kişinin 'provider_id'sini buluyoruz
+  const provider = await appointmentRepo.getProviderIdByUserId(userId);
+
+  if (!provider) {
+    throw new ErrorResponse("Uzman profili bulunamadı.", 404);
+  }
+
+  // 2. Repository üzerinden müşterileri çekiyoruz
+  const clients = await appointmentRepo.getProviderClients(provider.id);
+
+  // 3. Veriyi controller'a geri döndürüyoruz
+  return clients;
+};

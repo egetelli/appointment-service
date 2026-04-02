@@ -281,4 +281,39 @@ router.get(
   appointmentController.getProviderClients,
 );
 
+/**
+ * @swagger
+ * /api/appointments/analytics:
+ *   get:
+ *     summary: Uzmanın kapsamlı istatistiklerini (Analytics) getirir
+ *     tags:
+ *       - Appointments
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: İstatistik verileri başarıyla getirildi
+ *       401:
+ *         description: Yetkisiz erişim (token yok veya geçersiz)
+ *       403:
+ *         description: Yetki yok (sadece provider veya admin)
+ *       404:
+ *         description: Uzman profili bulunamadı
+ *       500:
+ *         description: Sunucu hatası
+ */
+router.get(
+  "/analytics",
+  authenticate,
+  authorize("provider", "admin"),
+  appointmentController.getProviderAnalytics,
+);
+
+router.get(
+  "/search-customers",
+  authenticate,
+  authorize("provider", "admin"),
+  appointmentController.searchCustomers,
+);
+
 module.exports = router;

@@ -32,13 +32,22 @@ class AppointmentRepository {
     return rows.length > 0;
   }
 
-  // 3. Yeni Randevuyu Kaydet
+  // 3. Yeni Randevuyu Kaydet (GÜNCELLENDİ)
   async createAppointment(appointmentData) {
-    const { userId, providerId, serviceId, slotTime, endTime, totalPrice } =
-      appointmentData;
+    // guestName ve status'ü de yakalıyoruz
+    const {
+      userId,
+      providerId,
+      serviceId,
+      slotTime,
+      endTime,
+      totalPrice,
+      guestName,
+      status,
+    } = appointmentData;
     const query = `
-      INSERT INTO appointments (user_id, provider_id, service_id, slot_time, end_time, total_price)
-      VALUES ($1, $2, $3, $4, $5, $6)
+      INSERT INTO appointments (user_id, provider_id, service_id, slot_time, end_time, total_price, guest_name, status)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
       RETURNING *;
     `;
     const { rows } = await pool.query(query, [
@@ -48,6 +57,8 @@ class AppointmentRepository {
       slotTime,
       endTime,
       totalPrice,
+      guestName || null,
+      status || "booked",
     ]);
     return rows[0];
   }
@@ -62,19 +73,20 @@ class AppointmentRepository {
     return rows;
   }
 
-  // 5. Kullanıcının randevularını getir (Çalışan/Provider bilgisiyle beraber)
+  // 5. Kullanıcının randevularını getir (GÜNCELLENDİ)
   async getUserAppointments(userId) {
     const query = `
       SELECT 
         a.id, a.slot_time, a.end_time, a.status, a.total_price,
         s.name as service_name, s.duration_minutes,
         p.name as provider_name,
-        u.full_name as customer_name -- 👈 İŞTE BURAYI EKLEDİK
+        u.full_name as customer_name
       FROM appointments a 
       JOIN services s ON a.service_id = s.id 
       JOIN providers p ON a.provider_id = p.id
-      JOIN users u ON a.user_id = u.id -- 👈 VE BU JOIN'İ EKLEDİK
+      JOIN users u ON a.user_id = u.id
       WHERE a.user_id = $1 
+        AND a.guest_name IS NULL -- Uzman, müşteri paneline girince kendi aldığı misafirleri görmesin
       ORDER BY a.slot_time DESC
     `;
     const { rows } = await pool.query(query, [userId]);
@@ -120,12 +132,13 @@ class AppointmentRepository {
     return rows[0];
   }
 
-  // 9. Çalışanın randevularını getir (Tarih verilirse o gün, verilmezse bugünden sonraki yaklaşanlar)
+  // 9. Çalışanın randevularını getir (GÜNCELLENDİ)
   async getProviderSchedule(userId, date, startDate, endDate) {
     let query = `
       SELECT 
         a.id, a.slot_time, a.end_time, a.status, a.total_price,
-        u.full_name as customer_name, u.email as customer_email,
+        COALESCE(a.guest_name, u.full_name) as customer_name, -- Misafirse misafir adı, değilse kendi adı
+        CASE WHEN a.guest_name IS NOT NULL THEN 'Misafir' ELSE u.email END as customer_email,
         s.name as service_name
       FROM appointments a
       JOIN users u ON a.user_id = u.id
@@ -137,16 +150,12 @@ class AppointmentRepository {
     const queryParams = [userId];
 
     if (startDate && endDate) {
-      // 📅 Takvim için ARALIK sorgusu (En doğrusu budur)
       query += ` AND a.slot_time BETWEEN $2 AND $3 ORDER BY a.slot_time ASC`;
       queryParams.push(startDate, endDate);
     } else if (date) {
-      // Tek bir gün sorgusu (Mevcut yapın)
       query += ` AND DATE(a.slot_time) = $2 ORDER BY a.slot_time ASC`;
       queryParams.push(date);
     } else {
-      // 🚀 Dashboard için: "Geçmiş" randevuları da görmek istiyorsan NOW() filtresini KALDIR!
-      // Sadece status'e göre sırala veya son 30 günü getir gibi bir limit koy.
       query += ` ORDER BY a.slot_time DESC LIMIT 50`;
     }
 
@@ -270,34 +279,131 @@ class AppointmentRepository {
     return rows[0];
   }
 
-  // 19. Uzmana ait benzersiz müşterileri ve CRM istatistiklerini getir
+  // 19. Uzmana ait benzersiz müşterileri ve CRM istatistiklerini getir (GÜNCELLENDİ)
   async getProviderClients(providerId) {
     const query = `
       SELECT 
-        u.id as customer_id,
-        u.full_name as customer_name,
-        u.email as customer_email,
-        
-        -- Toplam Ziyaret: Sadece geçmişte kalan ve onaylanmış randevular
+        COALESCE(a.guest_name, u.id::text) as customer_id, -- Çakışma olmasın diye misafirlere özel ID
+        COALESCE(a.guest_name, u.full_name) as customer_name,
+        CASE WHEN a.guest_name IS NOT NULL THEN 'Misafir' ELSE u.email END as customer_email,
         COUNT(CASE WHEN a.status = 'booked' AND a.slot_time < NOW() THEN 1 END) as completed_visits,
-        
-        -- Gelecekteki Randevular (Sadece bilgi amaçlı)
         COUNT(CASE WHEN a.status = 'booked' AND a.slot_time >= NOW() THEN 1 END) as upcoming_visits,
-        
-        -- GERÇEKLEŞEN CİRO: Sadece geçmişte kalan onaylı randevuların toplamı
         SUM(CASE WHEN a.status = 'booked' AND a.slot_time < NOW() THEN a.total_price ELSE 0 END) as realized_revenue,
-        
-        -- BEKLENEN CİRO: Gelecekteki onaylı randevuların toplamı
         SUM(CASE WHEN a.status = 'booked' AND a.slot_time >= NOW() THEN a.total_price ELSE 0 END) as expected_revenue,
-        
         MAX(a.slot_time) as last_visit_date
       FROM appointments a
       JOIN users u ON a.user_id = u.id
       WHERE a.provider_id = $1 AND a.status != 'cancelled'
-      GROUP BY u.id, u.full_name, u.email
+      GROUP BY COALESCE(a.guest_name, u.id::text), COALESCE(a.guest_name, u.full_name), a.guest_name, u.email
       ORDER BY last_visit_date DESC
     `;
     const { rows } = await pool.query(query, [providerId]);
+    return rows;
+  }
+
+  // 20. Uzmana ait detaylı analitik verileri getir (Özet kartları, ciro grafiği, popüler hizmetler)
+  async getProviderAnalytics(providerId) {
+    // 1. Özet Kartları: Genel Durum ve Artış Oranları
+    const overviewQuery = `
+    SELECT 
+      COALESCE(SUM(CASE WHEN status = 'booked' AND slot_time < NOW() THEN total_price ELSE 0 END), 0) as realized_revenue,
+      COALESCE(SUM(CASE WHEN status = 'booked' AND slot_time >= NOW() THEN total_price ELSE 0 END), 0) as expected_revenue,
+      COUNT(CASE WHEN status = 'booked' AND slot_time < NOW() THEN 1 END) as completed_count,
+      COUNT(CASE WHEN status = 'cancelled' THEN 1 END) as cancelled_count,
+      COUNT(DISTINCT user_id) as total_customers,
+      COALESCE(SUM(CASE WHEN status = 'booked' AND slot_time BETWEEN date_trunc('month', NOW()) AND NOW() THEN total_price ELSE 0 END), 0) as this_month_revenue,
+      COALESCE(SUM(CASE WHEN status = 'booked' AND slot_time BETWEEN date_trunc('month', NOW() - INTERVAL '1 month') AND date_trunc('month', NOW()) THEN total_price ELSE 0 END), 0) as last_month_revenue
+    FROM appointments
+    WHERE provider_id = $1
+  `;
+
+    // 2. Günlük Ciro Grafiği (Son 7 Gün - generate_series ile boş günler 0 gelir)
+    const dailyQuery = `
+    SELECT 
+      TO_CHAR(day, 'DD Mon') as date_label,
+      COALESCE(SUM(a.total_price), 0) as revenue
+    FROM generate_series(
+      date_trunc('day', NOW()) - INTERVAL '6 days', 
+      date_trunc('day', NOW()), 
+      '1 day'::interval
+    ) day
+    LEFT JOIN appointments a ON date_trunc('day', a.slot_time) = day 
+      AND a.provider_id = $1 
+      AND a.status = 'booked'
+    GROUP BY day
+    ORDER BY day ASC
+  `;
+
+    // 3. Aylık Ciro Grafiği (Son 6 Ay)
+    const monthlyQuery = `
+    SELECT 
+      TO_CHAR(slot_time, 'Mon') as month,
+      SUM(total_price) as revenue,
+      EXTRACT(MONTH FROM slot_time) as month_num
+    FROM appointments
+    WHERE provider_id = $1 
+      AND status = 'booked' 
+      AND slot_time >= NOW() - INTERVAL '6 months'
+      AND slot_time < NOW()
+    GROUP BY TO_CHAR(slot_time, 'Mon'), EXTRACT(MONTH FROM slot_time)
+    ORDER BY month_num ASC
+  `;
+
+    // 4. Popüler Hizmetler
+    const servicesQuery = `
+    SELECT 
+      s.name as service_name,
+      COUNT(a.id) as count
+    FROM appointments a
+    JOIN services s ON a.service_id = s.id
+    WHERE a.provider_id = $1 AND a.status = 'booked'
+    GROUP BY s.name
+    ORDER BY count DESC
+    LIMIT 5
+  `;
+
+    // Tüm sorguları paralel çalıştır (Performans 🚀)
+    const [overviewRes, dailyRes, monthlyRes, servicesRes] = await Promise.all([
+      pool.query(overviewQuery, [providerId]),
+      pool.query(dailyQuery, [providerId]),
+      pool.query(monthlyQuery, [providerId]),
+      pool.query(servicesQuery, [providerId]),
+    ]);
+
+    // Artış Yüzdesini Hesapla
+    const overviewData = overviewRes.rows[0];
+    const thisMonth = Number(overviewData.this_month_revenue);
+    const lastMonth = Number(overviewData.last_month_revenue);
+
+    let revenue_growth = 0;
+    if (lastMonth > 0) {
+      revenue_growth = ((thisMonth - lastMonth) / lastMonth) * 100;
+    } else if (thisMonth > 0) {
+      revenue_growth = 100;
+    }
+
+    return {
+      overview: {
+        ...overviewData,
+        revenue_growth: revenue_growth.toFixed(1),
+      },
+      daily: dailyRes.rows, // Frontend'e yeni ekledik!
+      monthly: monthlyRes.rows,
+      services: servicesRes.rows,
+    };
+  }
+
+  // 21. İsim veya E-postaya göre SADECE müşterileri ara
+  async searchCustomers(searchTerm) {
+    const query = `
+      SELECT id, full_name, email 
+      FROM users 
+      WHERE role = 'customer' 
+        AND (full_name ILIKE $1 OR email ILIKE $1)
+      LIMIT 10;
+    `;
+    // % işareti ile içinde geçenleri arıyoruz
+    const { rows } = await pool.query(query, [`%${searchTerm}%`]);
     return rows;
   }
 }

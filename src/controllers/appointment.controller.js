@@ -1,5 +1,7 @@
 const appointmentService = require("../services/appointment.service");
 const asyncHandler = require("../middleware/asyncHandler");
+const ErrorResponse = require("../utils/errorResponse");
+const appointmentRepo = require("../repositories/appointment.repository");
 
 /**
  * @desc  Tüm aktif hizmetleri listele
@@ -21,40 +23,69 @@ exports.getServices = asyncHandler(async (req, res) => {
  * @route POST /api/appointments
  * @access Private
  */
-exports.bookAppointment = asyncHandler(async (req, res) => {
-  // Uzmansa customerId body'den gelecek, Müşteriyse kendi ID'si olacak
-  const { providerId, serviceId, slotTime, customerId } = req.body;
+exports.bookAppointment = asyncHandler(async (req, res, next) => {
+  // 1. Gelen verileri body'den al (const yerine let kullanıyoruz ki değiştirebilelim)
+  let { providerId, serviceId, slotTime, userId, guestName, status } = req.body;
 
-  let finalUserId = req.user.id; // Varsayılan: İsteği atan kişi
-  let initialStatus = "pending"; // Müşteri alıyorsa onay bekler
+  let finalUserId = null;
+  let finalGuestName = null;
+  let initialStatus = "pending";
 
-  // Eğer isteği atan bir uzmansa:
+  // A) UZMAN VEYA ADMIN İŞLEMİ
   if (req.user.role === "provider" || req.user.role === "admin") {
-    if (!customerId) {
-      throw new ErrorResponse(
-        "Lütfen randevu oluşturulacak müşteriyi seçin.",
-        400,
+    if (!userId && !guestName) {
+      return next(
+        new ErrorResponse(
+          "Lütfen randevu oluşturulacak müşteriyi veya misafiri belirtin.",
+          400,
+        ),
       );
     }
-    finalUserId = customerId; // Müşteri ID'sini body'den al
-    initialStatus = "confirmed"; // Uzman kendi ekliyorsa direkt onaylıdır
+
+    finalUserId = userId || req.user.id;
+    finalGuestName = guestName || null;
+    initialStatus = status || "booked";
+
+    // 👇 İŞTE SİHİRLİ DOKUNUŞ BURADA 👇
+    // Frontend'den gelen providerId aslında kullanıcının User ID'si.
+    // Veritabanının hata vermemesi için onu GERÇEK Provider ID'sine çeviriyoruz:
+    if (req.user.role === "provider") {
+      const providerData = await appointmentRepo.getProviderByUserId(
+        req.user.id,
+      );
+      if (!providerData) {
+        return next(new ErrorResponse("Uzman profili bulunamadı.", 404));
+      }
+      providerId = providerData.id; // Sahte ID'yi Gerçek Provider ID ile değiştirdik!
+    }
+  }
+  // B) NORMAL MÜŞTERİ İŞLEMİ
+  else {
+    finalUserId = req.user.id;
+    finalGuestName = null;
+    initialStatus = "pending";
   }
 
-  // İş mantığına gönderiyoruz
-  const appointment = await appointmentService.createSmartAppointment(
-    finalUserId,
-    providerId,
-    serviceId,
-    slotTime,
-    initialStatus, // Yeni ekledik
-  );
+  // 3. Payload'u hazırla (Artık gerçek providerId gidiyor)
+  const appointmentPayload = {
+    userId: finalUserId,
+    providerId: providerId,
+    serviceId: serviceId,
+    slotTime: slotTime,
+    guestName: finalGuestName,
+    status: initialStatus,
+  };
+
+  // 4. İş mantığına gönder
+  const appointment =
+    await appointmentService.createSmartAppointment(appointmentPayload);
 
   res.status(201).json({
     success: true,
     message:
-      initialStatus === "confirmed"
+      initialStatus === "booked"
         ? "Manuel randevu başarıyla eklendi ve onaylandı."
-        : "Randevunuz başarıyla oluşturuldu.",
+        : "Randevunuz başarıyla oluşturuldu. Uzman onayı bekleniyor.",
     data: appointment,
   });
 });
@@ -216,4 +247,24 @@ exports.getProviderClients = asyncHandler(async (req, res) => {
     success: true,
     data: clients,
   });
+});
+
+/**
+ * @desc  Uzmana ait detaylı analitik verileri getirir (Özet kartları, ciro grafiği, popüler hizmetler)
+ * @route GET /api/appointments/analytics
+ * @access Private (Sadece Provider)
+ */
+exports.getProviderAnalytics = asyncHandler(async (req, res) => {
+  const data = await appointmentService.getProviderAnalytics(req.user.id);
+  res.status(200).json({ success: true, data });
+});
+
+/** * @desc  Uzmanın müşteri araması yapmasını sağlar (CRM için)
+ * @route GET /api/appointments/search-customers?q=...
+ * @access Private (Sadece Provider)
+ */
+exports.searchCustomers = asyncHandler(async (req, res) => {
+  const { q } = req.query;
+  const customers = await appointmentService.searchCustomers(q);
+  res.status(200).json({ success: true, data: customers });
 });

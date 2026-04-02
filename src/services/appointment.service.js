@@ -28,13 +28,17 @@ exports.getAvailableServices = async () => {
 /**
  * Yeni randevu oluşturur (Timezone Korumalı, Soketli ve Cache Temizlemeli 🚀)
  */
-exports.createSmartAppointment = async (
-  userId,
-  providerId,
-  serviceId,
-  slotTime,
-) => {
-  logger.info("Gelen ID'ler:", { providerId, serviceId });
+exports.createSmartAppointment = async (appointmentPayload) => {
+  // Gelen paketi (objeyi) burada açıyoruz:
+  const { userId, providerId, serviceId, slotTime, guestName, status } =
+    appointmentPayload;
+
+  logger.info("Gelen Randevu Verileri:", {
+    providerId,
+    serviceId,
+    guestName,
+    status,
+  });
 
   // 1. Gelen UTC saati standart JS Date objesine çevir
   const requestedStartTime = new Date(slotTime);
@@ -57,7 +61,7 @@ exports.createSmartAppointment = async (
   const durationMs = serviceDetails.duration_minutes * 60000;
   const requestedEndTime = new Date(requestedStartTime.getTime() + durationMs);
 
-  // --- 2. ÇAKIŞMA (OVERLAP) KONTROLÜ (DB'de kalabilir, çünkü iki UTC saat kıyaslanıyor) ---
+  // --- 2. ÇAKIŞMA (OVERLAP) KONTROLÜ ---
   const isOverlap = await appointmentRepo.checkOverlap(
     providerId,
     requestedStartTime,
@@ -71,7 +75,6 @@ exports.createSmartAppointment = async (
   }
 
   // --- 3. MESAİ SAATİ KONTROLÜ (TÜRKİYE SAATİ İLE JS'DE YAPILIYOR 🇹🇷) ---
-  // A. Tarihi Türkiye saatine ("Europe/Istanbul") çevirip o saatleri çekiyoruz
   const tzOptions = { timeZone: "Europe/Istanbul" };
   const trStartDate = new Date(
     requestedStartTime.toLocaleString("en-US", tzOptions),
@@ -80,9 +83,8 @@ exports.createSmartAppointment = async (
     requestedEndTime.toLocaleString("en-US", tzOptions),
   );
 
-  const dayOfWeek = trStartDate.getDay(); // 0: Pazar, 1: Pazartesi...
+  const dayOfWeek = trStartDate.getDay();
 
-  // O günün mesai saatlerini veritabanından çek (Örn: start_time: "09:00:00")
   const workingHours = await appointmentRepo.getWorkingHours(
     providerId,
     dayOfWeek,
@@ -95,20 +97,18 @@ exports.createSmartAppointment = async (
     );
   }
 
-  // B. Saatleri dakikaya çevirerek matematiksel kıyaslama yapıyoruz (En güvenli yol)
   const reqStartTimeInMins =
-    trStartDate.getHours() * 60 + trStartDate.getMinutes(); // Örn: 09:30 -> 570
+    trStartDate.getHours() * 60 + trStartDate.getMinutes();
   const reqEndTimeInMins = trEndDate.getHours() * 60 + trEndDate.getMinutes();
 
   const [startH, startM] = workingHours.start_time.split(":").map(Number);
-  const shiftStartInMins = startH * 60 + startM; // Örn: 09:00 -> 540
+  const shiftStartInMins = startH * 60 + startM;
 
   const [endH, endM] = workingHours.end_time.split(":").map(Number);
-  const shiftEndInMins = endH * 60 + endM; // Örn: 18:00 -> 1080
+  const shiftEndInMins = endH * 60 + endM;
 
-  // C. Kontrol: İstek mesai başlangıcından önce mi, bitişinden sonra mı, veya ertesi güne sarkıyor mu?
   if (
-    trStartDate.getDate() !== trEndDate.getDate() || // Gece yarısını geçiyorsa
+    trStartDate.getDate() !== trEndDate.getDate() ||
     reqStartTimeInMins < shiftStartInMins ||
     reqEndTimeInMins > shiftEndInMins
   ) {
@@ -119,7 +119,7 @@ exports.createSmartAppointment = async (
     );
   }
 
-  // --- 4. KAYIT İŞLEMİ ---
+  // --- 4. KAYIT İŞLEMİ (guestName ve status eklendi!) ---
   const appointmentData = {
     userId,
     providerId,
@@ -127,7 +127,8 @@ exports.createSmartAppointment = async (
     slotTime: requestedStartTime,
     endTime: requestedEndTime,
     totalPrice: serviceDetails.final_price,
-    status: "pending",
+    guestName, // Misafir adı
+    status: status || "pending", // Uzman oluşturduysa 'booked', müşteri oluşturduysa 'pending'
   };
 
   const rawAppointment =
@@ -146,7 +147,7 @@ exports.createSmartAppointment = async (
       pUserId = providerUser.user_id;
       io.to(pUserId).emit("new_appointment", {
         appointment: enrichedAppointment,
-        message: "Yeni bir randevu talebi düştü! 📅",
+        message: "Yeni bir randevu eklendi! 📅",
       });
     }
   } catch (err) {
@@ -181,9 +182,12 @@ exports.createSmartAppointment = async (
   // --- 7. RABBITMQ EMAIL ---
   try {
     const emailPayload = {
-      to: "ege.telli@europowerenerji.com.tr",
-      subject: "Randevu Talebiniz Alındı 🕒",
-      text: `Merhaba! Randevu talebiniz uzmana iletildi. Onay bekliyor.\n- Tarih: ${trStartDate.toLocaleString("tr-TR")}\n- Hizmet: ${serviceDetails.name}\n- Fiyat: ${serviceDetails.final_price} TL\nTeşekkürler!`,
+      to: "ege.telli@europowerenerji.com.tr", // Gerçek sistemde bunu müşteri/uzman mailine göre ayarla
+      subject:
+        status === "booked"
+          ? "Yeni Randevunuz Onaylandı ✅"
+          : "Randevu Talebiniz Alındı 🕒",
+      text: `Merhaba! Randevu detaylarınız aşağıdadır:\n- Müşteri: ${guestName ? guestName + " (Misafir)" : "Kayıtlı Müşteri"}\n- Tarih: ${trStartDate.toLocaleString("tr-TR")}\n- Hizmet: ${serviceDetails.name}\n- Fiyat: ${serviceDetails.final_price} TL`,
       userId: userId,
       type: "APPOINTMENT_CREATED",
       appointmentDetails: {
@@ -639,4 +643,22 @@ exports.getProviderClients = async (userId) => {
 
   // 3. Veriyi controller'a geri döndürüyoruz
   return clients;
+};
+
+/**
+ * Uzmana ait detaylı analitik verileri getirir (Özet kartları, ciro grafiği, popüler hizmetler)
+ */
+exports.getProviderAnalytics = async (userId) => {
+  const provider = await appointmentRepo.getProviderByUserId(userId);
+  if (!provider) throw new ErrorResponse("Uzman bulunamadı", 404);
+  return await appointmentRepo.getProviderAnalytics(provider.id);
+};
+
+/**
+ *
+ * Müşteri arama fonksiyonu (CRM için) - En az 2 karakterle arama yapar, Redis destekli olabilir
+ */
+exports.searchCustomers = async (searchTerm) => {
+  if (!searchTerm || searchTerm.length < 2) return []; // En az 2 harf girilmeli
+  return await appointmentRepo.searchCustomers(searchTerm);
 };

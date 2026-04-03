@@ -9,14 +9,24 @@ const createAppointmentValidation = [
     .isUUID("all")
     .withMessage("Geçerli bir çalışan (provider) seçmelisiniz."),
 
+  body("type")
+    .optional()
+    .isIn(["appointment", "block"])
+    .withMessage("Geçersiz işlem tipi."),
+
   // 2. Service ID Kontrolü (Her iki senaryoda da ZORUNLU)
   body("serviceId")
-    .exists()
-    .withMessage("serviceId alanı zorunludur.")
-    .trim()
+    // ŞART: Sadece type 'appointment' ise veya hiç type gönderilmemişse (default) kontrol et
+    .if(body("type").not().equals("block"))
+    .notEmpty()
+    .withMessage("Randevu oluşturmak için hizmet seçimi zorunludur.")
     .isUUID("all")
-    .withMessage("Geçersiz hizmet ID formatı."),
+    .withMessage("Geçerli bir hizmet seçmelisiniz."),
 
+  body("serviceId")
+    .if(body("type").equals("block"))
+    .optional({ nullable: true }), // Mola ise null gelmesine izin ver
+    
   // 3. Zaman Kontrolü (Her iki senaryoda da ZORUNLU)
   body("slotTime")
     .isISO8601()

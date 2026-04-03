@@ -90,14 +90,29 @@ router.get(
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - type
+ *               - providerId
+ *               - serviceId
+ *               - slotTime
  *             properties:
+ *               type:
+ *                 type: string
  *               providerId:
  *                 type: string
+ *               userId:
+ *                 type: string
+ *                 nullable: true
  *               serviceId:
  *                 type: string
  *               slotTime:
  *                 type: string
  *                 format: date-time
+ *               guestName:
+ *                 type: string
+ *                 nullable: true
+ *               status:
+ *                 type: string
  *     responses:
  *       201:
  *         description: Randevu başarıyla oluşturuldu
@@ -110,7 +125,6 @@ router.post(
   validate,
   appointmentController.bookAppointment,
 );
-
 /**
  * @swagger
  * /api/appointments/{id}/cancel:

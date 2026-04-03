@@ -34,7 +34,7 @@ class AppointmentRepository {
 
   // 3. Yeni Randevuyu Kaydet (GÜNCELLENDİ)
   async createAppointment(appointmentData) {
-    // guestName ve status'ü de yakalıyoruz
+    // type, guestName ve status'ü de yakalıyoruz
     const {
       userId,
       providerId,
@@ -44,12 +44,16 @@ class AppointmentRepository {
       totalPrice,
       guestName,
       status,
+      type, // YENİ EKLENEN KISIM
     } = appointmentData;
+
+    // INSERT sorgusuna type ve $9 eklendi
     const query = `
-      INSERT INTO appointments (user_id, provider_id, service_id, slot_time, end_time, total_price, guest_name, status)
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      INSERT INTO appointments (user_id, provider_id, service_id, slot_time, end_time, total_price, guest_name, status, type)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
       RETURNING *;
     `;
+
     const { rows } = await pool.query(query, [
       userId,
       providerId,
@@ -59,10 +63,11 @@ class AppointmentRepository {
       totalPrice,
       guestName || null,
       status || "booked",
+      type || "appointment", // EĞER BOŞ GELİRSE GARANTİ OLSUN DİYE APPOINTMENT YAP
     ]);
+
     return rows[0];
   }
-
   // 👇 YENİ EKLENENLER 👇
 
   // 4. Tüm aktif hizmetleri getir (Yeni tabloya göre)

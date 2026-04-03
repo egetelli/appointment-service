@@ -26,42 +26,84 @@ exports.getAvailableServices = async () => {
 };
 
 /**
- * Yeni randevu oluşturur (Timezone Korumalı, Soketli ve Cache Temizlemeli 🚀)
+ * Yeni randevu oluşturur veya Zaman Kapatır (Timezone Korumalı, Soketli, Cache Temizlemeli 🚀)
  */
 exports.createSmartAppointment = async (appointmentPayload) => {
-  // Gelen paketi (objeyi) burada açıyoruz:
-  const { userId, providerId, serviceId, slotTime, guestName, status } =
-    appointmentPayload;
-
-  logger.info("Gelen Randevu Verileri:", {
+  // Gelen paketi (objeyi) açıyoruz: type ve endTime eklendi
+  const {
+    userId,
     providerId,
     serviceId,
+    slotTime,
+    endTime,
+    guestName,
+    status,
+    type = "appointment",
+  } = appointmentPayload;
+
+  const isBlock = type === "block";
+
+  logger.info(`Gelen ${isBlock ? "MOLA" : "RANDEVU"} Verileri:`, {
+    providerId,
+    serviceId: isBlock ? "MOLA (NULL)" : serviceId,
+    type,
     guestName,
     status,
   });
+
+  // 🛡️ 2. KİLİT (SON SAVUNMA HATTI): Normal randevularda serviceId kesinlikle olmalı!
+  if (!isBlock && !serviceId) {
+    logger.error(
+      "🛑 Sistemsel Hata: Hizmet seçimi olmadan randevu oluşturulamaz!",
+    );
+    throw new ErrorResponse(
+      "Müşteri randevusu için hizmet seçimi zorunludur.",
+      400,
+    );
+  }
 
   // 1. Gelen UTC saati standart JS Date objesine çevir
   const requestedStartTime = new Date(slotTime);
 
   if (requestedStartTime < new Date()) {
-    throw new ErrorResponse("Geçmiş bir tarihe randevu alamazsınız.", 400);
+    throw new ErrorResponse("Geçmiş bir tarihe işlem yapamazsınız.", 400);
   }
 
-  const serviceDetails = await appointmentRepo.getProviderServiceDetails(
-    providerId,
-    serviceId,
-  );
-  if (!serviceDetails) {
-    throw new ErrorResponse(
-      "Seçilen çalışan bu hizmeti vermiyor veya hizmet bulunamadı.",
-      404,
+  // İşlem tipine göre hesaplanacak değişkenler
+  let requestedEndTime;
+  let finalPrice = 0;
+  let finalServiceName = null; // Email ve bildirimler için
+
+  // --- 2. SENARYO AYRIMI (RANDEVU MU? MOLA MI?) ---
+  if (!isBlock) {
+    // SENARYO A: NORMAL RANDEVU
+    const serviceDetails = await appointmentRepo.getProviderServiceDetails(
+      providerId,
+      serviceId,
     );
+    if (!serviceDetails) {
+      throw new ErrorResponse(
+        "Seçilen çalışan bu hizmeti vermiyor veya hizmet bulunamadı.",
+        404,
+      );
+    }
+    const durationMs = serviceDetails.duration_minutes * 60000;
+    requestedEndTime = new Date(requestedStartTime.getTime() + durationMs);
+    finalPrice = serviceDetails.final_price;
+    finalServiceName = serviceDetails.name;
+  } else {
+    // SENARYO B: ZAMANI KAPAT (MOLA)
+    // Eğer frontend bitiş saati (endTime) gönderdiyse onu kullan, göndermediyse varsayılan 30 dk ekle
+    if (endTime) {
+      requestedEndTime = new Date(endTime);
+    } else {
+      requestedEndTime = new Date(requestedStartTime.getTime() + 30 * 60000);
+    }
+    finalPrice = 0;
+    finalServiceName = guestName || "[BLOKE] Zaman Kapatıldı";
   }
 
-  const durationMs = serviceDetails.duration_minutes * 60000;
-  const requestedEndTime = new Date(requestedStartTime.getTime() + durationMs);
-
-  // --- 2. ÇAKIŞMA (OVERLAP) KONTROLÜ ---
+  // --- 3. ÇAKIŞMA (OVERLAP) KONTROLÜ (Ortak Korumamız) ---
   const isOverlap = await appointmentRepo.checkOverlap(
     providerId,
     requestedStartTime,
@@ -69,12 +111,14 @@ exports.createSmartAppointment = async (appointmentPayload) => {
   );
   if (isOverlap) {
     throw new ErrorResponse(
-      "Seçilen çalışanın bu saatler arası doludur. Lütfen başka bir saat seçin.",
+      isBlock
+        ? "Bu saat aralığında kayıtlı randevunuz var, bu zamanı kapatamazsınız."
+        : "Seçilen çalışanın bu saatler arası doludur. Lütfen başka bir saat seçin.",
       400,
     );
   }
 
-  // --- 3. MESAİ SAATİ KONTROLÜ (TÜRKİYE SAATİ İLE JS'DE YAPILIYOR 🇹🇷) ---
+  // --- 4. MESAİ SAATİ KONTROLÜ (TÜRKİYE SAATİ İLE JS'DE YAPILIYOR 🇹🇷) ---
   const tzOptions = { timeZone: "Europe/Istanbul" };
   const trStartDate = new Date(
     requestedStartTime.toLocaleString("en-US", tzOptions),
@@ -84,7 +128,6 @@ exports.createSmartAppointment = async (appointmentPayload) => {
   );
 
   const dayOfWeek = trStartDate.getDay();
-
   const workingHours = await appointmentRepo.getWorkingHours(
     providerId,
     dayOfWeek,
@@ -92,7 +135,9 @@ exports.createSmartAppointment = async (appointmentPayload) => {
 
   if (!workingHours) {
     throw new ErrorResponse(
-      "Çalışan o gün hizmet vermemektedir (İzinli).",
+      isBlock
+        ? "Bugün zaten mesai dışındasınız (İzinli)."
+        : "Çalışan o gün hizmet vermemektedir (İzinli).",
       400,
     );
   }
@@ -114,21 +159,22 @@ exports.createSmartAppointment = async (appointmentPayload) => {
   ) {
     const formatTime = (timeStr) => timeStr.substring(0, 5);
     throw new ErrorResponse(
-      `Seçilen saat çalışanın mesai saatleri (${formatTime(workingHours.start_time)} - ${formatTime(workingHours.end_time)}) dışındadır.`,
+      `Seçilen saat mesai saatleri (${formatTime(workingHours.start_time)} - ${formatTime(workingHours.end_time)}) dışındadır.`,
       400,
     );
   }
 
-  // --- 4. KAYIT İŞLEMİ (guestName ve status eklendi!) ---
+  // --- 5. KAYIT İŞLEMİ ---
   const appointmentData = {
     userId,
     providerId,
-    serviceId,
+    serviceId: isBlock ? null : serviceId, // Mola ise null gidiyor
     slotTime: requestedStartTime,
     endTime: requestedEndTime,
-    totalPrice: serviceDetails.final_price,
-    guestName, // Misafir adı
-    status: status || "pending", // Uzman oluşturduysa 'booked', müşteri oluşturduysa 'pending'
+    totalPrice: finalPrice,
+    type, // Randevu tipini ekledik ('appointment' veya 'block')
+    guestName: isBlock ? finalServiceName : guestName, // Mola ise "[BLOKE]" metni yazılır
+    status: isBlock ? "booked" : status || "pending", // Mola direkt "booked" (dolu) olarak takvime işlenir
   };
 
   const rawAppointment =
@@ -137,7 +183,7 @@ exports.createSmartAppointment = async (appointmentPayload) => {
     rawAppointment.id,
   );
 
-  // --- 5. CANLI BİLDİRİM (Socket.io) ---
+  // --- 6. CANLI BİLDİRİM (Socket.io) ---
   let pUserId = null;
   try {
     const io = require("../config/socket").getIO();
@@ -147,14 +193,16 @@ exports.createSmartAppointment = async (appointmentPayload) => {
       pUserId = providerUser.user_id;
       io.to(pUserId).emit("new_appointment", {
         appointment: enrichedAppointment,
-        message: "Yeni bir randevu eklendi! 📅",
+        message: isBlock
+          ? "Zaman başarıyla kilitlendi 🔒"
+          : "Yeni bir randevu eklendi! 📅",
       });
     }
   } catch (err) {
     logger.error("❌ Socket Hatası:", err.message);
   }
 
-  // --- 6. REDIS TEMİZLİĞİ ---
+  // --- 7. REDIS TEMİZLİĞİ (Ortak) ---
   const dateString = requestedStartTime.toISOString().split("T")[0];
   try {
     if (!pUserId) {
@@ -164,8 +212,8 @@ exports.createSmartAppointment = async (appointmentPayload) => {
     }
 
     const keysToDel = [
-      `next_available:${providerId}:${serviceId}`,
-      `slots:${providerId}:${serviceId}:${dateString}`,
+      `next_available:${providerId}:${serviceId || "block"}`,
+      `slots:${providerId}:${serviceId || "block"}:${dateString}`,
       `stats:${providerId}`,
       `stats:${pUserId}`,
       `schedule:${pUserId}:${dateString}`,
@@ -179,26 +227,28 @@ exports.createSmartAppointment = async (appointmentPayload) => {
     logger.error("❌ Redis temizleme hatası:", error);
   }
 
-  // --- 7. RABBITMQ EMAIL ---
-  try {
-    const emailPayload = {
-      to: "ege.telli@europowerenerji.com.tr", // Gerçek sistemde bunu müşteri/uzman mailine göre ayarla
-      subject:
-        status === "booked"
-          ? "Yeni Randevunuz Onaylandı ✅"
-          : "Randevu Talebiniz Alındı 🕒",
-      text: `Merhaba! Randevu detaylarınız aşağıdadır:\n- Müşteri: ${guestName ? guestName + " (Misafir)" : "Kayıtlı Müşteri"}\n- Tarih: ${trStartDate.toLocaleString("tr-TR")}\n- Hizmet: ${serviceDetails.name}\n- Fiyat: ${serviceDetails.final_price} TL`,
-      userId: userId,
-      type: "APPOINTMENT_CREATED",
-      appointmentDetails: {
-        date: trStartDate.toLocaleString("tr-TR"),
-        price: serviceDetails.final_price,
-        serviceName: serviceDetails.name,
-      },
-    };
-    await sendEmailToQueue(emailPayload);
-  } catch (error) {
-    logger.error("❌ [Servis] RabbitMQ hata:", error.message);
+  // --- 8. RABBITMQ EMAIL (SADECE NORMAL RANDEVULARDA GİTSİN) ---
+  if (!isBlock) {
+    try {
+      const emailPayload = {
+        to: "ege.telli@europowerenerji.com.tr", // TODO: Gerçek sistemde dinamik yap
+        subject:
+          status === "booked"
+            ? "Yeni Randevunuz Onaylandı ✅"
+            : "Randevu Talebiniz Alındı 🕒",
+        text: `Merhaba! Randevu detaylarınız aşağıdadır:\n- Müşteri: ${guestName ? guestName + " (Misafir)" : "Kayıtlı Müşteri"}\n- Tarih: ${trStartDate.toLocaleString("tr-TR")}\n- Hizmet: ${finalServiceName}\n- Fiyat: ${finalPrice} TL`,
+        userId: userId,
+        type: "APPOINTMENT_CREATED",
+        appointmentDetails: {
+          date: trStartDate.toLocaleString("tr-TR"),
+          price: finalPrice,
+          serviceName: finalServiceName,
+        },
+      };
+      await sendEmailToQueue(emailPayload);
+    } catch (error) {
+      logger.error("❌ [Servis] RabbitMQ hata:", error.message);
+    }
   }
 
   return enrichedAppointment;

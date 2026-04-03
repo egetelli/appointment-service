@@ -24,16 +24,27 @@ exports.getServices = asyncHandler(async (req, res) => {
  * @access Private
  */
 exports.bookAppointment = asyncHandler(async (req, res, next) => {
-  // 1. Gelen verileri body'den al (const yerine let kullanıyoruz ki değiştirebilelim)
-  let { providerId, serviceId, slotTime, userId, guestName, status } = req.body;
+  // 1. Gelen verileri body'den al (type ve endTime eklendi!)
+  let {
+    providerId,
+    serviceId,
+    slotTime,
+    endTime,
+    userId,
+    guestName,
+    status,
+    type,
+  } = req.body;
 
   let finalUserId = null;
   let finalGuestName = null;
   let initialStatus = "pending";
+  let finalType = type || "appointment"; // Varsayılan olarak randevu
 
   // A) UZMAN VEYA ADMIN İŞLEMİ
   if (req.user.role === "provider" || req.user.role === "admin") {
-    if (!userId && !guestName) {
+    // Mola ('block') işlemi DEĞİLSE müşteri/misafir bilgisi zorunlu
+    if (!userId && !guestName && finalType !== "block") {
       return next(
         new ErrorResponse(
           "Lütfen randevu oluşturulacak müşteriyi veya misafiri belirtin.",
@@ -64,28 +75,38 @@ exports.bookAppointment = asyncHandler(async (req, res, next) => {
     finalUserId = req.user.id;
     finalGuestName = null;
     initialStatus = "pending";
+    finalType = "appointment"; // Müşteri hack yapıp mola gönderemesin, zorla randevu yap!
   }
 
-  // 3. Payload'u hazırla (Artık gerçek providerId gidiyor)
+  // 3. Payload'u hazırla (Yeni alanlar eklendi)
   const appointmentPayload = {
     userId: finalUserId,
     providerId: providerId,
     serviceId: serviceId,
     slotTime: slotTime,
+    endTime: endTime, // Eklendi
     guestName: finalGuestName,
     status: initialStatus,
+    type: finalType, // Eklendi
   };
 
   // 4. İş mantığına gönder
   const appointment =
     await appointmentService.createSmartAppointment(appointmentPayload);
 
+  // 5. İşleme göre dinamik mesaj oluştur
+  let successMessage =
+    "Randevunuz başarıyla oluşturuldu. Uzman onayı bekleniyor.";
+  if (initialStatus === "booked") {
+    successMessage =
+      finalType === "block"
+        ? "Zaman başarıyla kilitlendi."
+        : "Manuel randevu başarıyla eklendi ve onaylandı.";
+  }
+
   res.status(201).json({
     success: true,
-    message:
-      initialStatus === "booked"
-        ? "Manuel randevu başarıyla eklendi ve onaylandı."
-        : "Randevunuz başarıyla oluşturuldu. Uzman onayı bekleniyor.",
+    message: successMessage,
     data: appointment,
   });
 });

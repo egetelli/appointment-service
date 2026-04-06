@@ -137,18 +137,20 @@ class AppointmentRepository {
     return rows[0];
   }
 
-  // 9. Çalışanın randevularını getir (GÜNCELLENDİ)
+  // 9. Çalışanın randevularını getir (MOLA DESTEKLİ GÜNCEL HALİ)
   async getProviderSchedule(userId, date, startDate, endDate) {
     let query = `
       SELECT 
         a.id, a.slot_time, a.end_time, a.status, a.total_price,
-        COALESCE(a.guest_name, u.full_name) as customer_name, -- Misafirse misafir adı, değilse kendi adı
+        a.type,         -- 🌟 KRİTİK EKLENTİ: Angular takviminin molaları gri yapması için
+        a.guest_name,   -- 🌟 KRİTİK EKLENTİ: Takvimde "[BLOKE] Özel İş" yazabilmesi için
+        COALESCE(a.guest_name, u.full_name) as customer_name, 
         CASE WHEN a.guest_name IS NOT NULL THEN 'Misafir' ELSE u.email END as customer_email,
         s.name as service_name
       FROM appointments a
-      JOIN users u ON a.user_id = u.id
-      JOIN services s ON a.service_id = s.id
-      JOIN providers p ON a.provider_id = p.id
+      LEFT JOIN users u ON a.user_id = u.id       -- 🌟 DEĞİŞTİ: Müşterisi yoksa da getir
+      LEFT JOIN services s ON a.service_id = s.id -- 🌟 DEĞİŞTİ: Hizmeti yoksa da getir
+      JOIN providers p ON a.provider_id = p.id    -- Uzman şart, o yüzden bu normal JOIN kalabilir
       WHERE p.user_id = $1
     `;
 
@@ -298,7 +300,9 @@ class AppointmentRepository {
         MAX(a.slot_time) as last_visit_date
       FROM appointments a
       JOIN users u ON a.user_id = u.id
-      WHERE a.provider_id = $1 AND a.status != 'cancelled'
+      WHERE a.provider_id = $1 
+        AND a.status != 'cancelled'
+        AND COALESCE(a.type, 'appointment') != 'block' -- 🌟 İŞTE HAYALETLERİ KOVAN SİHİRLİ SATIR
       GROUP BY COALESCE(a.guest_name, u.id::text), COALESCE(a.guest_name, u.full_name), a.guest_name, u.email
       ORDER BY last_visit_date DESC
     `;

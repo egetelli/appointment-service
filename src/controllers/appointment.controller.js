@@ -289,3 +289,20 @@ exports.searchCustomers = asyncHandler(async (req, res) => {
   const customers = await appointmentService.searchCustomers(q);
   res.status(200).json({ success: true, data: customers });
 });
+
+/**
+ * @desc   Tüm aktif uzmanların günlük kolektif müsaitlik ve doluluk durumlarını getirir (JSON formatında sütun bazlı liste)
+ * @route  GET /api/appointments/collective-availability
+ * @access Public / Private (Müşteri)
+ */
+exports.getCollectiveAvailability = asyncHandler(async (req, res) => {
+  const { date } = req.query;
+
+  const data = await appointmentService.fetchCollectiveAvailability(date);
+
+  res.status(200).json({
+    success: true,
+    message: "Kolektif müsaitlik durumu başarıyla getirildi.",
+    data,
+  });
+});

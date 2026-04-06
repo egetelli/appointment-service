@@ -712,3 +712,21 @@ exports.searchCustomers = async (searchTerm) => {
   if (!searchTerm || searchTerm.length < 2) return []; // En az 2 harf girilmeli
   return await appointmentRepo.searchCustomers(searchTerm);
 };
+
+/**
+ *
+ * Müşteri rezervasyon ekranı için tüm aktif uzmanların günlük kolektif müsaitlik durumunu getirir.
+ * Belirli bir tarih verilmezse otomatik olarak bugünün tarihini baz alır.
+ * Gizlilik gereği mola ve özel iş detaylarını maskeler.
+ */
+exports.fetchCollectiveAvailability = async (date) => {
+  let queryDate = date;
+
+  // Tarih parametresi gelmediyse bugünü (YYYY-MM-DD) olarak ayarla
+  if (!queryDate) {
+    const today = new Date();
+    queryDate = today.toISOString().split("T")[0];
+  }
+
+  return await appointmentRepo.getCollectiveAvailability(queryDate);
+};

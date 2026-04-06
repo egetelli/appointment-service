@@ -415,6 +415,37 @@ class AppointmentRepository {
     const { rows } = await pool.query(query, [`%${searchTerm}%`]);
     return rows;
   }
+
+  //21. Tüm aktif çalışanların günlük doluluk durumunu (Kolektif) getirir
+  async getCollectiveAvailability(date) {
+    const query = `
+      SELECT 
+        p.id AS provider_id,
+        u.full_name AS provider_name,
+        -- Uzmanın o günkü tüm randevu/molalarını JSON dizisi olarak topla
+        COALESCE(
+          JSON_AGG(
+            JSON_BUILD_OBJECT(
+              'start', a.slot_time,
+              'end', a.end_time,
+              'type', 'busy' -- Müşteriye sadece 'busy' gidiyor, gizlilik korunuyor!
+            )
+          ) FILTER (WHERE a.id IS NOT NULL), '[]'::json
+        ) AS busy_slots
+      FROM providers p
+      JOIN users u ON p.user_id = u.id
+      -- Sadece seçilen güne ait ve iptal edilmemiş randevuları/blokları eşleştir
+      LEFT JOIN appointments a ON a.provider_id = p.id 
+        AND DATE(a.slot_time) = $1 
+        AND a.status != 'cancelled'
+      WHERE p.is_active = true
+      GROUP BY p.id, u.full_name
+      ORDER BY u.full_name ASC
+    `;
+    
+    const { rows } = await pool.query(query, [date]);
+    return rows;
+  }
 }
 
 module.exports = new AppointmentRepository();

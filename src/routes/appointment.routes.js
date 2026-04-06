@@ -330,4 +330,11 @@ router.get(
   appointmentController.searchCustomers,
 );
 
+router.get(
+  "/collective-availability",
+  authenticate,
+  authorize("customer", "provider", "admin"), // Müşterilerin de bu listeyi görmesi gerektiği için "customer" eklendi
+  appointmentController.getCollectiveAvailability,
+);
+
 module.exports = router;

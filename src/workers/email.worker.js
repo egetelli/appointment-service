@@ -1,6 +1,6 @@
 const amqp = require("amqplib");
 const nodemailer = require("nodemailer");
-const logger = require('../utils/logger');
+const logger = require("../utils/logger");
 
 // Mailtrap ücretsiz plan sınırı için bekleme fonksiyonu
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -142,7 +142,7 @@ async function startWorker() {
           `;
 
           await transporter.sendMail({
-            from: '"Randevu Sistemi" <no-reply@randevu.com>',
+            from: '"Randevu Sistemi" <a73e49001@smtp-brevo.com>',
             to: recipient,
             subject: emailData.subject || headerTitle,
             text: emailData.text || mainMessage,
@@ -156,6 +156,9 @@ async function startWorker() {
             "❌ [Worker] Mesaj işleme hatası:",
             processError.message,
           );
+
+          // 🔥 KRİTİK
+          channel.nack(msg, false, false);
         }
       }
     });

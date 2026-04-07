@@ -41,3 +41,12 @@ exports.getAllSettings = async (userId) => {
 
   return { schedule, services, profile };
 };
+
+exports.deleteService = async (userId, serviceId) => {
+  const provider = await settingsRepo.getProviderByUserId(userId);
+  if (!provider) throw new Error("Uzman bulunamadı.");
+
+  // Repository'deki silme metodunu çağırıyoruz
+  await settingsRepo.deleteService(serviceId, provider.id);
+  return { success: true, message: "Hizmet başarıyla silindi." };
+};

@@ -3834,3 +3834,196 @@
 {"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-04-07 07:58:43"}
 {"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-04-07 07:58:43"}
 {"code":"ECONNRESET","errno":-104,"level":"error","message":"🔴 Redis Bağlantı Hatası: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read","timestamp":"2026-04-07 07:58:43"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-04-07 08:03:10"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-04-07 08:03:10"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-04-07 08:03:10"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-04-07 08:03:10"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-04-07 08:03:10"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-04-07 08:03:10"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-04-07 08:03:10"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-04-07 08:03:10"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-04-07 08:03:10"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-04-07 08:03:10"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-04-07 08:03:10"}
+{"0":"c","1":"4","10":"I","11":"F","12":"N","13":"Y","14":"Z","15":"1","16":"A","17":"A","18":"A","19":"B","2":"N","3":"b","4":"3","5":"r","6":"9","7":"N","8":"x","9":"K","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-04-07 08:03:16"}
+{"level":"info","message":"👤 Kullanıcı 51e7a5af-d6e2-4c17-91c3-7c11f2dd9793 kendi odasına katıldı.","timestamp":"2026-04-07 08:03:16"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-04-07 08:03:28"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-04-07 08:11:01"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-04-07 08:11:01"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-04-07 08:11:01"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-04-07 08:11:01"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-04-07 08:11:01"}
+{"level":"info","message":"🐇 RabbitMQ bağlantısı kapatıldı.","timestamp":"2026-04-07 08:11:01"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-04-07 08:11:13"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-04-07 08:28:47"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-04-07 08:28:47"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-04-07 08:28:47"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-04-07 08:28:47"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-04-07 08:28:47"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-04-07 08:28:47"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-04-07 08:28:47"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-04-07 08:28:47"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-04-07 08:28:47"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-04-07 08:28:47"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-04-07 08:28:47"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-04-07 08:29:05"}
+{"0":"f","1":"P","10":"O","11":"O","12":"G","13":"W","14":"u","15":"A","16":"A","17":"A","18":"A","19":"B","2":"f","3":"m","4":"3","5":"R","6":"z","7":"O","8":"1","9":"G","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-04-07 08:31:01"}
+{"level":"info","message":"👤 Kullanıcı 51e7a5af-d6e2-4c17-91c3-7c11f2dd9793 kendi odasına katıldı.","timestamp":"2026-04-07 08:31:01"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-04-07 08:44:31"}
+{"level":"error","message":"[2026-04-07T08:44:52.837Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 08:44:52"}
+{"level":"error","message":"[2026-04-07T08:45:10.252Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 08:45:10"}
+{"level":"error","message":"[2026-04-07T08:45:18.683Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 08:45:18"}
+{"level":"error","message":"[2026-04-07T08:45:20.970Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 08:45:20"}
+{"level":"error","message":"[2026-04-07T08:45:22.331Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 08:45:22"}
+{"level":"error","message":"[2026-04-07T08:45:23.881Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 08:45:23"}
+{"0":"g","1":"y","10":"c","11":"K","12":"v","13":"J","14":"c","15":"o","16":"A","17":"A","18":"A","19":"D","2":"l","3":"N","4":"q","5":"-","6":"f","7":"h","8":"9","9":"4","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-04-07 08:46:52"}
+{"level":"info","message":"👤 Kullanıcı 51e7a5af-d6e2-4c17-91c3-7c11f2dd9793 kendi odasına katıldı.","timestamp":"2026-04-07 08:46:52"}
+{"level":"error","message":"[2026-04-07T08:48:04.373Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 08:48:04"}
+{"level":"error","message":"[2026-04-07T08:48:06.525Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 08:48:06"}
+{"level":"error","message":"[2026-04-07T08:48:09.552Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 08:48:09"}
+{"level":"error","message":"[2026-04-07T08:48:39.381Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 08:48:39"}
+{"level":"error","message":"[2026-04-07T08:48:40.438Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 08:48:40"}
+{"level":"error","message":"[2026-04-07T08:53:39.655Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 08:53:39"}
+{"level":"error","message":"[2026-04-07T08:53:42.448Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 08:53:42"}
+{"level":"error","message":"[2026-04-07T08:54:10.150Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 08:54:10"}
+{"level":"error","message":"[2026-04-07T09:55:43.104Z] ❌ Hata: Oturum süreniz doldu, lütfen tekrar giriş yapın","timestamp":"2026-04-07 09:55:43"}
+{"level":"error","message":"[2026-04-07T09:55:43.106Z] ❌ Hata: Oturum süreniz doldu, lütfen tekrar giriş yapın","timestamp":"2026-04-07 09:55:43"}
+{"level":"error","message":"[2026-04-07T09:55:43.146Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 09:55:43"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-04-07 09:56:00"}
+{"level":"error","message":"[2026-04-07T09:56:10.058Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 09:56:10"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-04-07 09:57:59"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-04-07 09:57:59"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-04-07 09:57:59"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-04-07 09:57:59"}
+{"level":"info","message":"🐇 RabbitMQ bağlantısı kapatıldı.","timestamp":"2026-04-07 09:57:59"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-04-07 09:58:10"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-04-07 09:58:21"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-04-07 09:58:21"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-04-07 09:58:21"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-04-07 09:58:21"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-04-07 09:58:21"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-04-07 09:58:21"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-04-07 09:58:21"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-04-07 09:58:21"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-04-07 09:58:21"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-04-07 09:58:21"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-04-07 09:58:21"}
+{"level":"info","message":"🚀 [CRON] 1 kişiye hatırlatma maili gönderilecek","timestamp":"2026-04-07 10:00:00"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> eget50@gmail.com","timestamp":"2026-04-07 10:00:00"}
+{"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_REMINDER | Alıcı: eget50@gmail.com","timestamp":"2026-04-07 10:00:00"}
+{"level":"info","message":"✅ [CRON] Hatırlatma mailleri kuyruğa gönderildi","timestamp":"2026-04-07 10:00:00"}
+{"0":"I","1":"n","10":"g","11":"i","12":"n","13":":","14":" ","15":"5","16":"3","17":"5","18":" ","19":"5","2":"v","20":".","21":"7","22":".","23":"8","24":" ","25":"A","26":"u","27":"t","28":"h","29":"e","3":"a","30":"n","31":"t","32":"i","33":"c","34":"a","35":"t","36":"i","37":"o","38":"n","39":" ","4":"l","40":"f","41":"a","42":"i","43":"l","44":"e","45":"d","5":"i","6":"d","7":" ","8":"l","9":"o","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-04-07 10:00:02"}
+{"level":"error","message":"[2026-04-07T10:00:44.746Z] ❌ Hata: Uzman bulunamadı","timestamp":"2026-04-07 10:00:44"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-04-07 10:10:53"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-04-07 10:10:53"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-04-07 10:10:53"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-04-07 10:10:53"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-04-07 10:11:04"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-04-07 10:11:16"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-04-07 10:11:16"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-04-07 10:11:16"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-04-07 10:11:16"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-04-07 10:11:16"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-04-07 10:11:16"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-04-07 10:11:16"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-04-07 10:11:16"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-04-07 10:11:16"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-04-07 10:11:16"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-04-07 10:11:16"}
+{"level":"error","message":"[2026-04-07T10:12:01.403Z] ❌ Hata: Bu sayfaya erişmek için yetkiniz yok (Token eksik)","timestamp":"2026-04-07 10:12:01"}
+{"level":"error","message":"[2026-04-07T10:12:01.432Z] ❌ Hata: Oturumunuz sonlanmış, lütfen tekrar giriş yapın","timestamp":"2026-04-07 10:12:01"}
+{"0":"R","1":"Y","10":"_","11":"X","12":"G","13":"z","14":"Q","15":"r","16":"A","17":"A","18":"A","19":"B","2":"9","3":"l","4":"m","5":"3","6":"J","7":"G","8":"h","9":"k","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-04-07 10:12:30"}
+{"level":"error","message":"[2026-04-07T10:12:30.402Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-04-07 10:12:30"}
+{"level":"info","message":"👤 Kullanıcı deecf64d-6a7d-4ea8-b077-fd972fdc52e3 kendi odasına katıldı.","timestamp":"2026-04-07 10:12:30"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-04-07 10:13:04"}
+{"level":"error","message":"[2026-04-07T10:14:24.258Z] ❌ Hata: Bu sayfaya erişmek için yetkiniz yok (Token eksik)","timestamp":"2026-04-07 10:14:24"}
+{"level":"error","message":"[2026-04-07T10:14:24.281Z] ❌ Hata: Oturumunuz sonlanmış, lütfen tekrar giriş yapın","timestamp":"2026-04-07 10:14:24"}
+{"0":"Y","1":"n","10":"u","11":"E","12":"h","13":"g","14":"j","15":"O","16":"A","17":"A","18":"A","19":"D","2":"s","3":"M","4":"h","5":"t","6":"f","7":"Z","8":"m","9":"V","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-04-07 10:14:28"}
+{"level":"info","message":"👤 Kullanıcı 51e7a5af-d6e2-4c17-91c3-7c11f2dd9793 kendi odasına katıldı.","timestamp":"2026-04-07 10:14:28"}
+{"level":"error","message":"[2026-04-07T10:15:22.478Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-04-07 10:15:22"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-04-07 10:15:42"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-04-07 10:32:34"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-04-07 10:32:34"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-04-07 10:32:34"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-04-07 10:32:34"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-04-07 10:32:45"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-04-07 10:32:56"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-04-07 10:32:56"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-04-07 10:32:56"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-04-07 10:32:56"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-04-07 10:32:56"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-04-07 10:32:56"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-04-07 10:32:56"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-04-07 10:32:56"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-04-07 10:32:57"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-04-07 10:32:57"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-04-07 10:32:57"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-04-07 10:33:34"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-04-07 10:33:34"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-04-07 10:33:34"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-04-07 10:33:34"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-04-07 10:33:45"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-04-07 10:33:57"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-04-07 10:33:57"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-04-07 10:33:57"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-04-07 10:33:57"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-04-07 10:33:57"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-04-07 10:33:57"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-04-07 10:33:57"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-04-07 10:33:57"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-04-07 10:33:57"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-04-07 10:33:57"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-04-07 10:33:57"}
+{"level":"error","message":"[2026-04-07T10:34:08.104Z] ❌ Hata: column \"provider_id\" does not exist","timestamp":"2026-04-07 10:34:08"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-04-07 10:36:58"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-04-07 10:36:58"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-04-07 10:36:58"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-04-07 10:36:58"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-04-07 10:37:09"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-04-07 10:37:20"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-04-07 10:37:20"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-04-07 10:37:20"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-04-07 10:37:20"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-04-07 10:37:20"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-04-07 10:37:20"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-04-07 10:37:20"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-04-07 10:37:20"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-04-07 10:37:20"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-04-07 10:37:20"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-04-07 10:37:20"}
+{"level":"error","message":"[2026-04-07T10:46:08.123Z] ❌ Hata: Bu sayfaya erişmek için yetkiniz yok (Token eksik)","timestamp":"2026-04-07 10:46:08"}
+{"level":"error","message":"[2026-04-07T10:46:08.158Z] ❌ Hata: Oturumunuz sonlanmış, lütfen tekrar giriş yapın","timestamp":"2026-04-07 10:46:08"}
+{"level":"error","message":"[2026-04-07T10:46:27.046Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-04-07 10:46:27"}
+{"0":"8","1":"3","10":"4","11":"d","12":"Q","13":"7","14":"O","15":"p","16":"A","17":"A","18":"A","19":"B","2":"s","3":"m","4":"Y","5":"C","6":"V","7":"B","8":"P","9":"s","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-04-07 10:46:27"}
+{"level":"info","message":"👤 Kullanıcı deecf64d-6a7d-4ea8-b077-fd972fdc52e3 kendi odasına katıldı.","timestamp":"2026-04-07 10:46:27"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-04-07 10:47:04"}
+{"level":"error","message":"[2026-04-07T10:51:18.367Z] ❌ Hata: Oturumunuz sonlanmış, lütfen tekrar giriş yapın","timestamp":"2026-04-07 10:51:18"}
+{"level":"error","message":"[2026-04-07T10:51:18.385Z] ❌ Hata: Oturumunuz sonlanmış, lütfen tekrar giriş yapın","timestamp":"2026-04-07 10:51:18"}
+{"level":"error","message":"[2026-04-07T10:51:24.205Z] ❌ Hata: Geçersiz e-posta veya şifre","timestamp":"2026-04-07 10:51:24"}
+{"level":"error","message":"[2026-04-07T10:51:35.681Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-04-07 10:51:35"}
+{"0":"Q","1":"_","10":"i","11":"O","12":"Q","13":"d","14":"2","15":"l","16":"A","17":"A","18":"A","19":"D","2":"h","3":"G","4":"k","5":"5","6":"q","7":"2","8":"k","9":"a","level":"info","message":"⚡ Yeni bir kullanıcı bağlandı:","timestamp":"2026-04-07 10:51:35"}
+{"level":"info","message":"👤 Kullanıcı deecf64d-6a7d-4ea8-b077-fd972fdc52e3 kendi odasına katıldı.","timestamp":"2026-04-07 10:51:35"}
+{"level":"info","message":"❌ Kullanıcı ayrıldı.","timestamp":"2026-04-07 10:52:45"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-04-07 10:57:51"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-04-07 10:57:51"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-04-07 10:57:51"}
+{"level":"info","message":"⚡ Redis bağlantısı kapatıldı.","timestamp":"2026-04-07 10:57:51"}
+{"level":"info","message":"👷 [Worker] Postacı hazır! 'email_queue' dinleniyor...","timestamp":"2026-04-07 10:58:02"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-04-07 10:58:12"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-04-07 10:58:12"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-04-07 10:58:12"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-04-07 10:58:12"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-04-07 10:58:12"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-04-07 10:58:12"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-04-07 10:58:12"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-04-07 10:58:12"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-04-07 10:58:12"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-04-07 10:58:12"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-04-07 10:58:12"}
+{"level":"error","message":"[2026-04-07T11:39:34.391Z] ❌ Hata: Oturum süreniz doldu, lütfen tekrar giriş yapın","timestamp":"2026-04-07 11:39:34"}
+{"level":"error","message":"[2026-04-07T11:39:34.396Z] ❌ Hata: Oturum süreniz doldu, lütfen tekrar giriş yapın","timestamp":"2026-04-07 11:39:34"}
+{"level":"error","message":"🔴 Redis Bağlantı Hatası: Socket closed unexpectedly","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/app/node_modules/@redis/client/dist/lib/client/socket.js:232:33)\n    at Object.onceWrapper (node:events:639:26)\n    at Socket.emit (node:events:524:28)\n    at TCP.<anonymous> (node:net:343:12)","timestamp":"2026-04-07 12:21:47"}
+{"address":"10.89.0.140","code":"ECONNREFUSED","errno":-111,"level":"error","message":"🔴 Redis Bağlantı Hatası: connect ECONNREFUSED 10.89.0.140:6379","port":6379,"stack":"Error: connect ECONNREFUSED 10.89.0.140:6379\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1611:16)","syscall":"connect","timestamp":"2026-04-07 12:21:47"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-04-07 12:21:47"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-04-07 12:21:47"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-04-07 12:21:47"}

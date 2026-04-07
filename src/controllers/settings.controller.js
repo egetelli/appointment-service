@@ -44,3 +44,13 @@ exports.getAllSettings = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.deleteService = async (req, res, next) => {
+  try {
+    const { id } = req.params; // URL'den gelen serviceId
+    const result = await settingsService.deleteService(req.user.id, id);
+    res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+};

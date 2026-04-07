@@ -39,7 +39,75 @@ router.get(
   adminController.getDashboard,
 );
 
-// İleride buraya adminlerin yapabileceği diğer işlemler eklenebilir
-// Örn: router.delete("/users/:id", authenticate, authorize("admin"), adminController.deleteUser);
+// --- KULLANICI (USER) YÖNETİMİ ---
+router.get(
+  "/users",
+  authenticate,
+  authorize("admin"),
+  adminController.getUsers,
+);
+router.post(
+  "/users",
+  authenticate,
+  authorize("admin"),
+  adminController.createUser,
+);
+router.put(
+  "/users/:id",
+  authenticate,
+  authorize("admin"),
+  adminController.updateUser,
+);
+router.delete(
+  "/users/:id",
+  authenticate,
+  authorize("admin"),
+  adminController.deleteUser,
+);
+
+// --- SERVİS (HİZMET) YÖNETİMİ (Bir uzmana ait servisler) ---
+router.get(
+  "/providers/:id/services",
+  authenticate,
+  authorize("admin"),
+  adminController.getProviderServices,
+);
+
+// HATA BURADAYDI! createService yerine controller'daki gerçek adını yazdık
+router.post(
+  "/providers/:id/services",
+  authenticate,
+  authorize("admin"),
+  adminController.createOrUpdateService,
+);
+
+// HATA BURADAYDI! updateService yerine controller'daki gerçek adını yazdık
+router.put(
+  "/services/:serviceId",
+  authenticate,
+  authorize("admin"),
+  adminController.createOrUpdateService,
+);
+
+router.delete(
+  "/services/:serviceId",
+  authenticate,
+  authorize("admin"),
+  adminController.deleteService,
+);
+
+// --- ÇALIŞMA SAATLERİ (WORKING HOURS) ---
+router.get(
+  "/providers/:id/working-hours",
+  authenticate,
+  authorize("admin"),
+  adminController.getWorkingHours,
+);
+router.put(
+  "/providers/:id/working-hours",
+  authenticate,
+  authorize("admin"),
+  adminController.updateWorkingHours,
+);
 
 module.exports = router;

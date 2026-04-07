@@ -52,6 +52,57 @@ class AdminService {
       roleChart,
     };
   }
+
+  async getUsers() {
+    return await adminRepository.getAllUsers();
+  }
+
+  async createUser(userData) {
+    // Şifreyi hash'liyoruz (default şifre belirleyebilirsin)
+    const hashedPassword = await bcrypt.hash(
+      userData.password || "Slotra123!",
+      10,
+    );
+    return await adminRepository.createUser({
+      ...userData,
+      password: hashedPassword,
+    });
+  }
+
+  async updateUser(id, data) {
+    return await adminRepository.updateUser(id, data);
+  }
+
+  async deleteUser(id) {
+    return await adminRepository.deleteUser(id);
+  }
+
+  async updateProviderProfile(id, data) {
+    return await adminRepository.updateProviderProfile(id, data);
+  }
+
+  async getProviderServices(providerId) {
+    return await adminRepository.getProviderServices(providerId);
+  }
+
+  async manageService(serviceId, data, providerId) {
+    if (serviceId) {
+      return await adminRepository.updateService(serviceId, data);
+    }
+    return await adminRepository.createService(providerId, data);
+  }
+
+  async deleteService(serviceId) {
+    return await adminRepository.deleteService(serviceId);
+  }
+
+  async getWorkingHours(providerId) {
+    return await adminRepository.getWorkingHours(providerId);
+  }
+
+  async updateWorkingHours(providerId, hours) {
+    return await adminRepository.updateWorkingHours(providerId, hours);
+  }
 }
 
 module.exports = new AdminService();

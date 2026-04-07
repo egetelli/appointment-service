@@ -93,10 +93,20 @@ exports.saveService = async (providerId, service) => {
 };
 
 exports.deleteService = async (serviceId, providerId) => {
-  await db.query("DELETE FROM services WHERE id = $1 AND provider_id = $2", [
-    serviceId,
-    providerId,
-  ]);
+  try {
+    // 1. Önce köprü tablosundan (provider_services) bu uzman ile hizmet arasındaki bağı sil
+    await db.query(
+      "DELETE FROM provider_services WHERE service_id = $1 AND provider_id = $2",
+      [serviceId, providerId],
+    );
+
+    // 2. Sonra ana hizmetler (services) tablosundan hizmeti sil
+    // NOT: Eğer bu hizmeti birden fazla uzman kullanabiliyorsa burayı silmemen gerekir.
+    // Ama senin yapında her "Yeni Ekle" dendiğinde yeni bir service satırı oluşuyorsa silebilirsin.
+    await db.query("DELETE FROM services WHERE id = $1", [serviceId]);
+  } catch (error) {
+    throw error;
+  }
 };
 
 // 📅 1. Mesai Saatlerini Getir (Bu kısım doğruydu ama garantiye alalım)

@@ -176,4 +176,6 @@ router.post("/profile", settingsController.saveProfile);
  */
 router.get("/all", protect, settingsController.getAllSettings);
 
+router.delete("/services/:id", settingsController.deleteService);
+
 module.exports = router;

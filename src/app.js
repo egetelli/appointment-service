@@ -15,6 +15,7 @@ const userRoutes = require("./routes/user.routes");
 const serviceRoutes = require("./routes/service.routes");
 const providerRoutes = require("./routes/provider.routes");
 const settingsRoutes = require("./routes/settings.routes");
+const adminRoutes = require("./routes/admin.routes");
 
 const errorHandler = require("./middleware/error.middleware");
 
@@ -63,6 +64,7 @@ app.use("/api/appointments", appointmentRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/providers", providerRoutes);
 app.use("/api/settings", settingsRoutes);
+app.use("/api/admin", adminRoutes); // Admin rotalarını ekle (En sona eklemek iyi olur, diğer rotalardan sonra)
 
 // --- 6. 404 Yakalayıcı ---
 app.use((req, res) => {

@@ -110,4 +110,12 @@ router.put(
   adminController.updateWorkingHours,
 );
 
+router.get(
+  "/appointments",
+  authenticate,
+  authorize("admin"),
+  adminController.getAppointments,
+);
+
+
 module.exports = router;

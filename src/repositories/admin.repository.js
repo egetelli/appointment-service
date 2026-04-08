@@ -226,6 +226,37 @@ class AdminRepository {
     }
     return true;
   }
+
+  async getAppointments(providerId) {
+    let queryText = `
+      SELECT 
+        a.id, 
+        a.slot_time, 
+        a.status, 
+        a.total_price,
+        COALESCE(u.full_name, a.guest_name, 'Bilinmeyen Müşteri') AS customer_name,
+        p.name AS provider_name,
+        s.name AS service_name
+      FROM appointments a
+      LEFT JOIN users u ON a.user_id = u.id
+      LEFT JOIN providers p ON a.provider_id = p.id
+      LEFT JOIN services s ON a.service_id = s.id
+    `;
+
+    const params = [];
+
+    // Eğer admin bir uzman seçtiyse, sadece o uzmanınkileri getir
+    if (providerId) {
+      queryText += ` WHERE a.provider_id = $1`;
+      params.push(providerId);
+    }
+
+    // Randevuları tarihe göre yeniden eskiye sırala
+    queryText += ` ORDER BY a.slot_time DESC`;
+
+    const result = await db.query(queryText, params);
+    return result.rows;
+  }
 }
 
 module.exports = new AdminRepository();

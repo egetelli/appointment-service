@@ -103,6 +103,10 @@ class AdminService {
   async updateWorkingHours(providerId, hours) {
     return await adminRepository.updateWorkingHours(providerId, hours);
   }
+
+  async getAppointments(providerId) {
+    return await adminRepository.getAppointments(providerId);
+  }
 }
 
 module.exports = new AdminService();

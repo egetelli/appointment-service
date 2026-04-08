@@ -107,6 +107,16 @@ class AdminController {
       next(e);
     }
   }
+
+  async getAppointments(req, res, next) {
+    try {
+      const { providerId } = req.query; // ?providerId=... gelirse yakalar
+      const data = await adminService.getAppointments(providerId);
+      res.status(200).json({ success: true, data });
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 module.exports = new AdminController();

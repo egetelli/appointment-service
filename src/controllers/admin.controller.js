@@ -117,6 +117,17 @@ class AdminController {
       next(e);
     }
   }
+
+  async getClients(req, res, next) {
+    try {
+      const { providerId } = req.query;
+      // Servis katmanına yönlendir
+      const data = await adminService.getClients(providerId);
+      res.status(200).json({ success: true, data });
+    } catch (e) {
+      next(e);
+    }
+  }
 }
 
 module.exports = new AdminController();

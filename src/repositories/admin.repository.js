@@ -257,6 +257,48 @@ class AdminRepository {
     const result = await db.query(queryText, params);
     return result.rows;
   }
+
+  async getClients(providerId) {
+    let queryText = `
+      SELECT 
+        COALESCE(u.id::text, a.guest_name) AS customer_id,
+        COALESCE(u.full_name, a.guest_name, 'Misafir Müşteri') AS customer_name,
+        COALESCE(u.email, 'Belirtilmedi') AS customer_email,
+        MAX(CASE WHEN a.slot_time < NOW() THEN a.slot_time ELSE NULL END) AS last_visit_date,
+        
+        -- Tamamlanmış (Geçmiş) Randevu Sayısı
+        COUNT(CASE WHEN a.slot_time < NOW() AND a.status != 'cancelled' THEN 1 END) AS completed_visits,
+        
+        -- Gelecek (Planlanan) Randevu Sayısı
+        COUNT(CASE WHEN a.slot_time >= NOW() AND a.status IN ('booked', 'pending') THEN 1 END) AS upcoming_visits,
+        
+        -- Gerçekleşen (Kazanılan) Ciro
+        COALESCE(SUM(CASE WHEN a.slot_time < NOW() AND a.status != 'cancelled' THEN a.total_price ELSE 0 END), 0) AS realized_revenue,
+        
+        -- Beklenen (Gelecek) Ciro
+        COALESCE(SUM(CASE WHEN a.slot_time >= NOW() AND a.status IN ('booked', 'pending') THEN a.total_price ELSE 0 END), 0) AS expected_revenue
+        
+      FROM appointments a
+      LEFT JOIN users u ON a.user_id = u.id
+    `;
+
+    const params = [];
+
+    // Eğer Admin belirli bir uzmanı filtrelediyse
+    if (providerId) {
+      queryText += ` WHERE a.provider_id = $1`;
+      params.push(providerId);
+    }
+
+    // Müşterileri ID, İsim ve E-postaya göre grupla ki her müşteri tek satır çıksın
+    queryText += ` GROUP BY u.id, u.full_name, u.email, a.guest_name`;
+
+    // En çok para kazandıran (Veya en son gelen) müşterileri en üste sırala
+    queryText += ` ORDER BY realized_revenue DESC, last_visit_date DESC NULLS LAST`;
+
+    const result = await db.query(queryText, params);
+    return result.rows;
+  }
 }
 
 module.exports = new AdminRepository();

@@ -1,0 +1,66 @@
+name: Backend Docker CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    # Node.js API'nin çökmeksizin ayağa kalkması için gereken TÜM ortam değişkenleri
+    # DİKKAT: Bunlar gerçek şifrelerin değil, CI ortamı için sahte test verileridir.
+    env:
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASSWORD: test_db_password
+      DB_NAME: appointment_db
+      JWT_SECRET: super_secret_test_key
+      REDIS_HOST: redis
+      REDIS_PASSWORD: test_redis_password
+      RABBITMQ_URL: amqp://admin:test_rabbit@rabbitmq:5672
+      MAIL_HOST: smtp-relay.brevo.com
+      MAIL_PORT: 587
+      MAIL_USER: test_user@local.com
+      MAIL_PASS: fake_ci_password
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build and Start Services
+        run: docker compose up -d --build
+
+      - name: Wait for Services to be Healthy
+        run: |
+          echo "Veritabanı ve RabbitMQ bekleniyor..."
+          sleep 15
+
+      - name: Check Container Status
+        run: docker compose ps -a
+
+      - name: Verify API Container is Running
+        run: |
+          API_STATUS=$(docker inspect -f '{{.State.Status}}' appointment-api-container)
+          if [ "$API_STATUS" != "running" ]; then
+            echo "API Konteyneri Çöktü!"
+            docker logs appointment-api-container
+            exit 1
+          fi
+          echo "API başarıyla çalışıyor!"
+
+      - name: Verify Email Worker is Running
+        run: |
+          WORKER_STATUS=$(docker inspect -f '{{.State.Status}}' email-worker-container)
+          if [ "$WORKER_STATUS" != "running" ]; then
+            echo "Email Worker Çöktü!"
+            docker logs email-worker-container
+            exit 1
+          fi
+          echo "Email worker başarıyla çalışıyor!"
+
+      - name: Tear Down Services
+        if: always()
+        run: docker compose down -v

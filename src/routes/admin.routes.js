@@ -117,5 +117,11 @@ router.get(
   adminController.getAppointments,
 );
 
+router.get(
+  "/clients",
+  authenticate,
+  authorize("admin"),
+  adminController.getClients,
+);
 
 module.exports = router;

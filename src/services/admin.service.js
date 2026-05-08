@@ -107,6 +107,10 @@ class AdminService {
   async getAppointments(providerId) {
     return await adminRepository.getAppointments(providerId);
   }
+
+  async getClients(providerId) {
+    return await adminRepository.getClients(providerId);
+  }
 }
 
 module.exports = new AdminService();

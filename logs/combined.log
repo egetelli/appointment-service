@@ -10,3 +10,34 @@
 {"level":"info","message":"📩 [Worker] İşlem tipi: APPOINTMENT_CREATED | Alıcı: ege.telli@europowerenerji.com.tr","timestamp":"2026-05-08 14:32:25"}
 {"0":"I","1":"n","10":"g","11":"i","12":"n","13":":","14":" ","15":"5","16":"3","17":"5","18":" ","19":"5","2":"v","20":".","21":"7","22":".","23":"8","24":" ","25":"A","26":"u","27":"t","28":"h","29":"e","3":"a","30":"n","31":"t","32":"i","33":"c","34":"a","35":"t","36":"i","37":"o","38":"n","39":" ","4":"l","40":"f","41":"a","42":"i","43":"l","44":"e","45":"d","5":"i","6":"d","7":" ","8":"l","9":"o","level":"error","message":"❌ [Worker] Mesaj işleme hatası:","timestamp":"2026-05-08 14:32:28"}
 {"level":"error","message":"[2026-05-08T14:32:35.411Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","timestamp":"2026-05-08 14:32:35"}
+{"level":"error","message":"❌ [Worker] Kritik hata:","timestamp":"2026-05-11 11:31:34"}
+{"level":"error","message":"❌ [Worker] Kritik hata:","timestamp":"2026-05-11 11:31:44"}
+{"level":"info","message":"🟡 Redis: Bağlantı kuruluyor...","timestamp":"2026-05-11 11:31:51"}
+{"level":"info","message":"🟢 Redis: Hazır ve şifreli erişim sağlandı!","timestamp":"2026-05-11 11:31:51"}
+{"level":"info","message":"🐘 [PostgreSQL] Veritabanı bağlantısı başarılı.","timestamp":"2026-05-11 11:31:51"}
+{"level":"info","message":"🔄 Veritabanı şeması doğrulanıyor...","timestamp":"2026-05-11 11:31:51"}
+{"level":"info","message":"✅ Tablolar güncel ve sistem hazır.","timestamp":"2026-05-11 11:31:51"}
+{"level":"info","message":"⚡ [REDIS] Önbellek bağlantısı başarılı.","timestamp":"2026-05-11 11:31:51"}
+{"level":"error","message":"❌ [RabbitMQ] Bağlantı Hatası:","timestamp":"2026-05-11 11:31:51"}
+{"level":"info","message":"📡 [Socket.io] Gerçek zamanlı haberleşme hazır.","timestamp":"2026-05-11 11:31:51"}
+{"level":"info","message":"🕒 Hatırlatıcı servisi başlatıldı.","timestamp":"2026-05-11 11:31:52"}
+{"level":"info","message":"🚀 [API] Sunucu port 3000 üzerinde çalışıyor...","timestamp":"2026-05-11 11:31:52"}
+{"level":"info","message":"🌍 [Ortam] development","timestamp":"2026-05-11 11:31:52"}
+{"level":"info","message":"🐇 [RabbitMQ] Başarıyla bağlanıldı ve kanal açıldı!","timestamp":"2026-05-11 11:31:56"}
+{"level":"info","message":"🚀 [CRON] 2 kişiye hatırlatma maili gönderilecek","timestamp":"2026-05-11 11:32:00"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> egetelli@hotmail.com","timestamp":"2026-05-11 11:32:00"}
+{"level":"info","message":"📩 [Kuyruk] Görev RabbitMQ'ya bırakıldı: Mail -> egetelli@hotmail.com","timestamp":"2026-05-11 11:32:00"}
+{"level":"info","message":"✅ [CRON] Hatırlatma mailleri kuyruğa gönderildi","timestamp":"2026-05-11 11:32:00"}
+{"ip":"10.89.0.5","level":"error","message":"[2026-05-11T11:32:03.880Z] ❌ Hata: Oturumunuz sonlanmış, lütfen tekrar giriş yapın","method":"POST","timestamp":"2026-05-11 11:32:03","traceId":"3b0ec778-2ad2-4fa5-8a0f-a33b0f5c358a","url":"/api/auth/refresh","userId":"GUEST"}
+{"ip":"10.89.0.5","level":"error","message":"[2026-05-11T11:32:03.899Z] ❌ Hata: Oturumunuz sonlanmış, lütfen tekrar giriş yapın","method":"POST","timestamp":"2026-05-11 11:32:03","traceId":"d9a44cf3-aa3d-4bbb-8514-ae7e3da56a4e","url":"/api/auth/refresh","userId":"GUEST"}
+{"ip":"10.89.0.5","level":"error","message":"[2026-05-11T11:32:10.080Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","method":"GET","timestamp":"2026-05-11 11:32:10","traceId":"fab6a3db-ba02-4a2c-9099-8ccbeecd26c9","url":"/api/admin/dashboard","userId":"GUEST"}
+{"ip":"10.89.0.5","level":"error","message":"[2026-05-11T11:32:12.290Z] ❌ Hata: Bu sayfaya erişmek için yetkiniz yok (Token eksik)","method":"GET","timestamp":"2026-05-11 11:32:12","traceId":"a97bd337-8204-47cf-9c47-6003295fecf6","url":"/api/admin/dashboard","userId":"GUEST"}
+{"ip":"10.89.0.5","level":"error","message":"[2026-05-11T11:32:12.314Z] ❌ Hata: Oturumunuz sonlanmış, lütfen tekrar giriş yapın","method":"POST","timestamp":"2026-05-11 11:32:12","traceId":"9bfb8c21-bb05-4dc2-aa12-2599182ad89e","url":"/api/auth/refresh","userId":"GUEST"}
+{"ip":"10.89.0.5","level":"error","message":"[2026-05-11T11:33:51.547Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","method":"GET","timestamp":"2026-05-11 11:33:51","traceId":"d0a35133-2194-459e-9390-113ed1976eca","url":"/api/admin/dashboard","userId":"GUEST"}
+{"ip":"10.89.0.5","level":"error","message":"[2026-05-11T11:41:47.684Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","method":"GET","timestamp":"2026-05-11 11:41:47","traceId":"81d6337f-8a63-4a5a-8d9f-e1fbdbb02f70","url":"/api/admin/dashboard","userId":"GUEST"}
+{"ip":"10.89.0.5","level":"error","message":"[2026-05-11T11:48:37.467Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","method":"GET","timestamp":"2026-05-11 11:48:37","traceId":"7e456bab-03be-4815-8c26-2b508be464bc","url":"/api/admin/dashboard","userId":"GUEST"}
+{"ip":"10.89.0.5","level":"error","message":"[2026-05-11T11:49:00.148Z] ❌ Hata: Erişim reddedildi: provider rolü bu işlem için yetkili değil","method":"GET","timestamp":"2026-05-11 11:49:00","traceId":"a9fc9102-fbe4-4106-a6b3-0e81eb02a966","url":"/api/admin/dashboard","userId":"GUEST"}
+{"level":"info","message":"\n👋 Sunucu zarif bir şekilde kapatılıyor...","timestamp":"2026-05-11 11:51:40"}
+{"level":"info","message":"📡 Socket.io bağlantıları durduruldu.","timestamp":"2026-05-11 11:51:40"}
+{"level":"info","message":"🐘 PostgreSQL bağlantısı kapatıldı.","timestamp":"2026-05-11 11:51:40"}
+{"code":"ECONNRESET","errno":-104,"level":"error","message":"🔴 Redis Bağlantı Hatası: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)\n    at TCP.callbackTrampoline (node:internal/async_hooks:130:17)","syscall":"read","timestamp":"2026-05-11 11:51:40"}

@@ -37,8 +37,6 @@ services:
   api:
     build: .
     container_name: appointment-api-container
-    ports:
-      - "3000:3000"
     volumes:
       - .:/app
       - ./logs:/app/logs
@@ -125,6 +123,20 @@ services:
     depends_on:
       rabbitmq:
         condition: service_healthy # RabbitMQ tamamen hazır olmadan postacı uyanmasın
+  # 7. Nginx (Reverse Proxy) Servisi
+  nginx:
+    image: nginx:alpine
+    container_name: slotra-nginx-gateway
+    ports:
+      - "8080:80" # Dış dünyanın girdiği standart port
+    volumes:
+      # Az önce yazdığımız ayar dosyasını Nginx'in içine kopyalıyoruz
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - app-network
+    depends_on:
+      - api # Nginx, API ayağa kalkmadan çalışmasın
+    restart: always
 # Ağ Tanımlaması (İzolasyon için)
 networks:
   app-network:

@@ -16,7 +16,7 @@ const serviceRoutes = require("./routes/service.routes");
 const providerRoutes = require("./routes/provider.routes");
 const settingsRoutes = require("./routes/settings.routes");
 const adminRoutes = require("./routes/admin.routes");
-
+const { loggerMiddleware } = require("./middleware/loggerContext");
 const errorHandler = require("./middleware/error.middleware");
 
 // Swagger
@@ -38,7 +38,7 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
-
+app.use(loggerMiddleware);
 // --- 2. Hız Sınırlayıcılar (Rate Limiters) ---
 // Not: Rotalardan ÖNCE tanımlanmalıdır!
 

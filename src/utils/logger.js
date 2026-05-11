@@ -1,44 +1,49 @@
 const winston = require("winston");
 const path = require("path");
+const { requestContext } = require("../middleware/loggerContext");
 
-// Log formatı aynı kalıyor...
+// Winston'a özel, görünmez depodan veri çeken format
+const addContextData = winston.format((info) => {
+  const store = requestContext.getStore();
+
+  if (store) {
+    // Depodaki verileri doğrudan log nesnesine yapıştır
+    info.traceId = store.get("traceId");
+    info.userId = store.get("userId") || "GUEST";
+    info.ip = store.get("ip");
+    info.method = store.get("method");
+    info.url = store.get("url");
+  }
+  return info;
+});
+
 const logFormat = winston.format.combine(
   winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
   winston.format.errors({ stack: true }),
-  winston.format.splat(),
+  addContextData(), 
   winston.format.json(),
 );
 
-// LOG KLASÖRÜNÜ SABİTLEME (Mutlak Yol)
-// __dirname şu an: C:\...\src\utils
-// path.resolve ile 2 üst klasöre çıkıp (root) logs klasörünü hedefliyoruz.
 const logDir = path.resolve(__dirname, "../../logs");
 
 const logger = winston.createLogger({
-  level: process.env.NODE_ENV === "production" ? "info" : "debug",
+  level: "info",
   format: logFormat,
   transports: [
-    // 1. Hata logları
     new winston.transports.File({
-      filename: path.join(logDir, "error.log"), // Artik tam yol: .../appointment-service/logs/error.log
+      filename: path.join(logDir, "error.log"),
       level: "error",
     }),
-    // 2. Tüm loglar
     new winston.transports.File({
       filename: path.join(logDir, "combined.log"),
     }),
-  ],
-});
-
-if (process.env.NODE_ENV !== "production") {
-  logger.add(
     new winston.transports.Console({
       format: winston.format.combine(
         winston.format.colorize(),
         winston.format.simple(),
       ),
     }),
-  );
-}
+  ],
+});
 
 module.exports = logger;
